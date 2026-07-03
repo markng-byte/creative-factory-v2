@@ -1,0 +1,1500 @@
+{
+  "$schema": "http://json-schema.org/draft-2020-12/schema#",
+  "$id": "https://creative-factory.ai/schemas/creative-ir/v1.0.0.json",
+  "title": "Creative Intermediate Representation (Creative IR) Schema",
+  "description": "The canonical, machine-readable representation of every creative artifact produced by the Creative Factory.",
+  "version": "1.0.0",
+  "type": "object",
+  "required": [
+    "version",
+    "id",
+    "createdAt",
+    "updatedAt",
+    "revisionHistory",
+    "campaign",
+    "creativeContext",
+    "stories",
+    "brandTokens",
+    "designTokens",
+    "assetRequests",
+    "reviews",
+    "exports",
+    "validationStatus",
+    "compilerMetadata"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of Creative IR specification"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "description": "Unique document identifier"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 last update timestamp"
+    },
+    "revisionHistory": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/RevisionRecord" },
+      "description": "History of document revisions"
+    },
+    "campaign": {
+      "$ref": "#/$defs/Campaign"
+    },
+    "creativeContext": {
+      "$ref": "#/$defs/CreativeContext"
+    },
+    "stories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Story" },
+      "minItems": 1,
+      "description": "Collection of narrative stories"
+    },
+    "brandTokens": {
+      "$ref": "#/$defs/BrandTokens"
+    },
+    "designTokens": {
+      "$ref": "#/$defs/DesignTokens"
+    },
+    "assetRequests": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/AssetRequest" },
+      "description": "Asset generation requests"
+    },
+    "reviews": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Review" },
+      "description": "Review and approval records"
+    },
+    "exports": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ExportMetadata" },
+      "description": "Export operation records"
+    },
+    "validationStatus": {
+      "$ref": "#/$defs/ValidationStatus"
+    },
+    "compilerMetadata": {
+      "$ref": "#/$defs/CompilerMetadata"
+    }
+  },
+  "$defs": {
+    "RevisionRecord": {
+      "type": "object",
+      "required": ["version", "timestamp", "actor", "changeDescription"],
+      "properties": {
+        "version": { "type": "integer", "minimum": 1 },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "actor": { "type": "string" },
+        "changeDescription": { "type": "string" },
+        "previousVersionId": { "type": ["string", "null"] },
+        "metadata": { "type": "object" }
+      }
+    },
+    "Campaign": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "objective",
+        "targetAudience",
+        "duration",
+        "aspectRatios",
+        "languages",
+        "marketRegions",
+        "lifecycleState",
+        "approvalState",
+        "createdBy",
+        "updatedBy"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "objective": { "type": "string" },
+        "targetAudience": { "$ref": "#/$defs/TargetAudience" },
+        "duration": { "$ref": "#/$defs/Duration" },
+        "aspectRatios": {
+          "type": "array",
+          "items": {
+            "enum": ["16:9", "9:16", "1:1", "4:3", "21:9"]
+          }
+        },
+        "languages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "marketRegions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "lifecycleState": {
+          "enum": [
+            "DRAFT",
+            "BRIEF_READY",
+            "STRATEGY_DRAFT",
+            "STRATEGY_REVIEW",
+            "STORYBOARD_DRAFT",
+            "STORYBOARD_REVIEW",
+            "PROMPT_READY",
+            "ASSET_GENERATION_PENDING",
+            "ASSET_GENERATION_RUNNING",
+            "ASSET_REVIEW",
+            "FINAL_APPROVAL",
+            "EXPORTING",
+            "COMPLETED",
+            "CANCELLED"
+          ]
+        },
+        "approvalState": {
+          "enum": ["pending", "approved", "rejected", "changes-requested"]
+        },
+        "createdBy": { "type": "string" },
+        "updatedBy": { "type": "string" }
+      }
+    },
+    "TargetAudience": {
+      "type": "object",
+      "required": ["demographics"],
+      "properties": {
+        "demographics": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Demographic" }
+        },
+        "psychographics": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "mediaPreferences": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "geographies": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Demographic": {
+      "type": "object",
+      "required": ["age"],
+      "properties": {
+        "age": {
+          "type": "object",
+          "required": ["min", "max"],
+          "properties": {
+            "min": { "type": "integer", "minimum": 0 },
+            "max": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "gender": { "type": ["string", "null"] },
+        "income": {
+          "type": ["object", "null"],
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        },
+        "education": { "type": ["string", "null"] }
+      }
+    },
+    "Duration": {
+      "type": "object",
+      "required": ["minutes", "seconds"],
+      "properties": {
+        "minutes": { "type": "integer", "minimum": 0 },
+        "seconds": { "type": "integer", "minimum": 0, "maximum": 59 },
+        "frames": { "type": ["integer", "null"] },
+        "frameRate": { "type": ["number", "null"] }
+      }
+    },
+    "CreativeContext": {
+      "type": "object",
+      "required": [
+        "briefId",
+        "briefTitle",
+        "briefObjective",
+        "creativeDirection",
+        "moodAndTone",
+        "visualStyle",
+        "narrativeTheme",
+        "keyMessages",
+        "callToAction",
+        "brandGuidelines",
+        "constraints"
+      ],
+      "properties": {
+        "briefId": { "type": "string" },
+        "briefTitle": { "type": "string" },
+        "briefObjective": { "type": "string" },
+        "creativeDirection": { "type": "string" },
+        "moodAndTone": { "$ref": "#/$defs/MoodAndTone" },
+        "visualStyle": { "$ref": "#/$defs/VisualStyle" },
+        "narrativeTheme": { "type": "string" },
+        "keyMessages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "callToAction": { "type": "string" },
+        "brandGuidelines": { "$ref": "#/$defs/BrandGuidelines" },
+        "competitiveContext": { "type": ["string", "null"] },
+        "constraints": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Constraint" }
+        },
+        "approvedBy": { "type": ["string", "null"] },
+        "approvalDate": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "MoodAndTone": {
+      "type": "object",
+      "required": ["primary"],
+      "properties": {
+        "primary": { "type": "string" },
+        "secondary": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "avoided": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "VisualStyle": {
+      "type": "object",
+      "properties": {
+        "cinematography": { "type": "string" },
+        "colorPalette": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "lighting": { "type": "string" },
+        "composition": { "type": "string" },
+        "references": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Reference" }
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "title": { "type": "string" },
+        "url": { "type": ["string", "null"] },
+        "creator": { "type": ["string", "null"] },
+        "description": { "type": ["string", "null"] }
+      }
+    },
+    "BrandGuidelines": {
+      "type": "object",
+      "properties": {
+        "logoUsage": { "type": "string" },
+        "colorRules": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ColorRule" }
+        },
+        "typographyRules": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TypographyRule" }
+        },
+        "voiceAndTone": { "$ref": "#/$defs/VoiceAndTone" },
+        "prohibitedElements": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "ColorRule": {
+      "type": "object",
+      "required": ["color", "usage"],
+      "properties": {
+        "color": { "type": "string" },
+        "usage": { "type": "string" },
+        "context": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "TypographyRule": {
+      "type": "object",
+      "required": ["fontFamily", "usage"],
+      "properties": {
+        "fontFamily": { "type": "string" },
+        "fontWeight": { "type": ["string", "integer"] },
+        "fontSize": { "type": "number" },
+        "usage": { "type": "string" }
+      }
+    },
+    "VoiceAndTone": {
+      "type": "object",
+      "properties": {
+        "personality": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "toneInContext": { "type": "object" },
+        "doNotUse": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Constraint": {
+      "type": "object",
+      "required": ["type", "description", "impact"],
+      "properties": {
+        "type": {
+          "enum": ["technical", "legal", "brand", "creative", "resource"]
+        },
+        "description": { "type": "string" },
+        "impact": {
+          "enum": ["blocking", "warning", "advisory"]
+        }
+      }
+    },
+    "Story": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "description",
+        "sequence",
+        "durationFrames",
+        "storyboards",
+        "reviewState",
+        "approvalState",
+        "metadata"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "durationFrames": { "type": "integer", "minimum": 1 },
+        "storyboards": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Storyboard" }
+        },
+        "reviewState": {
+          "enum": ["not-started", "in-progress", "completed", "revision-needed"]
+        },
+        "approvalState": {
+          "enum": ["pending", "approved", "rejected", "changes-requested"]
+        },
+        "metadata": { "type": "object" }
+      }
+    },
+    "Storyboard": {
+      "type": "object",
+      "required": ["id", "title", "sequence", "scenes", "duration"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": ["string", "null"] },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "scenes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Scene" },
+          "minItems": 1
+        },
+        "duration": { "$ref": "#/$defs/Duration" },
+        "reviewNotes": { "type": ["string", "null"] }
+      }
+    },
+    "Scene": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "sequence",
+        "narrativeText",
+        "shots",
+        "duration"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": ["string", "null"] },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "narrativeText": { "type": "string" },
+        "shots": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Shot" },
+          "minItems": 1
+        },
+        "transitions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Transition" }
+        },
+        "audioSpecs": { "$ref": "#/$defs/AudioSpecification" },
+        "duration": { "$ref": "#/$defs/Duration" },
+        "reviewNotes": { "type": ["string", "null"] }
+      }
+    },
+    "Shot": {
+      "type": "object",
+      "required": [
+        "id",
+        "sequence",
+        "description",
+        "duration",
+        "visualSpec",
+        "motionSpec",
+        "audioElements"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "description": { "type": "string" },
+        "duration": { "$ref": "#/$defs/Duration" },
+        "visualSpec": { "$ref": "#/$defs/VisualSpecification" },
+        "motionSpec": { "$ref": "#/$defs/MotionSpecification" },
+        "audioElements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AudioElement" }
+        },
+        "assetRequests": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reviewNotes": { "type": ["string", "null"] }
+      }
+    },
+    "Transition": {
+      "type": "object",
+      "required": ["type", "duration"],
+      "properties": {
+        "type": {
+          "enum": ["cut", "fade", "dissolve", "wipe", "zoom", "pan"]
+        },
+        "duration": { "$ref": "#/$defs/Duration" },
+        "easing": { "type": ["string", "null"] },
+        "description": { "type": ["string", "null"] }
+      }
+    },
+    "VisualSpecification": {
+      "type": "object",
+      "required": [
+        "shotType",
+        "camera",
+        "composition",
+        "lighting",
+        "colorGrading",
+        "foregroundElements",
+        "backgroundElements"
+      ],
+      "properties": {
+        "shotType": {
+          "enum": [
+            "wide",
+            "medium",
+            "close-up",
+            "extreme-close-up",
+            "aerial",
+            "pov",
+            "over-shoulder",
+            "two-shot",
+            "group"
+          ]
+        },
+        "camera": { "$ref": "#/$defs/CameraConfiguration" },
+        "composition": { "$ref": "#/$defs/CompositionSpec" },
+        "lighting": { "$ref": "#/$defs/LightingSpec" },
+        "colorGrading": { "$ref": "#/$defs/ColorGradingSpec" },
+        "foregroundElements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/VisualElement" }
+        },
+        "backgroundElements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/VisualElement" }
+        },
+        "specialEffects": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SpecialEffect" }
+        },
+        "props": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Prop" }
+        },
+        "talent": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TalentDirection" }
+        }
+      }
+    },
+    "CameraConfiguration": {
+      "type": "object",
+      "required": ["movement", "angle", "lens", "depth"],
+      "properties": {
+        "movement": {
+          "enum": ["static", "pan", "tilt", "dolly", "crane", "orbit", "tracking", "reveal"]
+        },
+        "angle": { "$ref": "#/$defs/CameraAngle" },
+        "lens": { "$ref": "#/$defs/LensSpec" },
+        "focus": { "$ref": "#/$defs/FocusSpec" },
+        "depth": { "type": "number" }
+      }
+    },
+    "CameraAngle": {
+      "type": "object",
+      "required": ["pitch", "yaw", "roll"],
+      "properties": {
+        "pitch": { "type": "number", "minimum": -90, "maximum": 90 },
+        "yaw": { "type": "number", "minimum": 0, "maximum": 360 },
+        "roll": { "type": "number", "minimum": -90, "maximum": 90 }
+      }
+    },
+    "LensSpec": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string" }
+      }
+    },
+    "FocusSpec": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string" }
+      }
+    },
+    "CompositionSpec": {
+      "type": "object",
+      "required": ["rule"],
+      "properties": {
+        "rule": {
+          "enum": ["rule-of-thirds", "center", "leading-lines", "depth"]
+        },
+        "subjectPlacement": { "type": "string" },
+        "balanceType": {
+          "enum": ["symmetrical", "asymmetrical", "radial"]
+        }
+      }
+    },
+    "LightingSpec": {
+      "type": "object",
+      "required": ["type", "keyLight"],
+      "properties": {
+        "type": {
+          "enum": [
+            "three-point",
+            "two-point",
+            "backlighting",
+            "sidelighting",
+            "practical"
+          ]
+        },
+        "keyLight": { "$ref": "#/$defs/LightDescription" },
+        "fillLight": { "$ref": "#/$defs/LightDescription" },
+        "backLight": { "$ref": "#/$defs/LightDescription" },
+        "ambientLight": { "$ref": "#/$defs/LightDescription" },
+        "shadows": { "type": "string" },
+        "mood": { "type": "string" }
+      }
+    },
+    "LightDescription": {
+      "type": "object",
+      "required": ["intensity", "color", "direction"],
+      "properties": {
+        "intensity": { "type": "number", "minimum": 0, "maximum": 100 },
+        "color": { "type": "string" },
+        "direction": { "type": "string" },
+        "softness": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "ColorGradingSpec": {
+      "type": "object",
+      "properties": {
+        "look": { "type": "string" },
+        "colorCast": { "type": "string" },
+        "saturation": { "type": "number", "minimum": -100, "maximum": 100 },
+        "contrast": { "type": "number", "minimum": -100, "maximum": 100 },
+        "highlights": { "type": "number", "minimum": -100, "maximum": 100 },
+        "shadows": { "type": "number", "minimum": -100, "maximum": 100 },
+        "temperature": { "type": "number" }
+      }
+    },
+    "VisualElement": {
+      "type": "object",
+      "required": ["id", "type", "description"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "description": { "type": "string" },
+        "position": { "$ref": "#/$defs/Vector2D" },
+        "scale": { "$ref": "#/$defs/Vector2D" },
+        "rotation": { "type": "number" },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "Vector2D": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" }
+      }
+    },
+    "Vector3D": {
+      "type": "object",
+      "required": ["x", "y", "z"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "z": { "type": "number" }
+      }
+    },
+    "SpecialEffect": {
+      "type": "object",
+      "required": ["type", "description"],
+      "properties": {
+        "type": { "type": "string" },
+        "description": { "type": "string" },
+        "parameters": { "type": "object" },
+        "timing": { "$ref": "#/$defs/Timing" }
+      }
+    },
+    "Prop": {
+      "type": "object",
+      "required": ["id", "name", "description"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "visualCharacteristics": { "type": "string" },
+        "sourceAssets": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "TalentDirection": {
+      "type": "object",
+      "required": ["talentId"],
+      "properties": {
+        "talentId": { "type": "string" },
+        "action": { "type": "string" },
+        "emotion": { "type": "string" },
+        "positioning": { "type": "string" },
+        "facialExpression": { "type": "string" }
+      }
+    },
+    "MotionSpecification": {
+      "type": "object",
+      "properties": {
+        "cameraMotion": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/CameraMotionKeyframes" }
+        },
+        "objectMotions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ObjectMotion" }
+        },
+        "particleEffects": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ParticleEffect" }
+        },
+        "dynamicsSimulation": { "$ref": "#/$defs/DynamicsSimulation" }
+      }
+    },
+    "CameraMotionKeyframes": {
+      "type": "object",
+      "required": ["time", "position", "rotation", "easing"],
+      "properties": {
+        "time": { "type": "number", "minimum": 0 },
+        "position": { "$ref": "#/$defs/Vector3D" },
+        "rotation": { "$ref": "#/$defs/Rotation3D" },
+        "focalLength": { "type": "number" },
+        "focusDistance": { "type": "number" },
+        "easing": { "type": "string" }
+      }
+    },
+    "Rotation3D": {
+      "type": "object",
+      "required": ["x", "y", "z"],
+      "properties": {
+        "x": { "type": "number", "minimum": -90, "maximum": 90 },
+        "y": { "type": "number", "minimum": 0, "maximum": 360 },
+        "z": { "type": "number", "minimum": -90, "maximum": 90 }
+      }
+    },
+    "ObjectMotion": {
+      "type": "object",
+      "required": ["objectId", "keyframes"],
+      "properties": {
+        "objectId": { "type": "string" },
+        "keyframes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/MotionKeyframe" }
+        },
+        "loop": { "type": "boolean" },
+        "physics": { "$ref": "#/$defs/PhysicsProps" }
+      }
+    },
+    "MotionKeyframe": {
+      "type": "object",
+      "required": ["time", "position", "rotation", "easing"],
+      "properties": {
+        "time": { "type": "number", "minimum": 0 },
+        "position": { "$ref": "#/$defs/Vector3D" },
+        "rotation": { "$ref": "#/$defs/Rotation3D" },
+        "scale": { "$ref": "#/$defs/Vector3D" },
+        "easing": { "type": "string" }
+      }
+    },
+    "ParticleEffect": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "emitterPosition": { "$ref": "#/$defs/Vector3D" },
+        "emission": { "type": "object" },
+        "lifespan": { "type": "number" },
+        "physics": { "$ref": "#/$defs/ParticlePhysics" }
+      }
+    },
+    "PhysicsProps": {
+      "type": "object",
+      "properties": {
+        "mass": { "type": "number" },
+        "drag": { "type": "number" },
+        "angularDrag": { "type": "number" }
+      }
+    },
+    "ParticlePhysics": {
+      "type": "object",
+      "properties": {
+        "velocity": { "$ref": "#/$defs/Vector3D" },
+        "acceleration": { "$ref": "#/$defs/Vector3D" },
+        "rotation": { "$ref": "#/$defs/Vector3D" },
+        "lifetime": { "type": "number" },
+        "drag": { "type": "number" }
+      }
+    },
+    "DynamicsSimulation": {
+      "type": "object",
+      "properties": {
+        "gravity": { "$ref": "#/$defs/Vector3D" },
+        "wind": { "$ref": "#/$defs/Vector3D" },
+        "friction": { "type": "number" },
+        "elasticity": { "type": "number" }
+      }
+    },
+    "AudioSpecification": {
+      "type": "object",
+      "required": ["soundEffects"],
+      "properties": {
+        "voiceover": { "$ref": "#/$defs/VoiceoverSpec" },
+        "music": { "$ref": "#/$defs/MusicSpec" },
+        "soundEffects": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SoundEffect" }
+        },
+        "ambience": { "$ref": "#/$defs/AmbienceSpec" },
+        "mixing": { "$ref": "#/$defs/MixingSpec" },
+        "localization": { "$ref": "#/$defs/LocalizationSpec" }
+      }
+    },
+    "AudioElement": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "VoiceoverSpec": {
+      "type": "object",
+      "required": ["script", "language"],
+      "properties": {
+        "script": { "type": "string" },
+        "language": { "type": "string" },
+        "style": { "type": "string" },
+        "pacing": { "type": "string" },
+        "emotionalTone": { "type": "string" },
+        "deliveryNotes": { "type": "string" }
+      }
+    },
+    "MusicSpec": {
+      "type": "object",
+      "required": ["mood", "tempo", "genre"],
+      "properties": {
+        "mood": { "type": "string" },
+        "tempo": { "type": "number", "minimum": 0 },
+        "genre": { "type": "string" },
+        "instrumentation": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "intensity": { "type": "number", "minimum": 0, "maximum": 100 },
+        "notes": { "type": "string" },
+        "licensingRequirements": { "type": ["string", "null"] }
+      }
+    },
+    "SoundEffect": {
+      "type": "object",
+      "required": ["id", "name", "description"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "timing": { "$ref": "#/$defs/Timing" },
+        "volume": { "type": "number" },
+        "effects": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AudioEffect" }
+        }
+      }
+    },
+    "AudioEffect": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string" },
+        "parameters": { "type": "object" }
+      }
+    },
+    "AmbienceSpec": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "elements": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "volume": { "type": "number" }
+      }
+    },
+    "MixingSpec": {
+      "type": "object",
+      "properties": {
+        "masterVolume": { "type": "number" },
+        "voiceoverLevel": { "type": "number" },
+        "musicLevel": { "type": "number" },
+        "effectsLevel": { "type": "number" },
+        "ambienceLevel": { "type": "number" },
+        "dynamicRangeCompression": { "type": "boolean" },
+        "normalization": { "type": "boolean" }
+      }
+    },
+    "LocalizationSpec": {
+      "type": "object",
+      "properties": {
+        "targetLanguages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "voiceoverPerLanguage": { "type": "object" },
+        "subtitles": { "$ref": "#/$defs/SubtitleSpec" }
+      }
+    },
+    "SubtitleSpec": {
+      "type": "object",
+      "required": ["format", "languages"],
+      "properties": {
+        "format": {
+          "enum": ["vtt", "srt", "ass"]
+        },
+        "languages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "styling": { "type": "object" }
+      }
+    },
+    "Timing": {
+      "type": "object",
+      "required": ["startTime", "duration"],
+      "properties": {
+        "startTime": { "type": "number", "minimum": 0 },
+        "duration": { "type": "number", "minimum": 0 },
+        "easing": { "type": ["string", "null"] }
+      }
+    },
+    "BrandTokens": {
+      "type": "object",
+      "required": [
+        "brandId",
+        "brandName",
+        "primaryColors",
+        "voiceAndTone",
+        "prohibitedElements",
+        "brandPersonality"
+      ],
+      "properties": {
+        "brandId": { "type": "string" },
+        "brandName": { "type": "string" },
+        "primaryColors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ColorToken" }
+        },
+        "secondaryColors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ColorToken" }
+        },
+        "accentColors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ColorToken" }
+        },
+        "typography": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TypographyToken" }
+        },
+        "logoVariations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/LogoVariation" }
+        },
+        "imageryGuidelines": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ImageryGuideline" }
+        },
+        "voiceAndTone": { "$ref": "#/$defs/VoiceAndToneToken" },
+        "prohibitedElements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ProhibitedElement" }
+        },
+        "brandPersonality": { "$ref": "#/$defs/BrandPersonality" }
+      }
+    },
+    "ColorToken": {
+      "type": "object",
+      "required": ["name", "hex", "rgb", "hsl", "usage"],
+      "properties": {
+        "name": { "type": "string" },
+        "hex": { "type": "string" },
+        "rgb": { "type": "object" },
+        "hsl": { "type": "object" },
+        "usage": { "type": "string" },
+        "context": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "TypographyToken": {
+      "type": "object",
+      "required": ["name", "fontFamily", "usage"],
+      "properties": {
+        "name": { "type": "string" },
+        "fontFamily": { "type": "string" },
+        "fontWeight": { "type": ["string", "integer"] },
+        "fontSize": { "type": "number" },
+        "lineHeight": { "type": "number" },
+        "letterSpacing": { "type": "number" },
+        "usage": { "type": "string" }
+      }
+    },
+    "LogoVariation": {
+      "type": "object",
+      "required": ["type", "description"],
+      "properties": {
+        "type": {
+          "enum": ["primary", "secondary", "monochrome", "icon"]
+        },
+        "description": { "type": "string" },
+        "minimumSize": { "type": "number" },
+        "clearanceRules": { "type": "string" },
+        "usageContext": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "ImageryGuideline": {
+      "type": "object",
+      "required": ["category", "description"],
+      "properties": {
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "visualCharacteristics": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "examples": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "prohibited": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "VoiceAndToneToken": {
+      "type": "object",
+      "properties": {
+        "personality": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "toneInContext": { "type": "object" },
+        "doNotUse": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "BrandPersonality": {
+      "type": "object",
+      "required": ["primaryTraits"],
+      "properties": {
+        "primaryTraits": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "secondaryTraits": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "communicationStyle": { "type": "string" },
+        "valuePropositions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "ProhibitedElement": {
+      "type": "object",
+      "required": ["type", "description", "reason"],
+      "properties": {
+        "type": { "type": "string" },
+        "description": { "type": "string" },
+        "reason": { "type": "string" },
+        "context": { "type": ["string", "null"] }
+      }
+    },
+    "DesignTokens": {
+      "type": "object",
+      "properties": {
+        "spacing": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SpacingToken" }
+        },
+        "sizing": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SizingToken" }
+        },
+        "shadows": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ShadowToken" }
+        },
+        "borders": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/BorderToken" }
+        },
+        "animations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AnimationToken" }
+        },
+        "breakpoints": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/BreakpointToken" }
+        }
+      }
+    },
+    "SpacingToken": {
+      "type": "object",
+      "required": ["name", "value", "unit"],
+      "properties": {
+        "name": { "type": "string" },
+        "value": { "type": "number" },
+        "unit": { "type": "string" }
+      }
+    },
+    "SizingToken": {
+      "type": "object",
+      "required": ["name", "unit"],
+      "properties": {
+        "name": { "type": "string" },
+        "width": { "type": ["number", "null"] },
+        "height": { "type": ["number", "null"] },
+        "unit": { "type": "string" }
+      }
+    },
+    "ShadowToken": {
+      "type": "object",
+      "required": ["name", "color"],
+      "properties": {
+        "name": { "type": "string" },
+        "color": { "type": "string" },
+        "offsetX": { "type": "number" },
+        "offsetY": { "type": "number" },
+        "blur": { "type": "number" },
+        "spread": { "type": "number" }
+      }
+    },
+    "BorderToken": {
+      "type": "object",
+      "required": ["name", "width", "style", "color"],
+      "properties": {
+        "name": { "type": "string" },
+        "width": { "type": "number" },
+        "style": { "type": "string" },
+        "color": { "type": "string" },
+        "radius": { "type": ["number", "null"] }
+      }
+    },
+    "AnimationToken": {
+      "type": "object",
+      "required": ["name", "duration", "easing"],
+      "properties": {
+        "name": { "type": "string" },
+        "duration": { "type": "number", "minimum": 0 },
+        "easing": { "type": "string" },
+        "delay": { "type": ["number", "null"] }
+      }
+    },
+    "BreakpointToken": {
+      "type": "object",
+      "required": ["name", "minWidth"],
+      "properties": {
+        "name": { "type": "string" },
+        "minWidth": { "type": "number", "minimum": 0 },
+        "maxWidth": { "type": ["number", "null"] }
+      }
+    },
+    "AssetRequest": {
+      "type": "object",
+      "required": [
+        "id",
+        "createdAt",
+        "shotId",
+        "assetType",
+        "specifications",
+        "quantity",
+        "priority",
+        "deliveredAssets",
+        "qaStatus"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "shotId": { "type": "string" },
+        "assetType": {
+          "enum": ["image", "video", "audio", "animation", "3d-model", "text"]
+        },
+        "specifications": { "$ref": "#/$defs/AssetSpecification" },
+        "quantity": { "type": "integer", "minimum": 1 },
+        "priority": {
+          "enum": ["critical", "high", "medium", "low"]
+        },
+        "deadline": { "type": ["string", "null"], "format": "date-time" },
+        "deliveredAssets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AssetOutput" }
+        },
+        "qaStatus": {
+          "enum": ["pending", "in-progress", "approved", "rejected"]
+        },
+        "metadata": { "type": "object" }
+      }
+    },
+    "AssetSpecification": {
+      "type": "object",
+      "required": [
+        "description",
+        "dimensions",
+        "format",
+        "colorSpace",
+        "quality"
+      ],
+      "properties": {
+        "description": { "type": "string" },
+        "dimensions": { "$ref": "#/$defs/AssetDimension" },
+        "format": { "type": "string" },
+        "colorSpace": { "type": "string" },
+        "quality": { "type": "string" },
+        "constraints": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AssetConstraint" }
+        }
+      }
+    },
+    "AssetDimension": {
+      "type": "object",
+      "required": ["width", "height"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "depth": { "type": ["integer", "null"] },
+        "duration": { "$ref": "#/$defs/Duration" },
+        "framerate": { "type": ["number", "null"] }
+      }
+    },
+    "AssetConstraint": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "type": "string" },
+        "value": {}
+      }
+    },
+    "AssetOutput": {
+      "type": "object",
+      "required": ["id", "requestId", "format", "url", "metadata"],
+      "properties": {
+        "id": { "type": "string" },
+        "requestId": { "type": "string" },
+        "format": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "metadata": { "$ref": "#/$defs/AssetMetadata" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "generatedBy": { "type": "string" },
+        "provenance": { "$ref": "#/$defs/Provenance" }
+      }
+    },
+    "AssetMetadata": {
+      "type": "object",
+      "required": ["width", "height", "fileSize", "colorSpace"],
+      "properties": {
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "fileSize": { "type": "integer" },
+        "duration": { "$ref": "#/$defs/Duration" },
+        "colorSpace": { "type": "string" },
+        "bitDepth": { "type": ["integer", "null"] },
+        "frameCount": { "type": ["integer", "null"] },
+        "framerate": { "type": ["number", "null"] }
+      }
+    },
+    "Provenance": {
+      "type": "object",
+      "required": ["sourceEngine", "parameters", "generationTime"],
+      "properties": {
+        "sourceEngine": { "type": "string" },
+        "sourceModel": { "type": ["string", "null"] },
+        "sourceVersion": { "type": ["string", "null"] },
+        "parameters": { "type": "object" },
+        "seed": { "type": ["string", "null"] },
+        "generationTime": { "type": "number", "minimum": 0 }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "required": [
+        "id",
+        "createdAt",
+        "reviewedBy",
+        "reviewType",
+        "status",
+        "targetId",
+        "decision",
+        "comments",
+        "attachments"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "reviewedBy": { "type": "string" },
+        "reviewType": {
+          "enum": ["strategy", "storyboard", "assets", "final"]
+        },
+        "status": {
+          "enum": ["pending", "in-progress", "completed", "rejected"]
+        },
+        "targetId": { "type": "string" },
+        "decision": {
+          "enum": [
+            "approved",
+            "approved-with-changes",
+            "rejected",
+            "pending"
+          ]
+        },
+        "comments": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ReviewComment" }
+        },
+        "attachments": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Attachment" }
+        },
+        "deadline": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "ReviewComment": {
+      "type": "object",
+      "required": ["id", "author", "timestamp", "text", "resolved"],
+      "properties": {
+        "id": { "type": "string" },
+        "author": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "text": { "type": "string" },
+        "attachments": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Attachment" }
+        },
+        "resolved": { "type": "boolean" }
+      }
+    },
+    "Attachment": {
+      "type": "object",
+      "required": ["id", "name", "mimeType", "url", "uploadedAt", "uploadedBy"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "uploadedAt": { "type": "string", "format": "date-time" },
+        "uploadedBy": { "type": "string" }
+      }
+    },
+    "ExportMetadata": {
+      "type": "object",
+      "required": [
+        "id",
+        "createdAt",
+        "exportedBy",
+        "exportFormat",
+        "adapterUsed",
+        "targetPlatform",
+        "artifacts",
+        "status"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "exportedBy": { "type": "string" },
+        "exportFormat": {
+          "enum": [
+            "storyboard-html",
+            "scene-spec-pdf",
+            "shot-list-json",
+            "motion-spec-json",
+            "prompt-package-json",
+            "image-generation-requests",
+            "video-generation-requests",
+            "qa-spec-json",
+            "production-package"
+          ]
+        },
+        "adapterUsed": { "type": "string" },
+        "targetPlatform": { "type": "string" },
+        "artifacts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExportArtifact" }
+        },
+        "status": {
+          "enum": ["pending", "processing", "completed", "failed"]
+        },
+        "errorLog": { "type": ["string", "null"] }
+      }
+    },
+    "ExportArtifact": {
+      "type": "object",
+      "required": ["format", "url", "size", "generatedAt"],
+      "properties": {
+        "format": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "size": { "type": "integer", "minimum": 0 },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "metadata": { "type": "object" }
+      }
+    },
+    "ValidationStatus": {
+      "type": "object",
+      "required": ["isValid", "errors", "warnings", "lastValidatedAt"],
+      "properties": {
+        "isValid": { "type": "boolean" },
+        "errors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ValidationError" }
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ValidationWarning" }
+        },
+        "lastValidatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ValidationError": {
+      "type": "object",
+      "required": ["code", "message", "path", "severity"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" },
+        "path": { "type": "string" },
+        "severity": {
+          "enum": ["critical", "high", "medium"]
+        }
+      }
+    },
+    "ValidationWarning": {
+      "type": "object",
+      "required": ["code", "message", "path"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" },
+        "path": { "type": "string" }
+      }
+    },
+    "CompilerMetadata": {
+      "type": "object",
+      "required": [
+        "compileVersion",
+        "compileTimestamp",
+        "sourceComponents",
+        "compileRules",
+        "adapterMetadata",
+        "diagnostics"
+      ],
+      "properties": {
+        "compileVersion": { "type": "string" },
+        "compileTimestamp": { "type": "string", "format": "date-time" },
+        "sourceComponents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SourceComponent" }
+        },
+        "compileRules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "adapterMetadata": { "type": "object" },
+        "diagnostics": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Diagnostic" }
+        }
+      }
+    },
+    "SourceComponent": {
+      "type": "object",
+      "required": ["id", "type", "version", "checksum"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "version": { "type": "string" },
+        "checksum": { "type": "string" }
+      }
+    },
+    "Diagnostic": {
+      "type": "object",
+      "required": ["level", "message"],
+      "properties": {
+        "level": {
+          "enum": ["info", "warning", "error"]
+        },
+        "message": { "type": "string" },
+        "line": { "type": ["integer", "null"] },
+        "column": { "type": ["integer", "null"] },
+        "suggestion": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

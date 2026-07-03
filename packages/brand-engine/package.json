@@ -1,0 +1,38 @@
+{
+  "name": "@creative-factory/brand-engine",
+  "version": "1.0.0",
+  "description": "Brand Intelligence Engine - Import, validate, normalize, and tokenize brand packages",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./orchestrator": {
+      "types": "./dist/orchestrator.d.ts",
+      "import": "./dist/orchestrator.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*",
+    "@creative-factory/brand-importers": "workspace:*",
+    "@creative-factory/brand-validator": "workspace:*",
+    "@creative-factory/brand-tokenizer": "workspace:*",
+    "@creative-factory/brand-registry": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creative-factory.local/contracts/events/campaign-lifecycle-transitioned.schema.json",
+  "title": "campaign.lifecycle.transitioned",
+  "type": "object",
+  "required": ["id", "name", "version", "occurredAt", "aggregateId", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "const": "campaign.lifecycle.transitioned" },
+    "version": { "const": 1 },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "aggregateId": { "type": "string", "minLength": 1 },
+    "causationId": { "type": "string", "minLength": 1 },
+    "correlationId": { "type": "string", "minLength": 1 },
+    "payload": {
+      "type": "object",
+      "required": ["campaignId", "from", "to", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "campaignId": { "type": "string", "minLength": 1 },
+        "from": { "$ref": "#/$defs/campaignLifecycleState" },
+        "to": { "$ref": "#/$defs/campaignLifecycleState" },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "campaignLifecycleState": {
+      "enum": [
+        "DRAFT",
+        "BRIEF_READY",
+        "STRATEGY_DRAFT",
+        "STRATEGY_REVIEW",
+        "STORYBOARD_DRAFT",
+        "STORYBOARD_REVIEW",
+        "PROMPT_READY",
+        "ASSET_GENERATION_PENDING",
+        "ASSET_GENERATION_RUNNING",
+        "ASSET_REVIEW",
+        "FINAL_APPROVAL",
+        "EXPORTING",
+        "COMPLETED",
+        "CANCELLED"
+      ]
+    }
+  }
+}

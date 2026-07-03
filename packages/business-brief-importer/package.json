@@ -1,0 +1,36 @@
+{
+  "name": "@creative-factory/business-brief-importer",
+  "version": "1.0.0",
+  "description": "Pluggable business brief importers for various formats (JSON, YAML, Markdown, Form API)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./registry": {
+      "types": "./dist/registry.d.ts",
+      "import": "./dist/registry.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*",
+    "js-yaml": "^4.1.0",
+    "marked": "^11.1.1"
+  },
+  "devDependencies": {
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/js-yaml": "^4.0.5",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}

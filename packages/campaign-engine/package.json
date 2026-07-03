@@ -1,0 +1,34 @@
+{
+  "name": "@creative-factory/campaign-engine",
+  "version": "1.0.0",
+  "description": "Campaign Engine orchestrator - coordinates business brief import, audience modeling, messaging, and creative brief generation",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*",
+    "@creative-factory/business-brief-importer": "workspace:*",
+    "@creative-factory/audience-model": "workspace:*",
+    "@creative-factory/messaging-engine": "workspace:*",
+    "@creative-factory/creative-brief": "workspace:*",
+    "@creative-factory/campaign-registry": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}

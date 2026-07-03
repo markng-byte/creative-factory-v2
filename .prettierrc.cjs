@@ -1,0 +1,1 @@
+@creative-factory/prettier-config

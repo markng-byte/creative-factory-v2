@@ -1,0 +1,52 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      NEXT_PUBLIC_APP_NAME: Creative Factory
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+      NODE_ENV: production
+    depends_on:
+      api:
+        condition: service_started
+
+  api:
+    build:
+      context: apps/api
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    environment:
+      APP_NAME: Creative Factory API
+      APP_VERSION: 0.0.0
+      ENVIRONMENT: development
+      DEBUG: 'true'
+      CORS_ORIGINS: 'http://localhost:3000'
+
+  # Infrastructure placeholders for future features (not wired yet)
+  postgres:
+    image: postgres:16-alpine
+    profiles: ['infra']
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: creative_factory
+      POSTGRES_PASSWORD: creative_factory
+      POSTGRES_DB: creative_factory
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    profiles: ['infra']
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:

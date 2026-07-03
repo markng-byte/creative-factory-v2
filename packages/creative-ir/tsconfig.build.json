@@ -1,0 +1,3 @@
+{
+  "extends": "@creative-factory/tsconfig/node.json"
+}

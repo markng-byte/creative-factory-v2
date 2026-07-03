@@ -1,0 +1,31 @@
+{
+  "name": "@creative-factory/creative-brief",
+  "version": "1.0.0",
+  "description": "Creative Brief generator - transforms business briefs into structured creative briefs for Creative IR",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*",
+    "@creative-factory/audience-model": "workspace:*",
+    "@creative-factory/messaging-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}

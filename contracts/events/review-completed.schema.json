@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creative-factory.local/contracts/events/review-completed.schema.json",
+  "title": "review.completed",
+  "type": "object",
+  "required": ["id", "name", "version", "occurredAt", "aggregateId", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "const": "review.completed" },
+    "version": { "const": 1 },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "aggregateId": { "type": "string", "minLength": 1 },
+    "causationId": { "type": "string", "minLength": 1 },
+    "correlationId": { "type": "string", "minLength": 1 },
+    "payload": {
+      "type": "object",
+      "required": ["campaignId", "reviewCycleId", "decision"],
+      "additionalProperties": false,
+      "properties": {
+        "campaignId": { "type": "string", "minLength": 1 },
+        "reviewCycleId": { "type": "string", "minLength": 1 },
+        "decision": {
+          "enum": ["APPROVE", "REJECT", "REQUEST_CHANGES", "ESCALATE"]
+        }
+      }
+    }
+  }
+}
