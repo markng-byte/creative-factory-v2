@@ -10,18 +10,18 @@ Enterprise AI Creative Factory — building the canonical model layer and provid
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Package manager | pnpm workspaces |
-| Task runner | Turborepo |
-| Web app | Next.js 15 (App Router) |
-| API | FastAPI (Python 3.12) |
-| Linting | ESLint 9 (flat config) |
-| Formatting | Prettier |
-| JS testing | Vitest |
-| Python testing | pytest |
-| Containers | Docker + Compose |
-| CI | GitHub Actions |
+| Layer           | Technology              |
+| --------------- | ----------------------- |
+| Package manager | pnpm workspaces         |
+| Task runner     | Turborepo               |
+| Web app         | Next.js 15 (App Router) |
+| API             | FastAPI (Python 3.12)   |
+| Linting         | ESLint 9 (flat config)  |
+| Formatting      | Prettier                |
+| JS testing      | Vitest                  |
+| Python testing  | pytest                  |
+| Containers      | Docker + Compose        |
+| CI              | GitHub Actions          |
 
 ## Repository layout
 
@@ -71,11 +71,13 @@ creative-factory/
 ### Why Creative IR?
 
 Without a canonical model, services either:
+
 - ❌ Couple directly to provider APIs (GitHub Copilot, Claude, Midjourney, etc.)
 - ❌ Develop proprietary internal models (incompatible, inefficient)
 - ❌ Pass unstructured prompts between systems (lossy, non-deterministic)
 
 Creative IR enables:
+
 - ✅ Provider-neutral service architecture
 - ✅ Deterministic, auditable creative production
 - ✅ Easy addition of new adapters and output formats
@@ -165,11 +167,11 @@ docker compose -f docker-compose.dev.yml up --build
 
 ## Environment management
 
-| File | Purpose |
-|---|---|
-| `.env.example` | Root reference for all variables |
-| `apps/web/.env.example` | Next.js public/server env |
-| `apps/api/.env.example` | FastAPI pydantic-settings |
+| File                    | Purpose                          |
+| ----------------------- | -------------------------------- |
+| `.env.example`          | Root reference for all variables |
+| `apps/web/.env.example` | Next.js public/server env        |
+| `apps/api/.env.example` | FastAPI pydantic-settings        |
 
 Client-safe variables use the `NEXT_PUBLIC_` prefix. Secrets must never be committed.
 

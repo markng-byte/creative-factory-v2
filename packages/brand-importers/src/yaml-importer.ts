@@ -5,7 +5,7 @@
  */
 
 import { load as parseYAML } from 'js-yaml';
-import type { BrandPackage, BrandPackageId } from '@creative-factory/domain';
+import type { BrandPackage, BrandPackageId, BrandComponent } from '@creative-factory/domain';
 import { BrandSourceFormat } from '@creative-factory/domain';
 import type { BrandImporter } from './importer.js';
 
@@ -32,7 +32,7 @@ export class YAMLBrandImporter implements BrandImporter {
     id: BrandPackageId,
     name: string,
     content: string | Buffer,
-    metadata?: Record<string, unknown>
+    metadata?: Record<string, unknown>,
   ): Promise<BrandPackage> {
     try {
       const str = typeof content === 'string' ? content : content.toString();
@@ -45,13 +45,13 @@ export class YAMLBrandImporter implements BrandImporter {
         description: (data.description as string) || '',
         sourceFormat: BrandSourceFormat.YAML,
         metadata: { ...metadata, ...(data.metadata as Record<string, unknown>) },
-        components: (data.components as unknown[]) || [],
+        components: (data.components as BrandComponent[]) || [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
     } catch (error) {
       throw new Error(
-        `Failed to import YAML brand package: ${error instanceof Error ? error.message : String(error)}`
+        `Failed to import YAML brand package: ${error instanceof Error ? error.message : String(error)}`,
       );
     }
   }

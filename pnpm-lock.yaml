@@ -563,6 +563,9 @@ importers:
 
   packages/messaging-engine:
     dependencies:
+      '@creative-factory/audience-model':
+        specifier: workspace:*
+        version: link:../audience-model
       '@creative-factory/domain':
         specifier: workspace:*
         version: link:../domain

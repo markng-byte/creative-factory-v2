@@ -5,7 +5,6 @@
  */
 
 import type {
-  BrandPackage,
   BrandProfile,
   BrandImportResult,
   BrandValidationResult,
@@ -54,7 +53,7 @@ export interface BrandEngineOrchestrator {
    */
   importBrand(
     input: BrandPackageInput,
-    options?: Partial<BrandImportOptions>
+    options?: Partial<BrandImportOptions>,
   ): Promise<BrandImportResult>;
 
   /**
@@ -72,7 +71,7 @@ export interface BrandEngineOrchestrator {
    */
   processBrandPackage(
     input: BrandPackageInput,
-    options?: Partial<BrandImportOptions>
+    options?: Partial<BrandImportOptions>,
   ): Promise<BrandEngineWorkflow>;
 
   /**

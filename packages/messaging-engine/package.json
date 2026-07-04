@@ -10,11 +10,13 @@
     }
   },
   "scripts": {
-    "build": "tsc",
-    "test": "vitest",
-    "lint": "eslint src"
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "test:watch": "vitest"
   },
   "dependencies": {
+    "@creative-factory/audience-model": "workspace:*",
     "@creative-factory/domain": "workspace:*",
     "@creative-factory/shared-kernel": "workspace:*"
   },

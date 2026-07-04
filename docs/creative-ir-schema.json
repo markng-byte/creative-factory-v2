@@ -417,14 +417,7 @@
     },
     "Scene": {
       "type": "object",
-      "required": [
-        "id",
-        "title",
-        "sequence",
-        "narrativeText",
-        "shots",
-        "duration"
-      ],
+      "required": ["id", "title", "sequence", "narrativeText", "shots", "duration"],
       "properties": {
         "id": { "type": "string" },
         "title": { "type": "string" },
@@ -591,13 +584,7 @@
       "required": ["type", "keyLight"],
       "properties": {
         "type": {
-          "enum": [
-            "three-point",
-            "two-point",
-            "backlighting",
-            "sidelighting",
-            "practical"
-          ]
+          "enum": ["three-point", "two-point", "backlighting", "sidelighting", "practical"]
         },
         "keyLight": { "$ref": "#/$defs/LightDescription" },
         "fillLight": { "$ref": "#/$defs/LightDescription" },
@@ -1208,13 +1195,7 @@
     },
     "AssetSpecification": {
       "type": "object",
-      "required": [
-        "description",
-        "dimensions",
-        "format",
-        "colorSpace",
-        "quality"
-      ],
+      "required": ["description", "dimensions", "format", "colorSpace", "quality"],
       "properties": {
         "description": { "type": "string" },
         "dimensions": { "$ref": "#/$defs/AssetDimension" },
@@ -1311,12 +1292,7 @@
         },
         "targetId": { "type": "string" },
         "decision": {
-          "enum": [
-            "approved",
-            "approved-with-changes",
-            "rejected",
-            "pending"
-          ]
+          "enum": ["approved", "approved-with-changes", "rejected", "pending"]
         },
         "comments": {
           "type": "array",

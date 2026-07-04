@@ -1,6 +1,15 @@
-import type { BusinessBriefInput, CreativeBrief, CampaignPackage, BrandProfile, CampaignPackageStatus } from '@creative-factory/domain';
+import type {
+  BusinessBriefInput,
+  CreativeBrief,
+  CampaignPackage,
+  BrandProfile,
+  CampaignPackageStatus,
+} from '@creative-factory/domain';
 import { StandardBusinessBriefImporterRegistry } from '@creative-factory/business-brief-importer';
-import { JSONBusinessBriefImporter, YAMLBusinessBriefImporter } from '@creative-factory/business-brief-importer';
+import {
+  JSONBusinessBriefImporter,
+  YAMLBusinessBriefImporter,
+} from '@creative-factory/business-brief-importer';
 import { StandardCreativeBriefBuilder } from '@creative-factory/creative-brief';
 import { MemoryCampaignRegistry } from '@creative-factory/campaign-registry';
 
@@ -70,7 +79,9 @@ export class StandardCampaignEngineOrchestrator implements ICampaignEngineOrches
 
       const importResult = await importer.import(campaignId, briefInput);
       if (!importResult.success || !importResult.brief) {
-        throw new Error(`Business brief import failed: ${importResult.errors.map((e: { message: string }) => e.message).join(', ')}`);
+        throw new Error(
+          `Business brief import failed: ${importResult.errors.map((e: { message: string }) => e.message).join(', ')}`,
+        );
       }
 
       const businessBrief = importResult.brief;
@@ -100,7 +111,9 @@ export class StandardCampaignEngineOrchestrator implements ICampaignEngineOrches
 
       return campaignPackage;
     } catch (error) {
-      throw new Error(`Campaign creation failed: ${error instanceof Error ? error.message : String(error)}`);
+      throw new Error(
+        `Campaign creation failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
     }
   }
 
@@ -135,24 +148,43 @@ export class StandardCampaignEngineOrchestrator implements ICampaignEngineOrches
 
     // Validate business brief
     if (!businessBrief.id) {
-      errors.push({ code: 'missing_brief_id', message: 'Business brief ID is required', severity: 'critical' });
+      errors.push({
+        code: 'missing_brief_id',
+        message: 'Business brief ID is required',
+        severity: 'critical',
+      });
     }
 
     if (!businessBrief.campaignGoal) {
-      errors.push({ code: 'missing_campaign_goal', message: 'Campaign goal is required', severity: 'critical' });
+      errors.push({
+        code: 'missing_campaign_goal',
+        message: 'Campaign goal is required',
+        severity: 'critical',
+      });
     }
 
     if (!businessBrief.industry) {
-      errors.push({ code: 'missing_industry', message: 'Industry is required', severity: 'critical' });
+      errors.push({
+        code: 'missing_industry',
+        message: 'Industry is required',
+        severity: 'critical',
+      });
     }
 
     if (!businessBrief.valueProposition) {
-      errors.push({ code: 'missing_value_prop', message: 'Value proposition is required', severity: 'critical' });
+      errors.push({
+        code: 'missing_value_prop',
+        message: 'Value proposition is required',
+        severity: 'critical',
+      });
     }
 
     // Validate target audience
     if (!businessBrief.targetAudience) {
-      warnings.push({ code: 'missing_target_audience', message: 'Target audience details could improve campaign' });
+      warnings.push({
+        code: 'missing_target_audience',
+        message: 'Target audience details could improve campaign',
+      });
     }
 
     // Validate success metrics
@@ -162,7 +194,13 @@ export class StandardCampaignEngineOrchestrator implements ICampaignEngineOrches
 
     return {
       valid: errors.length === 0,
-      errors: errors as Array<{ code: string; message: string; severity: 'critical' | 'high' | 'medium'; path?: string; suggestion?: string }>,
+      errors: errors as Array<{
+        code: string;
+        message: string;
+        severity: 'critical' | 'high' | 'medium';
+        path?: string;
+        suggestion?: string;
+      }>,
       warnings: warnings as Array<{ code: string; message: string; path?: string }>,
       metadata: {
         validatedAt: new Date().toISOString(),

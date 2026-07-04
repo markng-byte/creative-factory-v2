@@ -4,7 +4,12 @@
   "private": true,
   "license": "UNLICENSED",
   "main": "index.js",
-  "files": ["index.js", "next.js", "react.js", "library.js"],
+  "files": [
+    "index.js",
+    "next.js",
+    "react.js",
+    "library.js"
+  ],
   "dependencies": {
     "@eslint/js": "^9.17.0",
     "@next/eslint-plugin-next": "^15.1.3",

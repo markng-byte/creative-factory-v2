@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
-import type { CreativeIR } from '../index.js';
-import { CREATIVE_IR_PACKAGE, CREATIVE_IR_VERSION } from '../index.js';
+import type { CreativeIR } from './index.js';
+import { CREATIVE_IR_PACKAGE, CREATIVE_IR_VERSION } from './index.js';
 
 describe('Creative IR Package', () => {
   it('should export package constants', () => {

@@ -26,10 +26,11 @@
     }
   },
   "scripts": {
-    "build": "tsc",
-    "test": "vitest",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
     "lint": "eslint src",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@creative-factory/domain": "workspace:*",

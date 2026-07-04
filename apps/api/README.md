@@ -1,4 +1,5 @@
 # FastAPI API
+
 FastAPI application for the Enterprise AI Creative Factory.
 
 ## Development

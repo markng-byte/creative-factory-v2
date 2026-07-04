@@ -6,23 +6,23 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 
 ## Sprint Status
 
-| Sprint | Scope | Status |
-|---|---|---|
-| Sprint 0 | Architecture & PRD | Complete from imported architecture context |
-| Sprint 1 | Monorepo & Infrastructure | Complete |
-| Sprint 2 | Domain Models, Contracts & Workflow Engine + Creative IR Foundation | Complete |
-| Sprint 3 | Brand Intelligence Engine | Complete |
-| Sprint 4 | Campaign & Creative Brief Engine | Not started |
-| Sprint 5 | Creative IR Compiler + Multi-Adapter Output Generation | Not started |
-| Sprint 6 | Human Review & Approval Engine | Not started |
-| Sprint 7 | Prompt Translation Engine | Not started |
-| Sprint 8 | Image Generation Engine | Not started |
-| Sprint 9 | Video Generation Engine | Not started |
-| Sprint 10 | QA & Brand Compliance Engine | Not started |
-| Sprint 11 | Asset Library & Versioning | Not started |
-| Sprint 12 | Export & Publishing Engine | Not started |
-| Sprint 13 | Analytics & Optimization | Not started |
-| Sprint 14 | Enterprise Hardening & Documentation | Not started |
+| Sprint    | Scope                                                               | Status                                      |
+| --------- | ------------------------------------------------------------------- | ------------------------------------------- |
+| Sprint 0  | Architecture & PRD                                                  | Complete from imported architecture context |
+| Sprint 1  | Monorepo & Infrastructure                                           | Complete                                    |
+| Sprint 2  | Domain Models, Contracts & Workflow Engine + Creative IR Foundation | Complete                                    |
+| Sprint 3  | Brand Intelligence Engine                                           | Complete                                    |
+| Sprint 4  | Campaign & Creative Brief Engine                                    | Complete                                    |
+| Sprint 5  | Creative IR Compiler + Multi-Adapter Output Generation              | Not started                                 |
+| Sprint 6  | Human Review & Approval Engine                                      | Not started                                 |
+| Sprint 7  | Prompt Translation Engine                                           | Not started                                 |
+| Sprint 8  | Image Generation Engine                                             | Not started                                 |
+| Sprint 9  | Video Generation Engine                                             | Not started                                 |
+| Sprint 10 | QA & Brand Compliance Engine                                        | Not started                                 |
+| Sprint 11 | Asset Library & Versioning                                          | Not started                                 |
+| Sprint 12 | Export & Publishing Engine                                          | Not started                                 |
+| Sprint 13 | Analytics & Optimization                                            | Not started                                 |
+| Sprint 14 | Enterprise Hardening & Documentation                                | Not started                                 |
 
 ## Sprint 2 Acceptance Criteria
 
@@ -76,6 +76,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 ## Sprint 3 Non-Implementation Decisions
 
 Sprint 3 did not implement:
+
 - Database backend for brand registry (memory-only implementation)
 - PDF, Figma, or other advanced importer formats (plugin architecture allows future addition)
 - Advanced brand rule engine with complex constraint evaluation (basic validation sufficient)
@@ -87,6 +88,43 @@ Sprint 3 did not implement:
 
 Sprint 4 can start after Sprint 3 tests and typechecks pass. Its expected scope is the Campaign & Creative Brief Engine plus Orchestrator implementation: campaign package modeling, brief generation, strategy and storyboard generation, and brand integration.
 
+## Sprint 4 Acceptance Criteria
+
+- [x] Business Brief importer with pluggable format architecture (JSON, YAML)
+- [x] Audience model generator producing processed segments, personas, psychographic/journey/media maps, and sentiment from a business brief
+- [x] Messaging framework generator producing core message, supporting messages, tone/voice, pillars, channel variations, and CTAs
+- [x] Creative Brief builder orchestrating audience + messaging generation into a domain `CreativeBrief`
+- [x] Campaign registry (memory + versioned) for storing, retrieving, and rolling back campaign packages
+- [x] Campaign Engine orchestrator running the end-to-end workflow: import brief → model audience → generate messaging → build creative brief → validate → store
+- [x] Domain types extended with campaign and business-brief definitions (`campaign-types.ts`)
+- [x] Strong typing with branded IDs throughout; configuration-driven, no hardcoded campaign logic
+- [x] Comprehensive unit tests for every package (build, typecheck, lint, and test all green across the monorepo)
+
+## Sprint 4 Completed Work
+
+- Added six packages implementing the Campaign & Creative Brief Engine:
+  - `@creative-factory/business-brief-importer`: pluggable JSON/YAML importers with a registry
+  - `@creative-factory/audience-model`: `StandardAudienceModelGenerator` and the audience model type system
+  - `@creative-factory/messaging-engine`: `StandardMessagingFrameworkGenerator` and the messaging model type system
+  - `@creative-factory/creative-brief`: `StandardCreativeBriefBuilder` mapping engine outputs into the domain `CreativeBrief`
+  - `@creative-factory/campaign-registry`: memory-based and versioned campaign registries
+  - `@creative-factory/campaign-engine`: `StandardCampaignEngineOrchestrator` coordinating the full workflow
+- Extended `@creative-factory/domain` with campaign/business-brief types and an `ISO8601Timestamp` value type.
+- Audience and messaging engines expose their intermediate models as package-local types (`audience-model`, `messaging-engine`) that the creative-brief builder maps onto the canonical domain contract, keeping the domain the single source of truth for the final brief.
+- Stabilized the build toolchain across all packages: each package builds through its own `tsconfig.build.json` (emitting to `dist`, excluding tests), test scripts standardized to `vitest run`, and package eslint configs aligned to the shared `library`/`next` presets.
+- Fixed defects surfaced while getting the workspace green: duplicate re-exports in `creative-ir`, broken relative test imports, a `require()` call inside an ESM module, and jest-dom matcher wiring for the web app.
+- See `docs/sprint-4-campaign-engine.md` for architecture and data-flow details.
+
+## Sprint 4 Non-Implementation Decisions
+
+Sprint 4 did not implement:
+
+- Database-backed campaign or brief persistence (memory-only registries)
+- Markdown or other advanced business-brief importer formats (plugin architecture allows future addition)
+- AI/LLM-driven generation for audience insight, messaging, or creative direction (deterministic heuristics used as placeholders)
+- Deep brand-profile integration beyond referencing brand IDs and primary color (full brand-to-brief synthesis deferred)
+- Generation of Creative IR from the Creative Brief (that bridge is Sprint 5 compiler scope)
+
 ## Sprint 5: Creative IR Compiler + Multi-Adapter Output Generation
 
 Sprint 5 is redefined to build the Creative IR Compiler, which transforms Creative IR into multiple production artifacts:
@@ -94,7 +132,7 @@ Sprint 5 is redefined to build the Creative IR Compiler, which transforms Creati
 - Human-readable Storyboards
 - Scene Specifications
 - Shot Lists
-- Motion Specifications  
+- Motion Specifications
 - Prompt Packages
 - Image Generation Requests
 - Video Generation Requests

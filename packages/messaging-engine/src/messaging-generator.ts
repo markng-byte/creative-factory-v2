@@ -1,14 +1,15 @@
+import type { BusinessBriefInput } from '@creative-factory/domain';
+import type { AudienceModel } from '@creative-factory/audience-model';
 import type {
-  MessagingFramework,
-  MessagingFrameworkStatus,
+  MessagingModel,
+  MessagingModelId,
+  MessagingModelStatus,
   CoreMessage,
   SupportingMessage,
   ToneAndVoice,
   MessagingPillar,
   CallToAction,
-  BusinessBriefInput,
-  AudienceModel,
-} from '@creative-factory/domain';
+} from './types.js';
 
 /**
  * Messaging Framework Generator
@@ -19,7 +20,7 @@ export interface IMessagingFrameworkGenerator {
     campaignId: string,
     businessBrief: BusinessBriefInput,
     audienceModel?: AudienceModel,
-  ): Promise<MessagingFramework>;
+  ): Promise<MessagingModel>;
 }
 
 export class StandardMessagingFrameworkGenerator implements IMessagingFrameworkGenerator {
@@ -27,7 +28,7 @@ export class StandardMessagingFrameworkGenerator implements IMessagingFrameworkG
     campaignId: string,
     businessBrief: BusinessBriefInput,
     _audienceModel?: AudienceModel,
-  ): Promise<MessagingFramework> {
+  ): Promise<MessagingModel> {
     const coreMessage = this.generateCoreMessage(businessBrief);
     const supportingMessages = this.generateSupportingMessages(businessBrief);
     const toneAndVoice = this.generateToneAndVoice(businessBrief);
@@ -35,10 +36,10 @@ export class StandardMessagingFrameworkGenerator implements IMessagingFrameworkG
     const callsToAction = this.generateCallsToAction(businessBrief);
 
     return {
-      id: `msg-${campaignId}-${Date.now()}` as unknown as MessagingFramework['id'],
+      id: `msg-${campaignId}-${Date.now()}` as MessagingModelId,
       campaignId,
       version: '1.0.0',
-      status: 'draft' as MessagingFrameworkStatus,
+      status: 'draft' as MessagingModelStatus,
       coreMessage,
       supportingMessages,
       toneAndVoice,
@@ -100,15 +101,15 @@ export class StandardMessagingFrameworkGenerator implements IMessagingFrameworkG
   private generateToneAndVoice(businessBrief: BusinessBriefInput): ToneAndVoice {
     const industry = businessBrief.industry?.toLowerCase() || 'general';
 
+    const defaultTone = ['professional', 'clear', 'compelling'];
     const toneMap: Record<string, string[]> = {
       technology: ['innovative', 'forward-thinking', 'confident'],
       finance: ['professional', 'trustworthy', 'authoritative'],
       healthcare: ['empathetic', 'knowledgeable', 'reassuring'],
       retail: ['friendly', 'engaging', 'approachable'],
-      default: ['professional', 'clear', 'compelling'],
     };
 
-    const selectedTone = toneMap[industry] || toneMap.default;
+    const selectedTone = toneMap[industry] || defaultTone;
 
     return {
       personality: selectedTone,
@@ -136,31 +137,20 @@ export class StandardMessagingFrameworkGenerator implements IMessagingFrameworkG
         id: 'pillar-2',
         title: 'Competitive Advantage',
         keyMessage: businessBrief.competitivePositioning || 'Market-leading solution',
-        supportPoints: [
-          'Unique approach',
-          'Superior quality',
-          'Exceptional support',
-        ],
+        supportPoints: ['Unique approach', 'Superior quality', 'Exceptional support'],
         segmentFocus: 'primary',
       },
       {
         id: 'pillar-3',
         title: 'Business Impact',
         keyMessage: businessBrief.campaignGoal,
-        supportPoints: [
-          'Drives growth',
-          'Reduces costs',
-          'Improves efficiency',
-        ],
+        supportPoints: ['Drives growth', 'Reduces costs', 'Improves efficiency'],
         segmentFocus: 'primary',
       },
     ];
   }
 
-  private generateChannelVariations(
-    coreMessage: CoreMessage,
-    businessBrief: BusinessBriefInput,
-  ) {
+  private generateChannelVariations(coreMessage: CoreMessage, businessBrief: BusinessBriefInput) {
     const channels = businessBrief.communicationChannels || [];
 
     return channels.map((channel) => ({

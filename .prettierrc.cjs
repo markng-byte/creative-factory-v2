@@ -1,1 +1,1 @@
-@creative-factory/prettier-config
+module.exports = require('@creative-factory/prettier-config');

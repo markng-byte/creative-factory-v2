@@ -1,8 +1,4 @@
-import type {
-  AssetKind,
-  CampaignLifecycleState,
-  ReviewDecision,
-} from '@creative-factory/domain';
+import type { AssetKind, CampaignLifecycleState, ReviewDecision } from '@creative-factory/domain';
 
 export interface HealthResponse {
   status: 'ok' | 'degraded';

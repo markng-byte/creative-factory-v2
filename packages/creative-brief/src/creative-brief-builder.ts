@@ -2,10 +2,19 @@ import type {
   CreativeBrief,
   CreativeBriefStatus,
   BusinessBriefInput,
-  AudienceModel,
-  MessagingFramework,
   BrandProfile,
+  Message,
+  MessageId,
+  MessagingPillar,
+  TargetAudience,
+  AudienceSegment,
+  AudienceSegmentId,
+  ToneOfVoice,
+  CreativeConstraint,
+  ChannelPlan,
 } from '@creative-factory/domain';
+import { MessageType, CreativeConstraintType, ChannelRole } from '@creative-factory/domain';
+import type { AudienceModel } from '@creative-factory/audience-model';
 import { StandardAudienceModelGenerator } from '@creative-factory/audience-model';
 import { StandardMessagingFrameworkGenerator } from '@creative-factory/messaging-engine';
 
@@ -38,6 +47,14 @@ export class StandardCreativeBriefBuilder implements ICreativeBriefBuilder {
       audienceModel,
     );
 
+    const keyMessages: Message[] = messagingFramework.messagingPillars.map((pillar, idx) => ({
+      id: `msg-${campaignId}-${idx}` as MessageId,
+      type: MessageType.CORE_MESSAGE,
+      content: pillar.keyMessage,
+      supportingPoints: pillar.supportPoints,
+      priority: 'primary',
+    }));
+
     // Build creative brief
     const brief: CreativeBrief = {
       id: `brief-${campaignId}-${Date.now()}` as unknown as CreativeBrief['id'],
@@ -53,7 +70,7 @@ export class StandardCreativeBriefBuilder implements ICreativeBriefBuilder {
         goal: businessBrief.campaignGoal,
         background: businessBrief.industry,
         competitiveContext: businessBrief.competitivePositioning,
-        marketOpportunity: businessBrief.market?.primaryMarket as string || '',
+        marketOpportunity: (businessBrief.market?.primaryMarket as string) || '',
         timeline: businessBrief.timeline,
         budget: businessBrief.budget,
       },
@@ -77,29 +94,35 @@ export class StandardCreativeBriefBuilder implements ICreativeBriefBuilder {
       ],
 
       // Audience
-      targetAudience: this.buildTargetAudience(audienceModel, businessBrief),
+      targetAudience: this.buildTargetAudience(campaignId, audienceModel, businessBrief),
 
       // Messaging
-      keyMessages: messagingFramework.messagingPillars.map((pillar) => ({
-        id: pillar.id,
-        type: 'core_message' as const,
-        content: pillar.keyMessage,
-        supportingPoints: pillar.supportPoints,
-        priority: 'primary',
-      })),
+      keyMessages: keyMessages,
       messagingFramework: {
         bigIdea: messagingFramework.coreMessage.headline,
-        messagingPillars: messagingFramework.messagingPillars,
-        storyHooks: [
-          'Customer success story',
-          'Industry impact',
-          'Innovation advantage',
+        messagingPillars: messagingFramework.messagingPillars.map((pillar, idx) => ({
+          id: pillar.id,
+          title: pillar.title,
+          description: pillar.keyMessage,
+          messages: [keyMessages[idx]!],
+          supportingEvidence: pillar.supportPoints,
+        })) satisfies MessagingPillar[],
+        storyHooks: ['Customer success story', 'Industry impact', 'Innovation advantage'],
+        consistencyGuidelines: [
+          'Always emphasize value',
+          'Use industry terminology',
+          'Focus on outcomes',
         ],
-        consistencyGuidelines: ['Always emphasize value', 'Use industry terminology', 'Focus on outcomes'],
       },
 
       // Creative Direction
-      toneOfVoice: messagingFramework.toneAndVoice,
+      toneOfVoice: {
+        personality: messagingFramework.toneAndVoice.personality,
+        traits: messagingFramework.toneAndVoice.vocabulary,
+        doExamples: [],
+        dontExamples: messagingFramework.toneAndVoice.avoidTone,
+        voiceAttributes: [],
+      } satisfies ToneOfVoice,
       emotionalDirection: {
         primaryEmotion: 'confidence',
         secondaryEmotions: ['trust', 'excitement'],
@@ -130,6 +153,7 @@ export class StandardCreativeBriefBuilder implements ICreativeBriefBuilder {
           object: 'content',
           measurement: 'click_through_rate',
         },
+        conversionFunnel: [],
       },
       successMetrics: (businessBrief.successMetrics || []).map((metric, idx) => ({
         id: `metric-${idx}`,
@@ -154,41 +178,45 @@ export class StandardCreativeBriefBuilder implements ICreativeBriefBuilder {
       })),
 
       // Constraints
-      creativeConstraints: (businessBrief.businessConstraints || []).map((constraint, idx) => ({
-        type: 'creative',
-        description: constraint,
-        rationale: 'Business requirement',
-        impact: 'advisory',
-      })),
+      creativeConstraints: (businessBrief.businessConstraints || []).map(
+        (constraint): CreativeConstraint => ({
+          type: CreativeConstraintType.CREATIVE,
+          description: constraint,
+          rationale: 'Business requirement',
+          impact: 'advisory',
+        }),
+      ),
 
       // Channel Strategy
       channelStrategy: {
-        channels: (businessBrief.communicationChannels || []).map((channel) => ({
-          channel,
-          role: 'primary',
-          objectives: [businessBrief.campaignGoal],
-          assetTypes: businessBrief.assetRequirements?.map((r) => r.assetType) || [],
-          contentStrategy: 'Engage and convert',
-          timing: 'Ongoing',
-          kpis: ['CTR', 'Engagement', 'Conversions'],
-        })),
+        channels: (businessBrief.communicationChannels || []).map(
+          (channel): ChannelPlan => ({
+            channel,
+            role: ChannelRole.PRIMARY,
+            objectives: [businessBrief.campaignGoal],
+            assetTypes: businessBrief.assetRequirements?.map((r) => r.assetType) || [],
+            contentStrategy: 'Engage and convert',
+            timing: 'Ongoing',
+            kpis: ['CTR', 'Engagement', 'Conversions'],
+          }),
+        ),
         crossChannelSynergy: 'Unified brand message across all touchpoints',
       },
 
       // References
       brandReferences: brandProfile
         ? [
-          {
-            element: 'logo',
-            requirement: 'Use primary logo on all assets',
-            source: brandProfile.id,
-          },
-          {
-            element: 'colors',
-            requirement: `Use brand palette: ${brandProfile.colorPalette.primary?.hex || '#000000'}`,
-            source: brandProfile.id,
-          },
-        ]
+            {
+              element: 'logo',
+              requirement: 'Use primary logo on all assets',
+              source: brandProfile.id,
+            },
+            {
+              element: 'colors',
+              requirement: `Use brand palette: ${brandProfile.colorPalette.primaryColors[0]?.hex || '#000000'}`,
+              source: brandProfile.id,
+            },
+          ]
         : [],
       inspirationReferences: businessBrief.creativeReferences || [],
 
@@ -210,21 +238,35 @@ export class StandardCreativeBriefBuilder implements ICreativeBriefBuilder {
   }
 
   private buildTargetAudience(
+    campaignId: string,
     audienceModel: AudienceModel,
     businessBrief: BusinessBriefInput,
-  ) {
+  ): TargetAudience {
+    const primarySegment: AudienceSegment = {
+      id: `seg-${campaignId}` as AudienceSegmentId,
+      name: audienceModel.primarySegment.name,
+      description: businessBrief.targetAudience.description,
+      size: audienceModel.primarySegment.size.estimatedReach,
+      demographics: businessBrief.targetAudience.demographics ?? {},
+      psychographics: businessBrief.targetAudience.psychographics ?? {},
+      behaviors: businessBrief.targetAudience.behaviors ?? {},
+      mediaHabits: [],
+      purchaseDrivers: [],
+      barriers: [],
+    };
+
     return {
-      primarySegment: audienceModel.primarySegment,
-      secondarySegments: audienceModel.secondarySegments,
-      personas: audienceModel.personas,
+      primarySegment,
+      secondarySegments: [],
+      personas: businessBrief.customerPersonas ?? [],
       insights: audienceModel.sentiment
         ? [
-          {
-            insight: `Brand perception: ${Math.round(audienceModel.sentiment.brandPerception.positive * 100)}% positive`,
-            implication: 'Strong brand foundation to build on',
-            relevance: 'high',
-          },
-        ]
+            {
+              insight: `Brand perception: ${Math.round(audienceModel.sentiment.brandPerception.positive * 100)}% positive`,
+              implication: 'Strong brand foundation to build on',
+              relevance: 'high',
+            },
+          ]
         : [],
     };
   }

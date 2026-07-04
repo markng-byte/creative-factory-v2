@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { BRAND_ENGINE_PACKAGE, BRAND_ENGINE_VERSION } from '../index.js';
+import { BRAND_ENGINE_PACKAGE, BRAND_ENGINE_VERSION } from './index.js';
 
 describe('Brand Engine Package', () => {
   it('should export package constants', () => {

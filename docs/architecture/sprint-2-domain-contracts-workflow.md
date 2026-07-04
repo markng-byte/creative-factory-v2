@@ -18,6 +18,7 @@ Sprint 2 establishes:
 ### The Problem We're Solving
 
 Without a canonical model, engines either:
+
 - Couple directly to provider APIs (GitHub Copilot, Claude, Midjourney, etc.)
 - Develop proprietary internal models (inefficient, incompatible)
 - Pass unstructured prompts between systems (lossy, non-deterministic)
@@ -203,6 +204,7 @@ interface CreativeIRAdapter {
 ```
 
 Adapters:
+
 - NEVER modify Creative IR
 - Transform Creative IR into provider-specific or format-specific outputs
 - Can be added/updated without changing the compiler
@@ -211,6 +213,7 @@ Adapters:
 ### No Provider Coupling
 
 🚫 **NEVER do this**:
+
 ```typescript
 // Bad: Provider-specific prompts in Creative IR
 {
@@ -221,6 +224,7 @@ Adapters:
 ```
 
 ✅ **DO this instead**:
+
 ```typescript
 // Good: Provider-neutral specification
 {
@@ -236,6 +240,7 @@ Adapters:
 ### Versioning & Backward Compatibility
 
 Creative IR uses semantic versioning:
+
 - **MAJOR**: Breaking changes (rare, requires migration)
 - **MINOR**: New optional fields
 - **PATCH**: Bug fixes, clarifications
@@ -245,12 +250,14 @@ Migration tools are provided for MAJOR version upgrades.
 ### Serialization
 
 Creative IR documents are serialized as:
+
 - **Primary**: JSON-LD (RDF-compatible, linked data ready)
 - **Alternative**: YAML (development), Protocol Buffers (future)
 
 ### Documentation
 
 Complete Creative IR specification includes:
+
 - [Creative IR Specification](../creative-ir-specification.md) — Full model definition
 - [JSON Schema](../creative-ir-schema.json) — Machine-readable validation schema
 - Versioning strategy
@@ -283,6 +290,7 @@ These remain in their planned future sprints.
 ## Next Steps
 
 **Sprint 3 (Brand Engine)**: Can now safely build against the Creative IR contract, knowing that:
+
 - The model is stable and versioned
 - All engines will consume/produce Creative IR consistently
 - No engine needs to know about provider-specific details

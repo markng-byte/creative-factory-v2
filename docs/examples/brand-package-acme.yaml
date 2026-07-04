@@ -1,208 +1,208 @@
 # Example Brand Package - Acme Corp
 # This demonstrates the structure for a brand package that can be imported by the Brand Engine
 
-version: "1.0.0"
-name: "Acme Corp"
-description: "Modern tech company focused on innovative solutions"
-organization: "Acme Corporation"
-owner: "Brand Team"
-contact: "brand@acmecorp.com"
+version: '1.0.0'
+name: 'Acme Corp'
+description: 'Modern tech company focused on innovative solutions'
+organization: 'Acme Corporation'
+owner: 'Brand Team'
+contact: 'brand@acmecorp.com'
 
 # Color System
 colors:
   primary:
-    - name: "Primary Blue"
-      hex: "#0066CC"
+    - name: 'Primary Blue'
+      hex: '#0066CC'
       rgb: { r: 0, g: 102, b: 204 }
       hsl: { h: 210, s: 100, l: 40 }
-      usage: "Primary branding, CTAs, key elements"
-      contexts: ["web", "print", "video", "app"]
+      usage: 'Primary branding, CTAs, key elements'
+      contexts: ['web', 'print', 'video', 'app']
       accessibility:
         wcagAACompliant: true
         wcagAAACompliant: true
         contrastRatio: 7.5
 
-    - name: "Dark Blue"
-      hex: "#003D99"
+    - name: 'Dark Blue'
+      hex: '#003D99'
       rgb: { r: 0, g: 61, b: 153 }
       hsl: { h: 210, s: 100, l: 30 }
-      usage: "Hover states, emphasis, headings"
-      contexts: ["web", "print", "app"]
+      usage: 'Hover states, emphasis, headings'
+      contexts: ['web', 'print', 'app']
       accessibility:
         wcagAACompliant: true
         wcagAAACompliant: true
         contrastRatio: 8.2
 
   secondary:
-    - name: "Coral"
-      hex: "#FF6B35"
+    - name: 'Coral'
+      hex: '#FF6B35'
       rgb: { r: 255, g: 107, b: 53 }
       hsl: { h: 14, s: 100, l: 60 }
-      usage: "Accents, highlights, secondary CTAs"
-      contexts: ["web", "print", "video", "app"]
+      usage: 'Accents, highlights, secondary CTAs'
+      contexts: ['web', 'print', 'video', 'app']
       accessibility:
         wcagAACompliant: true
         wcagAAACompliant: false
         contrastRatio: 5.5
 
   neutral:
-    - name: "Charcoal"
-      hex: "#2C2C2C"
+    - name: 'Charcoal'
+      hex: '#2C2C2C'
       rgb: { r: 44, g: 44, b: 44 }
       hsl: { h: 0, s: 0, l: 17 }
-      usage: "Text, backgrounds, structure"
-      contexts: ["web", "print", "app"]
+      usage: 'Text, backgrounds, structure'
+      contexts: ['web', 'print', 'app']
 
-    - name: "Light Gray"
-      hex: "#F5F5F5"
+    - name: 'Light Gray'
+      hex: '#F5F5F5'
       rgb: { r: 245, g: 245, b: 245 }
       hsl: { h: 0, s: 0, l: 96 }
-      usage: "Backgrounds, borders, containers"
-      contexts: ["web", "print", "app"]
+      usage: 'Backgrounds, borders, containers'
+      contexts: ['web', 'print', 'app']
 
-    - name: "White"
-      hex: "#FFFFFF"
+    - name: 'White'
+      hex: '#FFFFFF'
       rgb: { r: 255, g: 255, b: 255 }
       hsl: { h: 0, s: 0, l: 100 }
-      usage: "Primary background, text highlight"
-      contexts: ["web", "print", "app"]
+      usage: 'Primary background, text highlight'
+      contexts: ['web', 'print', 'app']
 
 # Typography System
 typography:
   families:
-    - name: "Inter"
-      category: "sans-serif"
-      usage: "Primary typeface for UI and body copy"
+    - name: 'Inter'
+      category: 'sans-serif'
+      usage: 'Primary typeface for UI and body copy'
       weights: [300, 400, 500, 600, 700, 800]
-      styles: ["normal", "italic"]
-      url: "https://fonts.google.com/specimen/Inter"
-      fallbacks: ["system-ui", "Arial", "sans-serif"]
+      styles: ['normal', 'italic']
+      url: 'https://fonts.google.com/specimen/Inter'
+      fallbacks: ['system-ui', 'Arial', 'sans-serif']
 
-    - name: "Playfair Display"
-      category: "serif"
-      usage: "Display heading, premium content"
+    - name: 'Playfair Display'
+      category: 'serif'
+      usage: 'Display heading, premium content'
       weights: [400, 700, 900]
-      styles: ["normal", "italic"]
-      url: "https://fonts.google.com/specimen/Playfair%20Display"
-      fallbacks: ["Georgia", "serif"]
+      styles: ['normal', 'italic']
+      url: 'https://fonts.google.com/specimen/Playfair%20Display'
+      fallbacks: ['Georgia', 'serif']
 
   scales:
-    - name: "Web"
-      description: "Responsive type scale for web"
+    - name: 'Web'
+      description: 'Responsive type scale for web'
       ratioBase: 16
       ratioMultiplier: 1.125
       steps:
-        - level: "h1"
+        - level: 'h1'
           fontSize: 40
           lineHeight: 1.2
           letterSpacing: 0
           fontWeight: 700
-          usage: "Main page heading"
+          usage: 'Main page heading'
 
-        - level: "h2"
+        - level: 'h2'
           fontSize: 32
           lineHeight: 1.3
           letterSpacing: 0
           fontWeight: 600
-          usage: "Section headings"
+          usage: 'Section headings'
 
-        - level: "body"
+        - level: 'body'
           fontSize: 16
           lineHeight: 1.6
           letterSpacing: 0
           fontWeight: 400
-          usage: "Body text"
+          usage: 'Body text'
 
-        - level: "small"
+        - level: 'small'
           fontSize: 14
           lineHeight: 1.5
           letterSpacing: 0
           fontWeight: 400
-          usage: "Secondary text, captions"
+          usage: 'Secondary text, captions'
 
 # Logo System
 logos:
-  - type: "primary"
-    name: "Primary Logo"
-    description: "Main brand logo for all applications"
+  - type: 'primary'
+    name: 'Primary Logo'
+    description: 'Main brand logo for all applications'
     minimumSize: 40
     clearance:
       top: 10
       right: 15
       bottom: 10
       left: 15
-      unit: "px"
-    usageContext: ["website", "print", "app"]
+      unit: 'px'
+    usageContext: ['website', 'print', 'app']
 
-  - type: "icon"
-    name: "Logo Icon"
-    description: "Standalone icon for favicons and app icons"
+  - type: 'icon'
+    name: 'Logo Icon'
+    description: 'Standalone icon for favicons and app icons'
     minimumSize: 16
     clearance:
       top: 4
       right: 4
       bottom: 4
       left: 4
-      unit: "px"
-    usageContext: ["favicon", "app-icon", "small-spaces"]
+      unit: 'px'
+    usageContext: ['favicon', 'app-icon', 'small-spaces']
 
-  - type: "monochrome"
-    name: "Monochrome Logo"
-    description: "Single-color logo for limited color situations"
+  - type: 'monochrome'
+    name: 'Monochrome Logo'
+    description: 'Single-color logo for limited color situations'
     minimumSize: 40
     clearance:
       top: 10
       right: 15
       bottom: 10
       left: 15
-      unit: "px"
-    usageContext: ["print", "embroidery", "single-color"]
+      unit: 'px'
+    usageContext: ['print', 'embroidery', 'single-color']
 
 # Photography Style Guide
 photography:
-  style: "Modern, clean, authentic"
+  style: 'Modern, clean, authentic'
   characteristics:
-    - "People in professional but relaxed settings"
-    - "Natural, warm lighting"
-    - "Diverse representation"
-    - "Focus on genuine interactions"
-    - "Tech elements integrated naturally"
-  lighting: "Natural daylight preferred, warm color temperature (3500-5000K)"
-  composition: "Varied; mix of environmental shots, close-ups, and group photos"
-  colorTreatment: "Warm color grading, slightly elevated shadows"
+    - 'People in professional but relaxed settings'
+    - 'Natural, warm lighting'
+    - 'Diverse representation'
+    - 'Focus on genuine interactions'
+    - 'Tech elements integrated naturally'
+  lighting: 'Natural daylight preferred, warm color temperature (3500-5000K)'
+  composition: 'Varied; mix of environmental shots, close-ups, and group photos'
+  colorTreatment: 'Warm color grading, slightly elevated shadows'
   prohibited:
-    - "Stock photography clichés"
-    - "Overly posed or artificial scenes"
-    - "Outdated technology references"
-    - "Exclusionary imagery"
+    - 'Stock photography clichés'
+    - 'Overly posed or artificial scenes'
+    - 'Outdated technology references'
+    - 'Exclusionary imagery'
 
 # Voice & Tone
 voiceAndTone:
   personality:
-    - "Confident"
-    - "Approachable"
-    - "Innovative"
-    - "Trustworthy"
+    - 'Confident'
+    - 'Approachable'
+    - 'Innovative'
+    - 'Trustworthy'
   traits:
-    - "Clear and direct"
-    - "Helpful and supportive"
-    - "Authentic"
-    - "Forward-thinking"
+    - 'Clear and direct'
+    - 'Helpful and supportive'
+    - 'Authentic'
+    - 'Forward-thinking'
   toneInContext:
-    marketing: "Aspirational yet approachable, emphasizing innovation"
-    support: "Empathetic, patient, solution-oriented"
-    technical: "Clear, precise, jargon-minimized"
-    social: "Friendly, conversational, engaging"
+    marketing: 'Aspirational yet approachable, emphasizing innovation'
+    support: 'Empathetic, patient, solution-oriented'
+    technical: 'Clear, precise, jargon-minimized'
+    social: 'Friendly, conversational, engaging'
   prohibitedTerms:
-    - "You guys"
-    - "Easy"
-    - "Just"
-    - "Simple"
+    - 'You guys'
+    - 'Easy'
+    - 'Just'
+    - 'Simple'
   approvedTerms:
     - "Let's"
-    - "Together"
-    - "Powerful"
-    - "Flexible"
+    - 'Together'
+    - 'Powerful'
+    - 'Flexible'
 
 # Motion Guidelines
 motion:
@@ -210,70 +210,70 @@ motion:
     quickInteraction: 150
     normalAnimation: 300
     slowAnimation: 500
-    unit: "ms"
+    unit: 'ms'
   easing:
-    - name: "Ease In"
-      curve: "cubic-bezier(0.42, 0, 1, 1)"
-      usage: "Entrance animations"
-    - name: "Ease Out"
-      curve: "cubic-bezier(0, 0, 0.58, 1)"
-      usage: "Exit animations"
-    - name: "Ease In Out"
-      curve: "cubic-bezier(0.42, 0, 0.58, 1)"
-      usage: "Continuous animations"
+    - name: 'Ease In'
+      curve: 'cubic-bezier(0.42, 0, 1, 1)'
+      usage: 'Entrance animations'
+    - name: 'Ease Out'
+      curve: 'cubic-bezier(0, 0, 0.58, 1)'
+      usage: 'Exit animations'
+    - name: 'Ease In Out'
+      curve: 'cubic-bezier(0.42, 0, 0.58, 1)'
+      usage: 'Continuous animations'
   transitions:
-    - name: "Fade"
-      type: "opacity"
+    - name: 'Fade'
+      type: 'opacity'
       duration: 200
-      easing: "ease-in-out"
-      usage: "Content changes"
+      easing: 'ease-in-out'
+      usage: 'Content changes'
 
 # Icon System
 icons:
   gridSize: 24
   strokeWidth: 2
-  style: "Outlined, geometric, consistent with brand aesthetic"
+  style: 'Outlined, geometric, consistent with brand aesthetic'
 
 # Component Guidelines
 components:
   buttons:
     primary:
-      backgroundColor: "#0066CC"
-      textColor: "#FFFFFF"
-      padding: "12px 24px"
-      borderRadius: "4px"
-      fontSize: "16px"
+      backgroundColor: '#0066CC'
+      textColor: '#FFFFFF'
+      padding: '12px 24px'
+      borderRadius: '4px'
+      fontSize: '16px'
       fontWeight: 600
-  
+
   cards:
-    backgroundColor: "#FFFFFF"
-    borderRadius: "8px"
-    shadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-    padding: "16px"
+    backgroundColor: '#FFFFFF'
+    borderRadius: '8px'
+    shadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+    padding: '16px'
 
 # Prohibited Styles
 prohibited:
-  - description: "Rotating the logo"
-    reason: "Distorts brand identity"
-  - description: "Changing brand colors"
-    reason: "Maintains visual consistency"
-  - description: "Mixing typefaces without approval"
-    reason: "Ensures typographic harmony"
-  - description: "Using outdated logo versions"
-    reason: "Keeps brand current"
+  - description: 'Rotating the logo'
+    reason: 'Distorts brand identity'
+  - description: 'Changing brand colors'
+    reason: 'Maintains visual consistency'
+  - description: 'Mixing typefaces without approval'
+    reason: 'Ensures typographic harmony'
+  - description: 'Using outdated logo versions'
+    reason: 'Keeps brand current'
 
 metadata:
-  lastReviewDate: "2024-01-15"
-  nextReviewDate: "2025-01-15"
-  version: "2.3.1"
+  lastReviewDate: '2024-01-15'
+  nextReviewDate: '2025-01-15'
+  version: '2.3.1'
   changes:
-    - version: "2.3.1"
-      date: "2024-01-15"
-      description: "Added new secondary color, updated typography scale"
-      author: "Sarah Johnson"
-      type: "minor"
-    - version: "2.3.0"
-      date: "2023-11-01"
-      description: "Complete redesign of icon system"
-      author: "Design Team"
-      type: "major"
+    - version: '2.3.1'
+      date: '2024-01-15'
+      description: 'Added new secondary color, updated typography scale'
+      author: 'Sarah Johnson'
+      type: 'minor'
+    - version: '2.3.0'
+      date: '2023-11-01'
+      description: 'Complete redesign of icon system'
+      author: 'Design Team'
+      type: 'major'

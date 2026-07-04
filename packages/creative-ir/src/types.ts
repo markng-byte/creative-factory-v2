@@ -287,7 +287,15 @@ export interface CameraConfiguration {
   readonly depth: number;
 }
 
-export type CameraMovement = 'static' | 'pan' | 'tilt' | 'dolly' | 'crane' | 'orbit' | 'tracking' | 'reveal';
+export type CameraMovement =
+  | 'static'
+  | 'pan'
+  | 'tilt'
+  | 'dolly'
+  | 'crane'
+  | 'orbit'
+  | 'tracking'
+  | 'reveal';
 
 export interface CameraAngle {
   readonly pitch: number;

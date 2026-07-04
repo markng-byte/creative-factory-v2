@@ -7,6 +7,8 @@
  */
 
 import type { CreativeIR, ValidationStatus } from './types.js';
+import type { ValidationMode } from './validation.js';
+import type { AdapterOutput, AdapterInfo } from './adapter.js';
 
 export interface CompilerRequest {
   readonly creativeBriefId: string;
@@ -21,12 +23,6 @@ export interface ReviewFeedback {
   readonly reviewId: string;
   readonly applicableSince: string;
   readonly priority: number;
-}
-
-export enum ValidationMode {
-  STRICT = 'strict',
-  PERMISSIVE = 'permissive',
-  DRAFT = 'draft',
 }
 
 export interface CompilerOutput {
@@ -61,33 +57,4 @@ export interface CreativeIRCompiler {
   validate(ir: CreativeIR, mode?: ValidationMode): ValidationStatus;
   getSchema(): SchemaDefinition;
   getAdapters(): AdapterInfo[];
-}
-
-export interface AdapterOutput {
-  readonly format: string;
-  readonly artifacts: OutputArtifact[];
-  readonly metadata: Record<string, unknown>;
-  readonly warnings: string[];
-}
-
-export interface OutputArtifact {
-  readonly name: string;
-  readonly format: string;
-  readonly content: Buffer | string;
-  readonly mimeType: string;
-  readonly size: number;
-}
-
-export interface AdapterInfo {
-  readonly name: string;
-  readonly version: string;
-  readonly description: string;
-  readonly capabilities: AdapterCapability[];
-  readonly supportedOutputFormats: string[];
-}
-
-export interface AdapterCapability {
-  readonly feature: string;
-  readonly level: 'required' | 'optional' | 'unsupported';
-  readonly notes?: string;
 }

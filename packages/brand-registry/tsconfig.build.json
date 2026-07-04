@@ -1,3 +1,9 @@
 {
-  "extends": "@creative-factory/tsconfig/node.json"
+  "extends": "@creative-factory/tsconfig/node.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
 }

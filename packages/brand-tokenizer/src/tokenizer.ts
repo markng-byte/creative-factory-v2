@@ -4,7 +4,11 @@
  * Converts brand profiles into design tokens for Creative IR.
  */
 
-import type { BrandProfile, BrandProfileTokens, ColorToken as DomainColorToken } from '@creative-factory/domain';
+import type {
+  BrandProfile,
+  BrandProfileTokens,
+  ColorToken as DomainColorToken,
+} from '@creative-factory/domain';
 
 export interface TokenGenerator {
   generate(profile: BrandProfile): BrandProfileTokens;
@@ -90,7 +94,7 @@ export class BrandTokenGenerator implements TokenGenerator {
     return tokens;
   }
 
-  private generateSpacingTokens(profile: BrandProfile) {
+  private generateSpacingTokens(_profile: BrandProfile) {
     // Generate default spacing scale if not present
     const spacingScale = [4, 8, 12, 16, 24, 32, 48, 64, 80, 96];
     return spacingScale.map((value, idx) => ({
@@ -121,7 +125,7 @@ export class BrandTokenGenerator implements TokenGenerator {
     return tokens;
   }
 
-  private generateShadowTokens(profile: BrandProfile) {
+  private generateShadowTokens(_profile: BrandProfile) {
     // Generate default shadow system
     return [
       {

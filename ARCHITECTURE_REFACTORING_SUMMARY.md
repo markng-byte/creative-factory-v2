@@ -13,6 +13,7 @@ This document summarizes the architecture refactoring that introduces **Creative
 ### Key Achievement
 
 The Creative Factory now has a **provider-neutral architecture** where:
+
 - No engine couples directly to AI providers (GitHub Copilot, Claude, Midjourney, etc.)
 - All creative work flows through a single canonical model (Creative IR)
 - Engines are loosely coupled through standardized interfaces
@@ -25,12 +26,15 @@ The Creative Factory now has a **provider-neutral architecture** where:
 ### 1. Product Roadmap Updated (`docs/roadmap.md`)
 
 #### New Framing
+
 - Added **Creative IR** as the foundational architectural concept
 - Updated Sprint 2 to include Creative IR Foundation
 - **Redefined Sprint 5** from "Storyboard Engine" to "Creative IR Compiler + Multi-Adapter Output Generation"
 
 #### New Sprint 5 Responsibilities
+
 The Creative IR Compiler transforms Creative IR into:
+
 - Human-readable Storyboards (HTML)
 - Scene Specifications (PDF/JSON)
 - Shot Lists (JSON)
@@ -46,9 +50,11 @@ The Creative IR Compiler transforms Creative IR into:
 ### 2. Architecture Documentation Enhanced
 
 #### `docs/architecture/sprint-2-domain-contracts-workflow.md`
+
 Completely revised with:
 
 **New Sections:**
+
 - Architectural Vision: The problem Creative IR solves
 - Information Architecture diagram showing data flow
 - Key Principles (Separation of Concerns, Determinism, Machine Readability, Composability)
@@ -60,6 +66,7 @@ Completely revised with:
 - Documentation references
 
 **Key Principle Established:**
+
 ```
 Business Brief → Creative IR → Production Outputs
 (NOT: Business Brief → Prompts)
@@ -72,6 +79,7 @@ Business Brief → Creative IR → Production Outputs
 Comprehensive 1,200+ line specification including:
 
 #### Content Sections
+
 1. **Executive Summary** - What Creative IR is and why it matters
 2. **Design Principles** - Separation of concerns, machine readability, immutability, composability, provider neutrality
 3. **Creative IR Schema** - Complete type definitions for:
@@ -103,6 +111,7 @@ Comprehensive 1,200+ line specification including:
 ### 4. JSON Schema for Validation (`docs/creative-ir-schema.json`)
 
 Production-ready JSON Schema (Draft 2020-12) including:
+
 - Complete type definitions
 - Validation rules
 - Required vs. optional fields
@@ -122,6 +131,7 @@ Complete package scaffold at `packages/creative-ir/`:
 #### Files Created
 
 **Configuration:**
+
 - `package.json` - Defines exports for types, compiler, adapter, validation
 - `tsconfig.json` - TypeScript configuration
 - `tsconfig.build.json` - Build configuration
@@ -180,6 +190,7 @@ Complete package scaffold at `packages/creative-ir/`:
 ### 6. README Updated (`README.md`)
 
 Enhanced with:
+
 - New vision statement
 - Creative IR explanation
 - Diagram of data flow
@@ -192,11 +203,13 @@ Enhanced with:
 ## Key Architectural Decisions
 
 ### 1. Single Source of Truth
+
 - Creative IR is the ONLY canonical model
 - No engine defines its own internal creative model
 - All engines consume and/or produce Creative IR
 
 ### 2. Provider Neutrality
+
 ```typescript
 // ❌ WRONG: Provider-specific prompts in Creative IR
 { openai_system_prompt: "...", anthropic_prompt: "..." }
@@ -207,17 +220,20 @@ Enhanced with:
 ```
 
 ### 3. Pluggable Adapters
+
 - Compiler reads Creative IR
 - Each adapter transforms it for specific output format
 - New adapters can be added without modifying compiler
 - Adapters NEVER modify Creative IR
 
 ### 4. Determinism
+
 - Same Creative IR → Same outputs (reproducible)
 - Full revision history with actor and timestamp
 - Validation modes for different scenarios
 
 ### 5. Versioning
+
 - Semantic versioning for schema stability
 - Only additive changes in MINOR versions
 - Migration tools for MAJOR version upgrades
@@ -267,17 +283,21 @@ creative-factory/
 ## Next Steps
 
 ### Sprint 3: Brand Engine
+
 Can now safely build against Creative IR:
+
 - Consumes Creative IR as input
 - Produces brand configuration
 - Never couples to specific output formats
 
 ### Sprint 4: Campaign & Brief Engine
+
 - Consumes Creative IR
 - Generates campaign context and creative brief
 - Feeds into Creative IR Compiler
 
 ### Sprint 5: Creative IR Compiler + Adapters
+
 - Implements compiler
 - Implements all output adapters
 - Enables multi-format generation
@@ -287,6 +307,7 @@ Can now safely build against Creative IR:
 ## Validation & Testing
 
 All deliverables include:
+
 - ✅ TypeScript type safety
 - ✅ JSON Schema for runtime validation
 - ✅ Example documents
@@ -332,7 +353,7 @@ All deliverables include:
 ✅ Backward compatibility maintained  
 ✅ Migration strategy documented  
 ✅ Product roadmap updated  
-✅ Architecture principles clarified  
+✅ Architecture principles clarified
 
 ---
 
@@ -342,14 +363,15 @@ The new `@creative-factory/creative-ir` package is ready for use:
 
 ```typescript
 import type { CreativeIR } from '@creative-factory/creative-ir';
-import { 
+import {
   CREATIVE_IR_VERSION,
   createCreativeIRId,
-  ValidationMode 
+  ValidationMode,
 } from '@creative-factory/creative-ir';
 ```
 
 All engine implementations (Sprint 3+) should:
+
 1. Import types from `@creative-factory/creative-ir`
 2. Implement either compiler or adapter interfaces
 3. Never couple to specific AI providers

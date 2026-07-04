@@ -4,7 +4,7 @@
  * Defines the pluggable architecture for brand package importers.
  */
 
-import type { BrandPackage, BrandPackageId, BrandComponent } from '@creative-factory/domain';
+import type { BrandPackage, BrandPackageId } from '@creative-factory/domain';
 
 export interface BrandImporter {
   readonly name: string;
@@ -17,7 +17,7 @@ export interface BrandImporter {
     id: BrandPackageId,
     name: string,
     content: string | Buffer,
-    metadata?: Record<string, unknown>
+    metadata?: Record<string, unknown>,
   ): Promise<BrandPackage>;
 }
 

@@ -27,7 +27,7 @@ export type ChannelId = string & { readonly __brand: 'ChannelId' };
 export interface BusinessBriefInput {
   readonly id: string;
   readonly campaignGoal: string;
-  readonly brandProfileId?: string;  // Link to Brand Profile
+  readonly brandProfileId?: string; // Link to Brand Profile
   readonly targetAudience: TargetAudienceInput;
   readonly customerPersonas?: CustomerPersona[];
   readonly market: MarketContext;
@@ -37,8 +37,8 @@ export interface BusinessBriefInput {
   readonly competitivePositioning: string;
   readonly campaignType: CampaignType;
   readonly communicationChannels: CommunicationChannel[];
-  readonly languages: string[];      // ISO 639-1 codes
-  readonly regions: string[];        // ISO 3166-1 alpha-2 codes
+  readonly languages: string[]; // ISO 639-1 codes
+  readonly regions: string[]; // ISO 3166-1 alpha-2 codes
   readonly budget?: BudgetConstraints;
   readonly timeline: TimelineConstraints;
   readonly assetRequirements: AssetRequirement[];
@@ -246,15 +246,15 @@ export interface BudgetBreakdown {
 }
 
 export interface TimelineConstraints {
-  readonly startDate: string;     // ISO 8601
-  readonly endDate?: string;      // ISO 8601
+  readonly startDate: string; // ISO 8601
+  readonly endDate?: string; // ISO 8601
   readonly milestones: Milestone[];
   readonly urgency?: 'low' | 'medium' | 'high' | 'critical';
 }
 
 export interface Milestone {
   readonly name: string;
-  readonly date: string;          // ISO 8601
+  readonly date: string; // ISO 8601
   readonly deliverables: string[];
   readonly dependencies?: string[];
 }
@@ -285,7 +285,7 @@ export enum AssetType {
 export interface AssetSpecification {
   readonly format?: string[];
   readonly dimensions?: Dimensions;
-  readonly duration?: number;       // seconds for video/audio
+  readonly duration?: number; // seconds for video/audio
   readonly aspectRatio?: string[];
   readonly fileSize?: FileSizeConstraint;
   readonly quality?: QualityLevel;
@@ -369,44 +369,44 @@ export interface CreativeBrief {
   readonly brandProfileId?: string;
   readonly version: string;
   readonly status: CreativeBriefStatus;
-  
+
   // Campaign Context
   readonly campaignContext: CampaignContext;
-  
+
   // Objectives
   readonly businessObjectives: BusinessObjective[];
   readonly communicationObjectives: CommunicationObjective[];
-  
+
   // Audience
   readonly targetAudience: TargetAudience;
-  
+
   // Messaging
   readonly keyMessages: Message[];
   readonly messagingFramework: MessagingFramework;
-  
+
   // Creative Direction
   readonly toneOfVoice: ToneOfVoice;
   readonly emotionalDirection: EmotionalDirection;
   readonly visualDirection: VisualDirection;
-  
+
   // Action & Metrics
   readonly desiredUserAction: DesiredAction;
   readonly successMetrics: BriefSuccessMetric[];
-  
+
   // Deliverables
   readonly deliverables: Deliverable[];
-  
+
   // Constraints
   readonly creativeConstraints: CreativeConstraint[];
   readonly channelStrategy: ChannelStrategy;
-  
+
   // References
   readonly brandReferences: BrandReference[];
   readonly inspirationReferences: CreativeReference[];
-  
+
   // Priority Matrix
   readonly priorityMatrix: PriorityMatrix;
-  
+
   // Metadata
   readonly createdAt: string;
   readonly updatedAt: string;
@@ -530,8 +530,8 @@ export interface ToneOfVoice {
 }
 
 export interface VoiceAttribute {
-  readonly spectrum: string;      // e.g., "Formal to Casual"
-  readonly position: number;      // 1-5 scale
+  readonly spectrum: string; // e.g., "Formal to Casual"
+  readonly position: number; // 1-5 scale
   readonly description: string;
 }
 
@@ -545,7 +545,7 @@ export interface EmotionalDirection {
 export interface EmotionalBeat {
   readonly phase: string;
   readonly emotion: string;
-  readonly intensity: number;     // 1-10 scale
+  readonly intensity: number; // 1-10 scale
   readonly trigger: string;
 }
 
@@ -573,7 +573,14 @@ export interface Action {
 }
 
 export interface FunnelStage {
-  readonly stage: 'awareness' | 'interest' | 'consideration' | 'intent' | 'evaluation' | 'purchase' | 'loyalty';
+  readonly stage:
+    | 'awareness'
+    | 'interest'
+    | 'consideration'
+    | 'intent'
+    | 'evaluation'
+    | 'purchase'
+    | 'loyalty';
   readonly action: string;
   readonly metric?: string;
 }
@@ -605,7 +612,7 @@ export interface CreativeConstraint {
   readonly description: string;
   readonly rationale: string;
   readonly impact: 'blocking' | 'warning' | 'advisory';
-  readonly applicableTo?: string[];    // channels, asset types, etc.
+  readonly applicableTo?: string[]; // channels, asset types, etc.
 }
 
 export enum CreativeConstraintType {
@@ -660,7 +667,7 @@ export interface ChannelBudget {
 }
 
 export interface BrandReference {
-  readonly element: string;        // "logo", "colors", "typography", etc.
+  readonly element: string; // "logo", "colors", "typography", etc.
   readonly requirement: string;
   readonly source?: string;
   readonly examples?: string[];

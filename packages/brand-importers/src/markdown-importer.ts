@@ -4,7 +4,7 @@
  * Imports brand guidelines from Markdown format.
  */
 
-import type { BrandPackage, BrandPackageId } from '@creative-factory/domain';
+import type { BrandPackage, BrandPackageId, BrandComponent } from '@creative-factory/domain';
 import { BrandSourceFormat, BrandComponentType } from '@creative-factory/domain';
 import type { BrandImporter } from './importer.js';
 
@@ -27,7 +27,7 @@ export class MarkdownBrandImporter implements BrandImporter {
     id: BrandPackageId,
     name: string,
     content: string | Buffer,
-    metadata?: Record<string, unknown>
+    metadata?: Record<string, unknown>,
   ): Promise<BrandPackage> {
     try {
       const str = typeof content === 'string' ? content : content.toString();
@@ -39,28 +39,23 @@ export class MarkdownBrandImporter implements BrandImporter {
         version: '1.0.0',
         description: sections.description,
         sourceFormat: BrandSourceFormat.MARKDOWN,
-        metadata,
+        metadata: metadata ?? {},
         components: sections.components,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
     } catch (error) {
       throw new Error(
-        `Failed to import Markdown brand package: ${error instanceof Error ? error.message : String(error)}`
+        `Failed to import Markdown brand package: ${error instanceof Error ? error.message : String(error)}`,
       );
     }
   }
 
-  private parseMarkdown(
-    content: string
-  ): { description: string; components: unknown[] } {
+  private parseMarkdown(content: string): { description: string; components: BrandComponent[] } {
     const lines = content.split('\n');
-    const description = lines
-      .slice(0, Math.min(5, lines.length))
-      .join('\n')
-      .slice(0, 200);
+    const description = lines.slice(0, Math.min(5, lines.length)).join('\n').slice(0, 200);
 
-    const components: unknown[] = [];
+    const components: BrandComponent[] = [];
 
     // Extract sections
     let currentSection: { type: string; name: string; content: string[] } | null = null;
@@ -73,6 +68,7 @@ export class MarkdownBrandImporter implements BrandImporter {
             name: currentSection.name,
             description: currentSection.content.join('\n'),
             content: { format: 'markdown', data: currentSection.content.join('\n') },
+            metadata: {},
           });
         }
         currentSection = {
@@ -91,14 +87,15 @@ export class MarkdownBrandImporter implements BrandImporter {
         name: currentSection.name,
         description: currentSection.content.join('\n'),
         content: { format: 'markdown', data: currentSection.content.join('\n') },
+        metadata: {},
       });
     }
 
     return { description, components };
   }
 
-  private mapSectionToComponentType(section: string): string {
-    const mapping: Record<string, string> = {
+  private mapSectionToComponentType(section: string): BrandComponentType {
+    const mapping: Record<string, BrandComponentType> = {
       color: BrandComponentType.COLOR_PALETTE,
       typography: BrandComponentType.TYPOGRAPHY,
       logo: BrandComponentType.LOGO,

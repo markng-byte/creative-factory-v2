@@ -1,3 +1,5 @@
+export type ISO8601Timestamp = string;
+
 export type AssetKind = 'image' | 'video' | 'composite';
 export type ReviewDecision = 'APPROVE' | 'REJECT' | 'REQUEST_CHANGES' | 'ESCALATE';
 export type CampaignLifecycleState =

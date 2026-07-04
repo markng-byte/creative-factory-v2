@@ -61,7 +61,10 @@ export interface ICampaignRegistryWithVersioning extends ICampaignRegistry {
   rollback(campaignId: string, toVersionNumber: number): Promise<CampaignPackage | undefined>;
 }
 
-export class VersionedCampaignRegistry extends MemoryCampaignRegistry implements ICampaignRegistryWithVersioning {
+export class VersionedCampaignRegistry
+  extends MemoryCampaignRegistry
+  implements ICampaignRegistryWithVersioning
+{
   private versions = new Map<string, CampaignPackage[]>();
 
   override async store(campaign: CampaignPackage): Promise<void> {
@@ -76,7 +79,10 @@ export class VersionedCampaignRegistry extends MemoryCampaignRegistry implements
     versionHistory.push(campaign);
   }
 
-  async getVersion(campaignId: string, versionNumber: number): Promise<CampaignPackage | undefined> {
+  async getVersion(
+    campaignId: string,
+    versionNumber: number,
+  ): Promise<CampaignPackage | undefined> {
     const versions = this.versions.get(campaignId);
     if (!versions || versionNumber < 1 || versionNumber > versions.length) {
       return undefined;
@@ -89,14 +95,17 @@ export class VersionedCampaignRegistry extends MemoryCampaignRegistry implements
     return this.versions.get(campaignId) || [];
   }
 
-  async rollback(campaignId: string, toVersionNumber: number): Promise<CampaignPackage | undefined> {
+  async rollback(
+    campaignId: string,
+    toVersionNumber: number,
+  ): Promise<CampaignPackage | undefined> {
     const versions = this.versions.get(campaignId);
 
     if (!versions || toVersionNumber < 1 || toVersionNumber > versions.length) {
       return undefined;
     }
 
-    const targetVersion = versions[toVersionNumber - 1];
+    const targetVersion = versions[toVersionNumber - 1]!;
     await super.store(targetVersion);
 
     return targetVersion;

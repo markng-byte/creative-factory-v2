@@ -4,5 +4,7 @@
   "private": true,
   "license": "UNLICENSED",
   "main": "index.js",
-  "files": ["index.js"]
+  "files": [
+    "index.js"
+  ]
 }

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
-import { BRAND_VALIDATOR_PACKAGE, BRAND_VALIDATOR_VERSION } from '../index.js';
-import { StandardBrandValidator } from '../validator.js';
+import { BRAND_VALIDATOR_PACKAGE, BRAND_VALIDATOR_VERSION } from './index.js';
+import { StandardBrandValidator } from './validator.js';
 
 describe('Brand Validator Package', () => {
   it('should export package constants', () => {
@@ -41,7 +41,15 @@ describe('Brand Validator Package', () => {
       },
       typography: { families: [], scales: [], weights: [], guidelines: [] },
       logoSystem: { variations: [], guidelines: [], spacing: {} as any, colorRules: [] },
-      iconSystem: { name: '', description: '', gridSize: 24, strokeWidth: 2, icons: [], guidelines: [], sets: [] },
+      iconSystem: {
+        name: '',
+        description: '',
+        gridSize: 24,
+        strokeWidth: 2,
+        icons: [],
+        guidelines: [],
+        sets: [],
+      },
       illustrationGuide: {
         style: '',
         characteristics: [],

@@ -1,5 +1,15 @@
 import * as YAML from 'js-yaml';
-import type { BusinessBriefInput } from '@creative-factory/domain';
+import type {
+  BusinessBriefInput,
+  CompetitiveLandscape,
+  BudgetBreakdown,
+  Milestone,
+  AssetRequirement,
+  ExistingAsset,
+  CreativeReference,
+  ComplianceRequirement,
+  SuccessMetric,
+} from '@creative-factory/domain';
 import type { BusinessBriefImporter, BusinessBriefImportResult } from './importer.js';
 
 /**
@@ -120,67 +130,50 @@ export class YAMLBusinessBriefImporter implements BusinessBriefImporter {
         geographics: (targetAudienceData.geographics as any) || undefined,
         segmentCriteria: (targetAudienceData.segmentCriteria as string[]) || [],
       },
-      customerPersonas: ((content.customerPersonas as unknown[]) || []).map((p) => ({
-        ...p,
-      })) as any,
+      customerPersonas: (content.customerPersonas as BusinessBriefInput['customerPersonas']) || [],
       market: {
         primaryMarket: (marketData.primaryMarket as string) || 'Global',
         secondaryMarkets: (marketData.secondaryMarkets as string[]) || [],
         marketSize: (marketData.marketSize as string) || undefined,
         marketTrends: (marketData.marketTrends as string[]) || [],
         competitiveLandscape: {
-          directCompetitors: ((marketData.directCompetitors as unknown[]) || []).map((c) => ({
-            ...c,
-          })) as any,
-          indirectCompetitors: ((marketData.indirectCompetitors as unknown[]) || []).map((c) => ({
-            ...c,
-          })) as any,
+          directCompetitors:
+            (marketData.directCompetitors as CompetitiveLandscape['directCompetitors']) || [],
+          indirectCompetitors:
+            (marketData.indirectCompetitors as CompetitiveLandscape['indirectCompetitors']) || [],
           marketLeaders: (marketData.marketLeaders as string[]) || [],
           differentiators: (marketData.differentiators as string[]) || [],
         },
         regulatoryEnvironment: (marketData.regulatoryEnvironment as string[]) || [],
       },
       industry: (content.industry as string) || '',
-      productsServices: ((content.productsServices as unknown[]) || []).map((p) => ({
-        ...p,
-      })) as any,
+      productsServices: (content.productsServices as BusinessBriefInput['productsServices']) || [],
       valueProposition: (content.valueProposition as string) || '',
       competitivePositioning: (content.competitivePositioning as string) || '',
-      campaignType: (campaignTypeValue as any) || 'custom',
-      communicationChannels: ((content.communicationChannels as unknown[]) || []).map((c) => (c as any)),
+      campaignType: (campaignTypeValue as BusinessBriefInput['campaignType']) || 'custom',
+      communicationChannels:
+        (content.communicationChannels as BusinessBriefInput['communicationChannels']) || [],
       languages: (content.languages as string[]) || ['en'],
       regions: (content.regions as string[]) || [],
       budget: budgetData
         ? {
             total: (budgetData.total as number) || 0,
             currency: (budgetData.currency as string) || 'USD',
-            allocation: (budgetData.allocation as Record<string, number>) || {},
-            contingency: (budgetData.contingency as number) || 0,
+            breakdown: (budgetData.breakdown as BudgetBreakdown[]) || undefined,
+            flexibility: (budgetData.flexibility as 'fixed' | 'flexible' | 'range') || undefined,
           }
         : undefined,
       timeline: {
-        startDate: (timelineData.startDate as string) || new Date().toISOString().split('T')[0],
+        startDate: (timelineData.startDate as string) || new Date().toISOString().slice(0, 10),
         endDate: (timelineData.endDate as string) || undefined,
-        milestones: ((timelineData.milestones as unknown[]) || []).map((m) => ({
-          ...m,
-        })) as any,
+        milestones: (timelineData.milestones as Milestone[]) || [],
       },
-      assetRequirements: ((content.assetRequirements as unknown[]) || []).map((a) => ({
-        ...a,
-      })) as any,
-      existingAssets: ((content.existingAssets as unknown[]) || []).map((a) => ({
-        ...a,
-      })) as any,
-      creativeReferences: ((content.creativeReferences as unknown[]) || []).map((r) => ({
-        ...r,
-      })) as any,
+      assetRequirements: (content.assetRequirements as AssetRequirement[]) || [],
+      existingAssets: (content.existingAssets as ExistingAsset[]) || undefined,
+      creativeReferences: (content.creativeReferences as CreativeReference[]) || undefined,
       businessConstraints: (content.businessConstraints as string[]) || [],
-      complianceRequirements: ((content.complianceRequirements as unknown[]) || []).map((c) => ({
-        ...c,
-      })) as any,
-      successMetrics: ((content.successMetrics as unknown[]) || []).map((m) => ({
-        ...m,
-      })) as any,
+      complianceRequirements: (content.complianceRequirements as ComplianceRequirement[]) || [],
+      successMetrics: (content.successMetrics as SuccessMetric[]) || [],
       metadata: (content.metadata as Record<string, unknown>) || {},
     };
   }
@@ -188,10 +181,10 @@ export class YAMLBusinessBriefImporter implements BusinessBriefImporter {
   private hasRequiredFields(brief: BusinessBriefInput): boolean {
     return Boolean(
       brief.id &&
-        brief.campaignGoal &&
-        brief.targetAudience &&
-        brief.industry &&
-        brief.valueProposition,
+      brief.campaignGoal &&
+      brief.targetAudience &&
+      brief.industry &&
+      brief.valueProposition,
     );
   }
 }

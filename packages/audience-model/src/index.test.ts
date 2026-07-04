@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { StandardAudienceModelGenerator } from './audience-generator.js';
 import type { BusinessBriefInput } from '@creative-factory/domain';
+import { CampaignType, CommunicationChannel } from '@creative-factory/domain';
 
 describe('AudienceModelGenerator', () => {
   const mockBusinessBrief: BusinessBriefInput = {
@@ -14,7 +15,10 @@ describe('AudienceModelGenerator', () => {
         painPoints: ['Time management', 'Productivity'],
       },
     },
-    communicationChannels: ['social_media_twitter', 'social_media_linkedin'],
+    communicationChannels: [
+      CommunicationChannel.SOCIAL_MEDIA_TWITTER,
+      CommunicationChannel.SOCIAL_MEDIA_LINKEDIN,
+    ],
     customerPersonas: [
       {
         id: 'persona-1' as any,
@@ -26,16 +30,19 @@ describe('AudienceModelGenerator', () => {
         behaviors: { buyingBehavior: ['Research driven'] },
         goals: ['Reduce costs'],
         frustrations: ['Complex tools'],
-        preferredChannels: ['social_media_linkedin'],
+        preferredChannels: [CommunicationChannel.SOCIAL_MEDIA_LINKEDIN],
       },
     ],
-    market: {},
+    market: {
+      primaryMarket: 'Global',
+      competitiveLandscape: { directCompetitors: [], differentiators: [] },
+    },
     productsServices: [],
     competitivePositioning: '',
-    campaignType: 'brand_awareness',
+    campaignType: CampaignType.BRAND_AWARENESS,
     languages: ['en'],
     regions: ['US'],
-    timeline: {},
+    timeline: { startDate: '2026-07-01', milestones: [] },
     assetRequirements: [],
     businessConstraints: [],
     complianceRequirements: [],
@@ -60,8 +67,8 @@ describe('AudienceModelGenerator', () => {
     const model = await generator.generate('campaign-1', mockBusinessBrief);
 
     expect(model.personas).toHaveLength(1);
-    expect(model.personas[0].name).toBe('Tech Manager');
-    expect(model.personas[0].likelyConversionPath).toBeDefined();
+    expect(model.personas[0]?.name).toBe('Tech Manager');
+    expect(model.personas[0]?.likelyConversionPath).toBeDefined();
   });
 
   it('should generate sentiment profile', async () => {

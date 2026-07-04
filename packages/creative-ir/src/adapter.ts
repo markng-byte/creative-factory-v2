@@ -7,7 +7,8 @@
  * Key Principle: Adapters NEVER modify Creative IR. They only read and transform it.
  */
 
-import type { CreativeIR, ValidationStatus } from './types.js';
+import type { CreativeIR } from './types.js';
+import type { ValidationMode } from './validation.js';
 
 export interface CreativeIRAdapter {
   readonly name: string;
@@ -31,12 +32,6 @@ export interface AdapterOptions {
   readonly includeMetadata: boolean;
   readonly validationMode: ValidationMode;
   readonly parameters: Record<string, unknown>;
-}
-
-export enum ValidationMode {
-  STRICT = 'strict',
-  PERMISSIVE = 'permissive',
-  DRAFT = 'draft',
 }
 
 export interface AdapterOutput {

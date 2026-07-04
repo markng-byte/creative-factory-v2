@@ -23,7 +23,7 @@
 
 ## Executive Summary
 
-**Creative Intermediate Representation (Creative IR)** is the canonical, machine-readable representation of every creative artifact produced by the Creative Factory. 
+**Creative Intermediate Representation (Creative IR)** is the canonical, machine-readable representation of every creative artifact produced by the Creative Factory.
 
 ### Key Principles
 
@@ -107,7 +107,6 @@ Production Artifacts
   - AI provider names or API-specific parameters
   - Format-specific constraints beyond semantic meaning
   - Implementation details of generation engines
-  
 - Prompt synthesis happens only in Prompt Translation adapters
 
 ---
@@ -119,12 +118,12 @@ Production Artifacts
 ```typescript
 interface CreativeIR {
   // Metadata
-  readonly version: string;           // Semantic version of Creative IR spec (e.g., "1.0.0")
-  readonly id: CreativeIRId;          // Unique document identifier
+  readonly version: string; // Semantic version of Creative IR spec (e.g., "1.0.0")
+  readonly id: CreativeIRId; // Unique document identifier
   readonly createdAt: ISO8601Timestamp;
   readonly updatedAt: ISO8601Timestamp;
   readonly revisionHistory: RevisionRecord[];
-  
+
   // Content Model
   readonly campaign: Campaign;
   readonly creativeContext: CreativeContext;
@@ -134,7 +133,7 @@ interface CreativeIR {
   readonly assetRequests: AssetRequest[];
   readonly reviews: Review[];
   readonly exports: ExportMetadata[];
-  
+
   // Validation Metadata
   readonly validationStatus: ValidationStatus;
   readonly compilerMetadata: CompilerMetadata;
@@ -148,10 +147,10 @@ interface Campaign {
   readonly id: CampaignId;
   readonly name: string;
   readonly description: string;
-  readonly objective: string;              // Business objective
+  readonly objective: string; // Business objective
   readonly targetAudience: TargetAudience;
   readonly duration: Duration;
-  readonly aspectRatios: AspectRatio[];    // Supported output formats
+  readonly aspectRatios: AspectRatio[]; // Supported output formats
   readonly languages: Language[];
   readonly marketRegions: Region[];
   readonly lifecycleState: CampaignLifecycleState;
@@ -181,9 +180,9 @@ interface Duration {
   readonly frameRate?: number;
 }
 
-type AspectRatio = "16:9" | "9:16" | "1:1" | "4:3" | "21:9";
-type Language = string;  // ISO 639-1 code
-type Region = string;    // ISO 3166-1 alpha-2
+type AspectRatio = '16:9' | '9:16' | '1:1' | '4:3' | '21:9';
+type Language = string; // ISO 639-1 code
+type Region = string; // ISO 3166-1 alpha-2
 ```
 
 ### Creative Context
@@ -193,7 +192,7 @@ interface CreativeContext {
   readonly briefId: CreativeBriefId;
   readonly briefTitle: string;
   readonly briefObjective: string;
-  readonly creativeDirection: string;     // High-level creative direction
+  readonly creativeDirection: string; // High-level creative direction
   readonly moodAndTone: MoodAndTone;
   readonly visualStyle: VisualStyle;
   readonly narrativeTheme: string;
@@ -229,9 +228,9 @@ interface BrandGuidelines {
 }
 
 interface Constraint {
-  readonly type: "technical" | "legal" | "brand" | "creative" | "resource";
+  readonly type: 'technical' | 'legal' | 'brand' | 'creative' | 'resource';
   readonly description: string;
-  readonly impact: "blocking" | "warning" | "advisory";
+  readonly impact: 'blocking' | 'warning' | 'advisory';
 }
 ```
 
@@ -286,7 +285,7 @@ interface Shot {
 }
 
 interface Transition {
-  readonly type: "cut" | "fade" | "dissolve" | "wipe" | "zoom" | "pan";
+  readonly type: 'cut' | 'fade' | 'dissolve' | 'wipe' | 'zoom' | 'pan';
   readonly duration: Duration;
   readonly easing?: string;
   readonly description?: string;
@@ -309,49 +308,49 @@ interface VisualSpecification {
   readonly talent: TalentDirection[];
 }
 
-type ShotType = 
-  | "wide" 
-  | "medium" 
-  | "close-up" 
-  | "extreme-close-up"
-  | "aerial"
-  | "pov"
-  | "over-shoulder"
-  | "two-shot"
-  | "group";
+type ShotType =
+  | 'wide'
+  | 'medium'
+  | 'close-up'
+  | 'extreme-close-up'
+  | 'aerial'
+  | 'pov'
+  | 'over-shoulder'
+  | 'two-shot'
+  | 'group';
 
 interface CameraConfiguration {
   readonly movement: CameraMovement;
   readonly angle: CameraAngle;
   readonly lens: LensSpec;
   readonly focus: FocusSpec;
-  readonly depth: number;  // Approximate focal length in mm
+  readonly depth: number; // Approximate focal length in mm
 }
 
-type CameraMovement = 
-  | "static" 
-  | "pan" 
-  | "tilt" 
-  | "dolly" 
-  | "crane" 
-  | "orbit"
-  | "tracking"
-  | "reveal";
+type CameraMovement =
+  | 'static'
+  | 'pan'
+  | 'tilt'
+  | 'dolly'
+  | 'crane'
+  | 'orbit'
+  | 'tracking'
+  | 'reveal';
 
 interface CameraAngle {
-  readonly pitch: number;   // -90 to +90 degrees
-  readonly yaw: number;     // 0 to 360 degrees
-  readonly roll: number;    // -90 to +90 degrees
+  readonly pitch: number; // -90 to +90 degrees
+  readonly yaw: number; // 0 to 360 degrees
+  readonly roll: number; // -90 to +90 degrees
 }
 
 interface CompositionSpec {
-  readonly rule: "rule-of-thirds" | "center" | "leading-lines" | "depth";
+  readonly rule: 'rule-of-thirds' | 'center' | 'leading-lines' | 'depth';
   readonly subjectPlacement: string;
-  readonly balanceType: "symmetrical" | "asymmetrical" | "radial";
+  readonly balanceType: 'symmetrical' | 'asymmetrical' | 'radial';
 }
 
 interface LightingSpec {
-  readonly type: "three-point" | "two-point" | "backlighting" | "sidelighting" | "practical";
+  readonly type: 'three-point' | 'two-point' | 'backlighting' | 'sidelighting' | 'practical';
   readonly keyLight: LightDescription;
   readonly fillLight?: LightDescription;
   readonly backLight?: LightDescription;
@@ -361,20 +360,20 @@ interface LightingSpec {
 }
 
 interface LightDescription {
-  readonly intensity: number;   // 0-100
-  readonly color: string;       // Hex or RGB
+  readonly intensity: number; // 0-100
+  readonly color: string; // Hex or RGB
   readonly direction: string;
-  readonly softness: number;    // 0-100
+  readonly softness: number; // 0-100
 }
 
 interface ColorGradingSpec {
   readonly look: string;
   readonly colorCast: string;
-  readonly saturation: number;     // -100 to +100
-  readonly contrast: number;       // -100 to +100
-  readonly highlights: number;     // -100 to +100
-  readonly shadows: number;        // -100 to +100
-  readonly temperature: number;    // Kelvin or -100 to +100
+  readonly saturation: number; // -100 to +100
+  readonly contrast: number; // -100 to +100
+  readonly highlights: number; // -100 to +100
+  readonly shadows: number; // -100 to +100
+  readonly temperature: number; // Kelvin or -100 to +100
 }
 
 interface VisualElement {
@@ -422,7 +421,7 @@ interface MotionSpecification {
 }
 
 interface CameraMotionKeyframes {
-  readonly time: number;  // Milliseconds from shot start
+  readonly time: number; // Milliseconds from shot start
   readonly position: Vector3D;
   readonly rotation: Rotation3D;
   readonly focalLength: number;
@@ -430,13 +429,7 @@ interface CameraMotionKeyframes {
   readonly easing: EasingFunction;
 }
 
-type EasingFunction = 
-  | "linear"
-  | "ease-in"
-  | "ease-out"
-  | "ease-in-out"
-  | "cubic-bezier"
-  | "spring";
+type EasingFunction = 'linear' | 'ease-in' | 'ease-out' | 'ease-in-out' | 'cubic-bezier' | 'spring';
 
 interface ObjectMotion {
   readonly objectId: string;
@@ -495,9 +488,9 @@ interface Vector3D {
 }
 
 interface Rotation3D {
-  readonly x: number;  // Pitch in degrees
-  readonly y: number;  // Yaw in degrees
-  readonly z: number;  // Roll in degrees
+  readonly x: number; // Pitch in degrees
+  readonly y: number; // Yaw in degrees
+  readonly z: number; // Roll in degrees
 }
 
 interface Timing {
@@ -522,7 +515,7 @@ interface AudioSpecification {
 interface VoiceoverSpec {
   readonly script: string;
   readonly language: Language;
-  readonly style: string;           // e.g., "conversational", "authoritative", "whimsical"
+  readonly style: string; // e.g., "conversational", "authoritative", "whimsical"
   readonly pacing: string;
   readonly emotionalTone: string;
   readonly deliveryNotes: string;
@@ -530,10 +523,10 @@ interface VoiceoverSpec {
 
 interface MusicSpec {
   readonly mood: string;
-  readonly tempo: number;           // BPM
+  readonly tempo: number; // BPM
   readonly genre: string;
   readonly instrumentation: string[];
-  readonly intensity: number;       // 0-100
+  readonly intensity: number; // 0-100
   readonly notes: string;
   readonly licensingRequirements?: string;
 }
@@ -543,12 +536,12 @@ interface SoundEffect {
   readonly name: string;
   readonly description: string;
   readonly timing: Timing;
-  readonly volume: number;          // 0-100 dB
+  readonly volume: number; // 0-100 dB
   readonly effects?: AudioEffect[];
 }
 
 interface AudioEffect {
-  readonly type: string;           // e.g., "reverb", "delay", "compression", "eq"
+  readonly type: string; // e.g., "reverb", "delay", "compression", "eq"
   readonly parameters: Record<string, number>;
 }
 
@@ -575,7 +568,7 @@ interface LocalizationSpec {
 }
 
 interface SubtitleSpec {
-  readonly format: "vtt" | "srt" | "ass";
+  readonly format: 'vtt' | 'srt' | 'ass';
   readonly languages: Language[];
   readonly styling: CSSStyles;
 }
@@ -604,7 +597,7 @@ interface ColorToken {
   readonly rgb: RGB;
   readonly hsl: HSL;
   readonly usage: string;
-  readonly context: string[];  // e.g., ["web", "print", "video"]
+  readonly context: string[]; // e.g., ["web", "print", "video"]
 }
 
 interface TypographyToken {
@@ -618,7 +611,7 @@ interface TypographyToken {
 }
 
 interface LogoVariation {
-  readonly type: "primary" | "secondary" | "monochrome" | "icon";
+  readonly type: 'primary' | 'secondary' | 'monochrome' | 'icon';
   readonly description: string;
   readonly minimumSize: number;
   readonly clearanceRules: string;
@@ -720,14 +713,14 @@ interface AssetRequest {
   readonly assetType: AssetType;
   readonly specifications: AssetSpecification;
   readonly quantity: number;
-  readonly priority: "critical" | "high" | "medium" | "low";
+  readonly priority: 'critical' | 'high' | 'medium' | 'low';
   readonly deadline?: ISO8601Timestamp;
   readonly deliveredAssets: AssetOutput[];
-  readonly qaStatus: "pending" | "in-progress" | "approved" | "rejected";
+  readonly qaStatus: 'pending' | 'in-progress' | 'approved' | 'rejected';
   readonly metadata: Record<string, unknown>;
 }
 
-type AssetType = "image" | "video" | "audio" | "animation" | "3d-model" | "text";
+type AssetType = 'image' | 'video' | 'audio' | 'animation' | '3d-model' | 'text';
 
 interface AssetSpecification {
   readonly description: string;
@@ -758,7 +751,7 @@ interface AssetOutput {
   readonly url: string;
   readonly metadata: AssetMetadata;
   readonly generatedAt: ISO8601Timestamp;
-  readonly generatedBy: string;  // Engine identifier
+  readonly generatedBy: string; // Engine identifier
   readonly provenance: Provenance;
 }
 
@@ -778,8 +771,8 @@ interface Provenance {
   readonly sourceModel?: string;
   readonly sourceVersion?: string;
   readonly parameters: Record<string, unknown>;
-  readonly seed?: string;  // For reproducibility
-  readonly generationTime: number;  // Milliseconds
+  readonly seed?: string; // For reproducibility
+  readonly generationTime: number; // Milliseconds
 }
 ```
 
@@ -790,16 +783,16 @@ interface Review {
   readonly id: ReviewId;
   readonly createdAt: ISO8601Timestamp;
   readonly reviewedBy: UserId;
-  readonly reviewType: "strategy" | "storyboard" | "assets" | "final";
-  readonly status: "pending" | "in-progress" | "completed" | "rejected";
-  readonly targetId: string;     // ID of reviewed entity (story, storyboard, etc.)
+  readonly reviewType: 'strategy' | 'storyboard' | 'assets' | 'final';
+  readonly status: 'pending' | 'in-progress' | 'completed' | 'rejected';
+  readonly targetId: string; // ID of reviewed entity (story, storyboard, etc.)
   readonly decision: ReviewDecision;
   readonly comments: ReviewComment[];
   readonly attachments: Attachment[];
   readonly deadline?: ISO8601Timestamp;
 }
 
-type ReviewDecision = "approved" | "approved-with-changes" | "rejected" | "pending";
+type ReviewDecision = 'approved' | 'approved-with-changes' | 'rejected' | 'pending';
 
 interface ReviewComment {
   readonly id: CommentId;
@@ -822,15 +815,15 @@ interface Attachment {
 interface Approval {
   readonly id: ApprovalId;
   readonly approverUserId: UserId;
-  readonly approvalType: "creative" | "brand" | "legal" | "final";
+  readonly approvalType: 'creative' | 'brand' | 'legal' | 'final';
   readonly timestamp: ISO8601Timestamp;
-  readonly status: "pending" | "approved" | "rejected";
+  readonly status: 'pending' | 'approved' | 'rejected';
   readonly comment?: string;
-  readonly approvalLevel: number;  // For multi-level approval workflows
+  readonly approvalLevel: number; // For multi-level approval workflows
 }
 
-type ApprovalState = "pending" | "approved" | "rejected" | "changes-requested";
-type ReviewState = "not-started" | "in-progress" | "completed" | "revision-needed";
+type ApprovalState = 'pending' | 'approved' | 'rejected' | 'changes-requested';
+type ReviewState = 'not-started' | 'in-progress' | 'completed' | 'revision-needed';
 ```
 
 ### Export Metadata
@@ -841,23 +834,23 @@ interface ExportMetadata {
   readonly createdAt: ISO8601Timestamp;
   readonly exportedBy: UserId;
   readonly exportFormat: ExportFormat;
-  readonly adapterUsed: string;          // Adapter identifier
-  readonly targetPlatform: string;       // e.g., "instagram", "tiktok", "youtube", "broadcast"
+  readonly adapterUsed: string; // Adapter identifier
+  readonly targetPlatform: string; // e.g., "instagram", "tiktok", "youtube", "broadcast"
   readonly artifacts: ExportArtifact[];
-  readonly status: "pending" | "processing" | "completed" | "failed";
+  readonly status: 'pending' | 'processing' | 'completed' | 'failed';
   readonly errorLog?: string;
 }
 
-type ExportFormat = 
-  | "storyboard-html"
-  | "scene-spec-pdf"
-  | "shot-list-json"
-  | "motion-spec-json"
-  | "prompt-package-json"
-  | "image-generation-requests"
-  | "video-generation-requests"
-  | "qa-spec-json"
-  | "production-package";
+type ExportFormat =
+  | 'storyboard-html'
+  | 'scene-spec-pdf'
+  | 'shot-list-json'
+  | 'motion-spec-json'
+  | 'prompt-package-json'
+  | 'image-generation-requests'
+  | 'video-generation-requests'
+  | 'qa-spec-json'
+  | 'production-package';
 
 interface ExportArtifact {
   readonly format: string;
@@ -895,7 +888,7 @@ interface AdapterCompileMetadata {
 }
 
 interface Diagnostic {
-  readonly level: "info" | "warning" | "error";
+  readonly level: 'info' | 'warning' | 'error';
   readonly message: string;
   readonly line?: number;
   readonly column?: number;
@@ -917,7 +910,7 @@ interface ValidationError {
   readonly code: string;
   readonly message: string;
   readonly path: string;
-  readonly severity: "critical" | "high" | "medium";
+  readonly severity: 'critical' | 'high' | 'medium';
 }
 
 interface ValidationWarning {
@@ -985,7 +978,7 @@ Consumers MUST validate schema version before parsing.
 
 1. **Referential Integrity**: All IDs must resolve to existing entities
 2. **Temporal Consistency**: `createdAt` ≤ `updatedAt`
-3. **Logical Constraints**: 
+3. **Logical Constraints**:
    - Shot count > 0
    - Duration > 0
    - AspectRatios supported
@@ -1001,9 +994,9 @@ Consumers MUST validate schema version before parsing.
 
 ```typescript
 enum ValidationMode {
-  STRICT,       // All rules enforced
-  PERMISSIVE,   // Warnings only for non-critical issues
-  DRAFT,        // Minimal validation (development only)
+  STRICT, // All rules enforced
+  PERMISSIVE, // Warnings only for non-critical issues
+  DRAFT, // Minimal validation (development only)
 }
 ```
 
@@ -1014,6 +1007,7 @@ enum ValidationMode {
 ### JSON-LD Primary Format
 
 Creative IR is serialized as JSON-LD for:
+
 - RDF-compatible linked data
 - Semantic web integration
 - Future knowledge graph capabilities
@@ -1037,6 +1031,7 @@ Creative IR is serialized as JSON-LD for:
 ### Format Specifications
 
 All formats MUST:
+
 1. Preserve exact type information
 2. Support all date/time semantics
 3. Support nested objects and arrays
@@ -1055,7 +1050,7 @@ interface CompilerRequest {
   readonly brandId: BrandId;
   readonly campaignId: CampaignId;
   readonly reviewFeedback?: ReviewFeedback[];
-  readonly adapterFilters?: string[];  // If empty, all enabled
+  readonly adapterFilters?: string[]; // If empty, all enabled
   readonly validationMode: ValidationMode;
 }
 
@@ -1084,7 +1079,7 @@ interface CompileReport {
 }
 
 interface AdapterCompileResult {
-  readonly status: "success" | "partial" | "skipped" | "failed";
+  readonly status: 'success' | 'partial' | 'skipped' | 'failed';
   readonly artifactCount: number;
   readonly duration: number;
   readonly errors?: string[];
@@ -1114,18 +1109,15 @@ interface CreativeIRAdapter {
   readonly version: string;
   readonly supportedOutputFormats: string[];
   readonly capabilities: AdapterCapability[];
-  
-  transform(
-    creativeIR: CreativeIR,
-    options: AdapterOptions
-  ): Promise<AdapterOutput>;
-  
+
+  transform(creativeIR: CreativeIR, options: AdapterOptions): Promise<AdapterOutput>;
+
   validate(creativeIR: CreativeIR): AdapterValidationResult;
 }
 
 interface AdapterCapability {
   readonly feature: string;
-  readonly level: "required" | "optional" | "unsupported";
+  readonly level: 'required' | 'optional' | 'unsupported';
   readonly notes?: string;
 }
 
@@ -1234,10 +1226,10 @@ interface AdapterMetadata {
 
 ```typescript
 interface DeprecatedField {
-  readonly version: string;          // Version deprecated in
-  readonly replacement?: string;     // Suggested replacement
-  readonly removalVersion?: string;  // When it will be removed
-  readonly migration?: string;       // Migration instructions
+  readonly version: string; // Version deprecated in
+  readonly replacement?: string; // Suggested replacement
+  readonly removalVersion?: string; // When it will be removed
+  readonly migration?: string; // Migration instructions
 }
 ```
 
@@ -1277,16 +1269,9 @@ For MAJOR version changes:
 
 ```typescript
 interface SchemaMigrator {
-  migrate(
-    document: unknown,
-    fromVersion: string,
-    toVersion: string
-  ): unknown;
-  
-  getPath(
-    fromVersion: string,
-    toVersion: string
-  ): MigrationStep[];
+  migrate(document: unknown, fromVersion: string, toVersion: string): unknown;
+
+  getPath(fromVersion: string, toVersion: string): MigrationStep[];
 }
 
 interface MigrationStep {
@@ -1312,16 +1297,14 @@ interface MigrationStep {
   "createdAt": "2026-06-26T10:00:00Z",
   "updatedAt": "2026-06-26T10:00:00Z",
   "revisionHistory": [],
-  
+
   "campaign": {
     "id": "campaign:instagram-summer-2026",
     "name": "Summer Vibes Campaign",
     "description": "Social media campaign for summer product launch",
     "objective": "Increase brand awareness and drive engagement",
     "targetAudience": {
-      "demographics": [
-        { "age": { "min": 18, "max": 35 } }
-      ],
+      "demographics": [{ "age": { "min": 18, "max": 35 } }],
       "psychographics": ["lifestyle-conscious", "eco-aware"],
       "geographies": ["US", "CA"]
     },
@@ -1334,7 +1317,7 @@ interface MigrationStep {
     "createdBy": "user:creator1",
     "updatedBy": "user:creator1"
   },
-  
+
   "creativeContext": {
     "briefId": "brief:instagram-summer-2026",
     "briefTitle": "Summer Product Launch",
@@ -1368,7 +1351,7 @@ interface MigrationStep {
     },
     "constraints": []
   },
-  
+
   "stories": [
     {
       "id": "story:summer-opening",
@@ -1464,7 +1447,7 @@ interface MigrationStep {
       "metadata": {}
     }
   ],
-  
+
   "brandTokens": {
     "brandId": "brand:acme-summer",
     "brandName": "Acme Brand",
@@ -1499,7 +1482,7 @@ interface MigrationStep {
       "valuePropositions": ["Authenticity", "Quality", "Sustainability"]
     }
   },
-  
+
   "designTokens": {
     "spacing": [
       { "name": "xs", "value": 4, "unit": "px" },
@@ -1521,18 +1504,18 @@ interface MigrationStep {
     ],
     "breakpoints": []
   },
-  
+
   "assetRequests": [],
   "reviews": [],
   "exports": [],
-  
+
   "validationStatus": {
     "isValid": true,
     "errors": [],
     "warnings": [],
     "lastValidatedAt": "2026-06-26T10:00:00Z"
   },
-  
+
   "compilerMetadata": {
     "compileVersion": "1.0.0",
     "compileTimestamp": "2026-06-26T10:00:00Z",

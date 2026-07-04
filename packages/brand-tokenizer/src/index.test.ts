@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
-import { BRAND_TOKENIZER_PACKAGE, BRAND_TOKENIZER_VERSION } from '../index.js';
-import { BrandTokenGenerator } from '../tokenizer.js';
+import { BRAND_TOKENIZER_PACKAGE, BRAND_TOKENIZER_VERSION } from './index.js';
+import { BrandTokenGenerator } from './tokenizer.js';
 
 describe('Brand Tokenizer Package', () => {
   it('should export package constants', () => {
@@ -35,7 +35,12 @@ describe('Brand Tokenizer Package', () => {
         guidelines: [],
       },
       typography: { families: [], scales: [], weights: [], guidelines: [] },
-      motionGuide: { duration: { normalAnimation: 300 } as any, easing: [], transitions: [], guidelines: [] },
+      motionGuide: {
+        duration: { normalAnimation: 300 } as any,
+        easing: [],
+        transitions: [],
+        guidelines: [],
+      },
     } as any;
 
     const tokens = generator.generate(profile);

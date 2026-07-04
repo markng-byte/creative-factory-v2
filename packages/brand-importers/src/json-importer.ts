@@ -4,12 +4,7 @@
  * Imports brand packages from JSON format.
  */
 
-import type {
-  BrandPackage,
-  BrandPackageId,
-  BrandComponent,
-  BrandComponentType,
-} from '@creative-factory/domain';
+import type { BrandPackage, BrandPackageId, BrandComponent } from '@creative-factory/domain';
 import { BrandSourceFormat } from '@creative-factory/domain';
 import type { BrandImporter } from './importer.js';
 
@@ -36,7 +31,7 @@ export class JSONBrandImporter implements BrandImporter {
     id: BrandPackageId,
     name: string,
     content: string | Buffer,
-    metadata?: Record<string, unknown>
+    metadata?: Record<string, unknown>,
   ): Promise<BrandPackage> {
     try {
       const str = typeof content === 'string' ? content : content.toString();
@@ -49,12 +44,14 @@ export class JSONBrandImporter implements BrandImporter {
         description: data.description || '',
         sourceFormat: BrandSourceFormat.JSON,
         metadata: { ...metadata, ...data.metadata },
-        components: data.components || [],
+        components: (data.components as BrandComponent[]) || [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
     } catch (error) {
-      throw new Error(`Failed to import JSON brand package: ${error instanceof Error ? error.message : String(error)}`);
+      throw new Error(
+        `Failed to import JSON brand package: ${error instanceof Error ? error.message : String(error)}`,
+      );
     }
   }
 }

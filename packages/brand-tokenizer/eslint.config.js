@@ -1,4 +1,4 @@
-import js from '@creative-factory/eslint-config/next';
+import js from '@creative-factory/eslint-config/library.js';
 
 export default [
   {

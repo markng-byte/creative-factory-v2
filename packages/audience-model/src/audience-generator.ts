@@ -1,31 +1,22 @@
+import type { BusinessBriefInput, CustomerPersona } from '@creative-factory/domain';
 import type {
   AudienceModel,
   AudienceModelStatus,
   ProcessedSegment,
   ProcessedPersona,
-  BusinessBriefInput,
-  TargetAudienceInput,
-  CustomerPersona,
   CommunicationStrategy,
-  ConversionPath,
-} from '@creative-factory/domain';
+} from './types.js';
 
 /**
  * Audience Model Generator
  * Transforms business brief audience inputs into processed audience models
  */
 export interface IAudienceModelGenerator {
-  generate(
-    campaignId: string,
-    businessBrief: BusinessBriefInput,
-  ): Promise<AudienceModel>;
+  generate(campaignId: string, businessBrief: BusinessBriefInput): Promise<AudienceModel>;
 }
 
 export class StandardAudienceModelGenerator implements IAudienceModelGenerator {
-  async generate(
-    campaignId: string,
-    businessBrief: BusinessBriefInput,
-  ): Promise<AudienceModel> {
+  async generate(campaignId: string, businessBrief: BusinessBriefInput): Promise<AudienceModel> {
     const id = `aud-${campaignId}-${Date.now()}` as unknown as AudienceModel['id'];
 
     const primarySegment = this.processSegment(
@@ -110,8 +101,12 @@ export class StandardAudienceModelGenerator implements IAudienceModelGenerator {
 
   private generateCommunicationStrategy(businessBrief: BusinessBriefInput): CommunicationStrategy {
     return {
-      tone: businessBrief.metadata?.preferredTone ? [businessBrief.metadata.preferredTone as string] : ['professional'],
-      messageThemes: businessBrief.metadata?.messageThemes ? (businessBrief.metadata.messageThemes as string[]) : [],
+      tone: businessBrief.metadata?.preferredTone
+        ? [businessBrief.metadata.preferredTone as string]
+        : ['professional'],
+      messageThemes: businessBrief.metadata?.messageThemes
+        ? (businessBrief.metadata.messageThemes as string[])
+        : [],
       channels: businessBrief.communicationChannels || [],
       contentTypes: ['video', 'image', 'text'],
       callToActionStyle: 'direct',
@@ -156,14 +151,18 @@ export class StandardAudienceModelGenerator implements IAudienceModelGenerator {
       valuesClusters: [
         {
           name: 'Core Values',
-          values: businessBrief.metadata?.coreValues ? (businessBrief.metadata.coreValues as string[]) : [],
+          values: businessBrief.metadata?.coreValues
+            ? (businessBrief.metadata.coreValues as string[])
+            : [],
           prevalence: 0.8,
         },
       ],
       lifestyleSegments: [
         {
           name: 'Primary Lifestyle',
-          characteristics: businessBrief.metadata?.lifestyle ? [businessBrief.metadata.lifestyle as string] : [],
+          characteristics: businessBrief.metadata?.lifestyle
+            ? [businessBrief.metadata.lifestyle as string]
+            : [],
           activities: [],
           prevalence: 0.7,
         },
@@ -242,7 +241,7 @@ export class StandardAudienceModelGenerator implements IAudienceModelGenerator {
     };
   }
 
-  private generateSentimentProfile(businessBrief: BusinessBriefInput) {
+  private generateSentimentProfile(_businessBrief: BusinessBriefInput) {
     return {
       brandPerception: {
         positive: 0.6,

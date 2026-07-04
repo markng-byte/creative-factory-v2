@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 
-import { BRAND_IMPORTERS_PACKAGE, BRAND_IMPORTERS_VERSION } from '../index.js';
-import { StandardImporterRegistry } from '../registry.js';
-import { JSONBrandImporter } from '../json-importer.js';
+import { BRAND_IMPORTERS_PACKAGE, BRAND_IMPORTERS_VERSION } from './index.js';
+import { StandardImporterRegistry } from './registry.js';
+import { JSONBrandImporter } from './json-importer.js';
 
 describe('Brand Importers Package', () => {
   it('should export package constants', () => {

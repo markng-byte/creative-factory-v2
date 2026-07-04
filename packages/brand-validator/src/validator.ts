@@ -56,7 +56,7 @@ export class StandardBrandValidator implements BrandValidator {
           severity: i.severity as 'critical' | 'high' | 'medium',
           path: i.path,
           suggestion: i.suggestion,
-        })
+        }),
       );
 
     const warnings = allIssues
@@ -66,7 +66,7 @@ export class StandardBrandValidator implements BrandValidator {
           code: i.code,
           message: i.message,
           path: i.path,
-        })
+        }),
       );
 
     return {

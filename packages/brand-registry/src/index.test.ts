@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
-import { BRAND_REGISTRY_PACKAGE, BRAND_REGISTRY_VERSION } from '../index.js';
-import { MemoryBrandRegistry } from '../registry.js';
+import { BRAND_REGISTRY_PACKAGE, BRAND_REGISTRY_VERSION } from './index.js';
+import { MemoryBrandRegistry } from './registry.js';
 
 describe('Brand Registry Package', () => {
   it('should export package constants', () => {
@@ -29,7 +29,15 @@ describe('Brand Registry Package', () => {
       },
       typography: { families: [], scales: [], weights: [], guidelines: [] },
       logoSystem: { variations: [], guidelines: [], spacing: {} as any, colorRules: [] },
-      iconSystem: { name: '', description: '', gridSize: 24, strokeWidth: 2, icons: [], guidelines: [], sets: [] },
+      iconSystem: {
+        name: '',
+        description: '',
+        gridSize: 24,
+        strokeWidth: 2,
+        icons: [],
+        guidelines: [],
+        sets: [],
+      },
       illustrationGuide: {
         style: '',
         characteristics: [],

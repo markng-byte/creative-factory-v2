@@ -11,9 +11,11 @@ The Brand Intelligence Engine is the single source of truth for all visual ident
 The Brand Engine consists of five independent packages:
 
 ### 1. **@creative-factory/brand-importers**
+
 Pluggable importers for various brand package formats.
 
 **Supported Formats**:
+
 - JSON
 - YAML
 - Markdown
@@ -22,6 +24,7 @@ Pluggable importers for various brand package formats.
 - Custom formats (pluggable)
 
 **Key Features**:
+
 - Format auto-detection
 - Pluggable importer registry
 - Easy addition of new format importers
@@ -36,9 +39,11 @@ const brandPackage = await importer.import(id, name, content);
 ```
 
 ### 2. **@creative-factory/brand-validator**
+
 Validates brand packages and profiles against structural and semantic rules.
 
 **Validation Checks**:
+
 - Structural: Required fields, proper types
 - Semantic: Color accessibility, typography completeness
 - Consistency: Rules coherence
@@ -48,14 +53,16 @@ const validator = new StandardBrandValidator();
 const result = validator.validateProfile(profile);
 
 if (!result.valid) {
-  result.errors.forEach(error => console.log(error.message));
+  result.errors.forEach((error) => console.log(error.message));
 }
 ```
 
 ### 3. **@creative-factory/brand-tokenizer**
+
 Converts brand profiles into design tokens for Creative IR consumption.
 
 **Generated Tokens**:
+
 - Color tokens (primary, secondary, accent, semantic)
 - Typography tokens (family, scale, weight)
 - Spacing tokens (scale system)
@@ -69,9 +76,11 @@ const tokens = generator.generate(profile);
 ```
 
 ### 4. **@creative-factory/brand-registry**
+
 Registry for storing and retrieving brand profiles with versioning.
 
 **Operations**:
+
 - Store profiles
 - Retrieve by ID or brand ID
 - List all profiles
@@ -85,9 +94,11 @@ const retrieved = await registry.get(profileId);
 ```
 
 ### 5. **@creative-factory/brand-engine**
+
 Main orchestrator coordinating the full workflow.
 
 **Workflow**:
+
 1. Import brand package
 2. Validate package
 3. Normalize data
@@ -109,39 +120,39 @@ All brand types are defined in `@creative-factory/domain`:
 
 ```yaml
 # brand-package.yaml
-version: "1.0.0"
-name: "Acme Corp"
-description: "Modern tech company"
-organization: "Acme Corporation"
+version: '1.0.0'
+name: 'Acme Corp'
+description: 'Modern tech company'
+organization: 'Acme Corporation'
 
 colors:
   primary:
-    - name: "Primary Blue"
-      hex: "#0066CC"
-      usage: "Primary branding"
-      contexts: ["web", "print", "video"]
+    - name: 'Primary Blue'
+      hex: '#0066CC'
+      usage: 'Primary branding'
+      contexts: ['web', 'print', 'video']
 
 typography:
   families:
-    - name: "Inter"
-      category: "sans-serif"
+    - name: 'Inter'
+      category: 'sans-serif'
       weights: [400, 600, 700]
 
 logos:
-  - type: "primary"
-    name: "Primary Logo"
+  - type: 'primary'
+    name: 'Primary Logo'
     minimumSize: 40
 
 photography:
-  style: "Modern, clean, authentic"
+  style: 'Modern, clean, authentic'
   characteristics:
-    - "Professional relaxed settings"
-    - "Warm lighting"
-    - "Diverse representation"
+    - 'Professional relaxed settings'
+    - 'Warm lighting'
+    - 'Diverse representation'
 
 voiceAndTone:
-  personality: ["Confident", "Approachable", "Innovative"]
-  traits: ["Clear", "Helpful", "Authentic"]
+  personality: ['Confident', 'Approachable', 'Innovative']
+  traits: ['Clear', 'Helpful', 'Authentic']
 ```
 
 **Import Process**:
@@ -192,7 +203,7 @@ interface CreativeIR {
   readonly campaign: Campaign;
   readonly context: CreativeContext;
   readonly narrative: Narrative;
-  readonly brand: BrandProfile;  // ← Brand tokens here
+  readonly brand: BrandProfile; // ← Brand tokens here
   readonly designTokens: DesignTokens;
   readonly assets: Asset[];
   // ... other fields ...
@@ -200,6 +211,7 @@ interface CreativeIR {
 ```
 
 When generating creative output, all brand constraints are enforced through:
+
 1. Brand Rules (blocking/warning/advisory)
 2. Brand Tokens (color values, typography specs, spacing scales)
 3. Brand Guidelines (photography style, motion principles, voice guidelines)
@@ -212,11 +224,11 @@ New importers can be added without modifying core code:
 class CustomBrandImporter implements BrandImporter {
   readonly name = 'custom-importer';
   readonly supportedFormats = ['custom'];
-  
+
   canHandle(format: string, content: string | Buffer): boolean {
     // Detection logic
   }
-  
+
   async import(id, name, content): Promise<BrandPackage> {
     // Import logic
   }
@@ -233,6 +245,7 @@ This architecture enforces that NO visual identity can be hardcoded:
 ❌ **Incorrect**: Hardcode colors, fonts, spacing in UI components
 
 **Enforcement**:
+
 - Domain types don't expose defaults
 - Components receive tokens from Creative IR
 - Validators reject incomplete profiles
@@ -245,7 +258,7 @@ Brand profiles support semantic versioning:
 ```typescript
 interface BrandChange {
   date: string;
-  version: string;  // "2.3.1" (MAJOR.MINOR.PATCH)
+  version: string; // "2.3.1" (MAJOR.MINOR.PATCH)
   description: string;
   author: string;
   type: 'major' | 'minor' | 'patch';
@@ -281,6 +294,7 @@ See `docs/examples/brand-package-acme.yaml` for a complete brand package example
 ## Test Coverage
 
 Each package includes comprehensive tests:
+
 - `brand-importers`: Importer registration, format detection, import success
 - `brand-validator`: Validation rules, error reporting
 - `brand-tokenizer`: Token generation, edge cases
@@ -290,6 +304,7 @@ Each package includes comprehensive tests:
 ## Next Phase: Sprint 4
 
 Sprint 4 (Campaign & Creative Brief Engine) will:
+
 1. Consume brand profiles from Brand Registry
 2. Use brand tokens in Creative IR generation
 3. Enforce brand rules during creative output
