@@ -1,0 +1,3569 @@
+{
+  "version": "1.0.0",
+  "id": "cir_d6ac260e",
+  "createdAt": "2026-07-01T00:00:00.000Z",
+  "updatedAt": "2026-07-01T00:00:00.000Z",
+  "revisionHistory": [
+    {
+      "version": 1,
+      "timestamp": "2026-07-01T00:00:00.000Z",
+      "actor": "creative-ir-compiler",
+      "changeDescription": "Initial deterministic compilation from Creative Brief",
+      "metadata": {}
+    }
+  ],
+  "campaign": {
+    "id": "campaign-northwind-q3",
+    "name": "Northwind Insight Launch",
+    "description": "Q3 product launch for the Northwind Insight dashboard",
+    "objective": "Drive qualified trials through clarity-first storytelling",
+    "targetAudience": {
+      "demographics": [
+        {
+          "age": {
+            "min": 28,
+            "max": 45
+          }
+        }
+      ],
+      "psychographics": [
+        "clarity",
+        "impact"
+      ],
+      "mediaPreferences": [
+        "LinkedIn",
+        "YouTube"
+      ],
+      "geographies": [
+        "US",
+        "GB",
+        "DE"
+      ]
+    },
+    "duration": {
+      "minutes": 0,
+      "seconds": 30,
+      "frames": 0,
+      "frameRate": 30
+    },
+    "aspectRatios": [
+      "16:9",
+      "9:16"
+    ],
+    "languages": [
+      "en"
+    ],
+    "marketRegions": [
+      "US",
+      "GB",
+      "DE"
+    ],
+    "lifecycleState": "STORYBOARD_DRAFT",
+    "approvalState": "approved",
+    "createdBy": "planner-1",
+    "updatedBy": "planner-1"
+  },
+  "creativeContext": {
+    "briefId": "brief-northwind-001",
+    "briefTitle": "Northwind Analytics — See the Whole Story",
+    "briefObjective": "Launch the Northwind Insight dashboard to mid-market data teams",
+    "creativeDirection": "A calm, luminous narrative view emerging from visual noise",
+    "moodAndTone": {
+      "primary": "confident",
+      "secondary": [
+        "relieved",
+        "inspired"
+      ],
+      "avoided": [
+        "anxious",
+        "condescending"
+      ]
+    },
+    "visualStyle": {
+      "cinematography": "clean editorial with soft depth",
+      "colorPalette": [
+        "#0B2E4F",
+        "#1FB6A6",
+        "#F5A623"
+      ],
+      "lighting": "confident key with brand-accent fill",
+      "composition": "Rule-of-thirds driven, brand-forward framing",
+      "references": [
+        {
+          "title": "Editorial data storytelling",
+          "creator": "Northwind moodboard",
+          "description": "Calm negative space, one hero insight per frame"
+        }
+      ]
+    },
+    "narrativeTheme": "See the Whole Story",
+    "keyMessages": [
+      "See the whole story your data is telling",
+      "One narrative view replaces a wall of dashboards",
+      "Decisions land 3x faster with a single source of narrative truth"
+    ],
+    "callToAction": "Start a free Northwind Insight trial",
+    "brandGuidelines": {
+      "logoUsage": "Maintain clear space equal to the height of the N",
+      "colorRules": [
+        {
+          "color": "#0B2E4F",
+          "usage": "Primary brand color",
+          "context": [
+            "backgrounds",
+            "headlines"
+          ]
+        }
+      ],
+      "typographyRules": [
+        {
+          "fontFamily": "Söhne",
+          "fontWeight": 600,
+          "fontSize": 48,
+          "usage": "Headlines"
+        },
+        {
+          "fontFamily": "Inter",
+          "fontWeight": 400,
+          "fontSize": 18,
+          "usage": "Body copy"
+        }
+      ],
+      "voiceAndTone": {
+        "personality": [
+          "confident",
+          "clear",
+          "human"
+        ],
+        "toneInContext": {
+          "launch": "assured and warm"
+        },
+        "doNotUse": [
+          "jargon",
+          "hype"
+        ]
+      },
+      "prohibitedElements": [
+        "Competitor dashboards"
+      ]
+    },
+    "competitiveContext": "Incumbents optimize for breadth of charts, not clarity of story.",
+    "constraints": [
+      {
+        "type": "brand",
+        "description": "Never show competitor dashboards (Stay positive and clarity-focused)",
+        "impact": "blocking"
+      },
+      {
+        "type": "technical",
+        "description": "Captions required on all video (WCAG 2.1 AA)",
+        "impact": "warning"
+      }
+    ]
+  },
+  "stories": [
+    {
+      "id": "story_4cb4449c",
+      "title": "See the Whole Story",
+      "description": "From noise and fragmentation to a single, confident narrative view",
+      "sequence": 0,
+      "durationFrames": 900,
+      "storyboards": [
+        {
+          "id": "storyboard_de3c34b7",
+          "title": "See the Whole Story — Storyboard",
+          "sequence": 0,
+          "scenes": [
+            {
+              "id": "scene_7656beeb",
+              "title": "Setup",
+              "description": "Establish world, audience, and context",
+              "sequence": 0,
+              "narrativeText": "We open in the audience's world. From noise and fragmentation to a single, confident narrative view",
+              "objectives": {
+                "purpose": "Establish world, audience, and context",
+                "narrativeGoal": "Orient the viewer and establish relevance",
+                "businessGoal": "Drive 5,000 qualified trial signups in the launch quarter",
+                "audienceImpact": "Make data teams feel the pain of fragmented dashboards",
+                "emotion": "overwhelmed"
+              },
+              "shots": [
+                {
+                  "id": "shot_a74921e2",
+                  "sequence": 0,
+                  "description": "Setup — establishing shot conveying \"overwhelmed\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 7,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "wide",
+                    "camera": {
+                      "movement": "dolly",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "24mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.72,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "signal-from-noise",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.66,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_a74921e2-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_a74921e2-fg",
+                        "type": "foreground-motif",
+                        "description": "signal-from-noise",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_a74921e2-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": -1
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_a74921e2-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_090b49d6",
+                    "asset_3cc00dff",
+                    "asset_8fba5de8"
+                  ]
+                },
+                {
+                  "id": "shot_a8492375",
+                  "sequence": 1,
+                  "description": "Setup — detail shot conveying \"overwhelmed\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 8,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "wide",
+                    "camera": {
+                      "movement": "dolly",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "24mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.72,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "luminous data",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.66,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_a8492375-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_a8492375-fg",
+                        "type": "foreground-motif",
+                        "description": "luminous data",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_a8492375-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": -1
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_a8492375-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_784536ba"
+                  ]
+                }
+              ],
+              "transitions": [
+                {
+                  "type": "cut",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 0,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "easing": "ease-in-out",
+                  "description": "cut between consecutive shots"
+                }
+              ],
+              "audioSpecs": {
+                "voiceover": {
+                  "script": "We open in the audience's world. From noise and fragmentation to a single, confident narrative view",
+                  "language": "en",
+                  "style": "natural, brand-aligned",
+                  "pacing": "measured",
+                  "emotionalTone": "overwhelmed",
+                  "deliveryNotes": "Support the \"overwhelmed\" beat without over-acting"
+                },
+                "soundEffects": [],
+                "mixing": {
+                  "masterVolume": 0,
+                  "voiceoverLevel": 0,
+                  "musicLevel": -12,
+                  "effectsLevel": -9,
+                  "ambienceLevel": -18,
+                  "dynamicRangeCompression": true,
+                  "normalization": true
+                }
+              },
+              "duration": {
+                "minutes": 0,
+                "seconds": 4,
+                "frames": 15,
+                "frameRate": 30
+              }
+            },
+            {
+              "id": "scene_8bfa13de",
+              "title": "Inciting Moment",
+              "description": "Introduce the tension or opportunity",
+              "sequence": 1,
+              "narrativeText": "A tension emerges: One narrative view replaces a wall of dashboards",
+              "objectives": {
+                "purpose": "Introduce the tension or opportunity",
+                "narrativeGoal": "Surface the core tension the brand resolves",
+                "businessGoal": "Establish Northwind as the clarity-first analytics brand",
+                "audienceImpact": "Show how one narrative view changes decisions",
+                "emotion": "curious"
+              },
+              "shots": [
+                {
+                  "id": "shot_3b20863e",
+                  "sequence": 0,
+                  "description": "Inciting Moment — establishing shot conveying \"curious\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 7,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "wide",
+                    "camera": {
+                      "movement": "pan",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "24mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.78,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "signal-from-noise",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.74,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_3b20863e-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_3b20863e-fg",
+                        "type": "foreground-motif",
+                        "description": "signal-from-noise",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_3b20863e-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 15,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_3b20863e-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_12b84aca",
+                    "asset_b0ecf1bb"
+                  ]
+                },
+                {
+                  "id": "shot_3c2087d1",
+                  "sequence": 1,
+                  "description": "Inciting Moment — detail shot conveying \"curious\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 8,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "medium",
+                    "camera": {
+                      "movement": "pan",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "50mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.78,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "luminous data",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.74,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_3c2087d1-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_3c2087d1-fg",
+                        "type": "foreground-motif",
+                        "description": "luminous data",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_3c2087d1-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 15,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_3c2087d1-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_b6e39ccd"
+                  ]
+                }
+              ],
+              "transitions": [
+                {
+                  "type": "cut",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 0,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "easing": "ease-in-out",
+                  "description": "cut between consecutive shots"
+                }
+              ],
+              "audioSpecs": {
+                "voiceover": {
+                  "script": "A tension emerges: One narrative view replaces a wall of dashboards",
+                  "language": "en",
+                  "style": "natural, brand-aligned",
+                  "pacing": "measured",
+                  "emotionalTone": "curious",
+                  "deliveryNotes": "Support the \"curious\" beat without over-acting"
+                },
+                "soundEffects": [],
+                "mixing": {
+                  "masterVolume": 0,
+                  "voiceoverLevel": 0,
+                  "musicLevel": -12,
+                  "effectsLevel": -9,
+                  "ambienceLevel": -18,
+                  "dynamicRangeCompression": true,
+                  "normalization": true
+                }
+              },
+              "duration": {
+                "minutes": 0,
+                "seconds": 4,
+                "frames": 15,
+                "frameRate": 30
+              }
+            },
+            {
+              "id": "scene_0c8b9f5e",
+              "title": "Rising Action",
+              "description": "Build stakes and demonstrate value",
+              "sequence": 2,
+              "narrativeText": "The stakes rise as we prove the point — Decisions land 3x faster with a single source of narrative truth",
+              "objectives": {
+                "purpose": "Build stakes and demonstrate value",
+                "narrativeGoal": "Escalate stakes and accumulate proof",
+                "businessGoal": "Drive 5,000 qualified trial signups in the launch quarter",
+                "audienceImpact": "Make data teams feel the pain of fragmented dashboards",
+                "emotion": "confident"
+              },
+              "shots": [
+                {
+                  "id": "shot_3c03937c",
+                  "sequence": 0,
+                  "description": "Rising Action — establishing shot conveying \"confident\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 0,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "wide",
+                    "camera": {
+                      "movement": "tracking",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "24mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.8099999999999999,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "signal-from-noise",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.78,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_3c03937c-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_3c03937c-fg",
+                        "type": "foreground-motif",
+                        "description": "signal-from-noise",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_3c03937c-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": -1,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 1,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_3c03937c-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_35cabb86",
+                    "asset_baa97e4f"
+                  ]
+                },
+                {
+                  "id": "shot_3d03950f",
+                  "sequence": 1,
+                  "description": "Rising Action — detail shot conveying \"confident\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 0,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "medium",
+                    "camera": {
+                      "movement": "tracking",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "50mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.8099999999999999,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "luminous data",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.78,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_3d03950f-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_3d03950f-fg",
+                        "type": "foreground-motif",
+                        "description": "luminous data",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_3d03950f-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": -1,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 1,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_3d03950f-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_53225061"
+                  ]
+                },
+                {
+                  "id": "shot_3e0396a2",
+                  "sequence": 2,
+                  "description": "Rising Action — reaction shot conveying \"confident\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 0,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "medium",
+                    "camera": {
+                      "movement": "tracking",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "50mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.8099999999999999,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "human focus",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.78,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_3e0396a2-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_3e0396a2-fg",
+                        "type": "foreground-motif",
+                        "description": "human focus",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_3e0396a2-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": -1,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 1,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_3e0396a2-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_0f36965a"
+                  ]
+                }
+              ],
+              "transitions": [
+                {
+                  "type": "cut",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 0,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "easing": "ease-in-out",
+                  "description": "cut between consecutive shots"
+                },
+                {
+                  "type": "cut",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 0,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "easing": "ease-in-out",
+                  "description": "cut between consecutive shots"
+                }
+              ],
+              "audioSpecs": {
+                "voiceover": {
+                  "script": "The stakes rise as we prove the point — Decisions land 3x faster with a single source of narrative truth",
+                  "language": "en",
+                  "style": "natural, brand-aligned",
+                  "pacing": "measured",
+                  "emotionalTone": "confident",
+                  "deliveryNotes": "Support the \"confident\" beat without over-acting"
+                },
+                "soundEffects": [],
+                "mixing": {
+                  "masterVolume": 0,
+                  "voiceoverLevel": 0,
+                  "musicLevel": -12,
+                  "effectsLevel": -9,
+                  "ambienceLevel": -18,
+                  "dynamicRangeCompression": true,
+                  "normalization": true
+                }
+              },
+              "duration": {
+                "minutes": 0,
+                "seconds": 6,
+                "frames": 0,
+                "frameRate": 30
+              }
+            },
+            {
+              "id": "scene_6ab91e17",
+              "title": "Climax",
+              "description": "Deliver the core message at peak intensity",
+              "sequence": 3,
+              "narrativeText": "At peak intensity, the core message lands: See the whole story your data is telling",
+              "objectives": {
+                "purpose": "Deliver the core message at peak intensity",
+                "narrativeGoal": "Land the central message at peak emotional intensity",
+                "businessGoal": "Establish Northwind as the clarity-first analytics brand",
+                "audienceImpact": "Show how one narrative view changes decisions",
+                "emotion": "confident"
+              },
+              "shots": [
+                {
+                  "id": "shot_ac957848",
+                  "sequence": 0,
+                  "description": "Climax — establishing shot conveying \"confident\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "medium",
+                    "camera": {
+                      "movement": "orbit",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "50mm"
+                      },
+                      "focus": {
+                        "type": "shallow"
+                      },
+                      "depth": 0.3
+                    },
+                    "composition": {
+                      "rule": "center",
+                      "subjectPlacement": "centered, dominant",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "three-point",
+                      "keyLight": {
+                        "intensity": 0.87,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.3
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "deep, directional",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "signal-from-noise",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.86,
+                      "contrast": 0.75,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_ac957848-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_ac957848-fg",
+                        "type": "foreground-motif",
+                        "description": "signal-from-noise",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_ac957848-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": -0.5,
+                          "y": 0,
+                          "z": -0.5
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 3.7,
+                        "easing": "ease-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0.5,
+                          "y": 0,
+                          "z": -0.5
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 30,
+                          "z": 0
+                        },
+                        "focalLength": 55,
+                        "focusDistance": 3.7,
+                        "easing": "ease-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_ac957848-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1.05,
+                              "y": 1.05,
+                              "z": 1
+                            },
+                            "easing": "ease-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_5566f0ce",
+                    "asset_534e28c7"
+                  ]
+                },
+                {
+                  "id": "shot_ad9579db",
+                  "sequence": 1,
+                  "description": "Climax — detail shot conveying \"confident\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "close-up",
+                    "camera": {
+                      "movement": "orbit",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "85mm"
+                      },
+                      "focus": {
+                        "type": "shallow"
+                      },
+                      "depth": 0.3
+                    },
+                    "composition": {
+                      "rule": "center",
+                      "subjectPlacement": "centered, dominant",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "three-point",
+                      "keyLight": {
+                        "intensity": 0.87,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.3
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "deep, directional",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "luminous data",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.86,
+                      "contrast": 0.75,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_ad9579db-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_ad9579db-fg",
+                        "type": "foreground-motif",
+                        "description": "luminous data",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_ad9579db-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": -0.5,
+                          "y": 0,
+                          "z": -0.5
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 85,
+                        "focusDistance": 3.7,
+                        "easing": "ease-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0.5,
+                          "y": 0,
+                          "z": -0.5
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 30,
+                          "z": 0
+                        },
+                        "focalLength": 93.5,
+                        "focusDistance": 3.7,
+                        "easing": "ease-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_ad9579db-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1.05,
+                              "y": 1.05,
+                              "z": 1
+                            },
+                            "easing": "ease-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_14f65f7e"
+                  ]
+                },
+                {
+                  "id": "shot_ae957b6e",
+                  "sequence": 2,
+                  "description": "Climax — reaction shot conveying \"confident\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "close-up",
+                    "camera": {
+                      "movement": "orbit",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "85mm"
+                      },
+                      "focus": {
+                        "type": "shallow"
+                      },
+                      "depth": 0.3
+                    },
+                    "composition": {
+                      "rule": "center",
+                      "subjectPlacement": "centered, dominant",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "three-point",
+                      "keyLight": {
+                        "intensity": 0.87,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.3
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "deep, directional",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "human focus",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.86,
+                      "contrast": 0.75,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_ae957b6e-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_ae957b6e-fg",
+                        "type": "foreground-motif",
+                        "description": "human focus",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_ae957b6e-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": -0.5,
+                          "y": 0,
+                          "z": -0.5
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 85,
+                        "focusDistance": 3.7,
+                        "easing": "ease-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0.5,
+                          "y": 0,
+                          "z": -0.5
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 30,
+                          "z": 0
+                        },
+                        "focalLength": 93.5,
+                        "focusDistance": 3.7,
+                        "easing": "ease-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_ae957b6e-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1.05,
+                              "y": 1.05,
+                              "z": 1
+                            },
+                            "easing": "ease-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_9475934b"
+                  ]
+                }
+              ],
+              "transitions": [
+                {
+                  "type": "cut",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 0,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "easing": "ease-in-out",
+                  "description": "cut between consecutive shots"
+                },
+                {
+                  "type": "cut",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 0,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "easing": "ease-in-out",
+                  "description": "cut between consecutive shots"
+                }
+              ],
+              "audioSpecs": {
+                "voiceover": {
+                  "script": "At peak intensity, the core message lands: See the whole story your data is telling",
+                  "language": "en",
+                  "style": "natural, brand-aligned",
+                  "pacing": "measured",
+                  "emotionalTone": "confident",
+                  "deliveryNotes": "Support the \"confident\" beat without over-acting"
+                },
+                "soundEffects": [],
+                "mixing": {
+                  "masterVolume": 0,
+                  "voiceoverLevel": 0,
+                  "musicLevel": -12,
+                  "effectsLevel": -9,
+                  "ambienceLevel": -18,
+                  "dynamicRangeCompression": true,
+                  "normalization": true
+                }
+              },
+              "duration": {
+                "minutes": 0,
+                "seconds": 7,
+                "frames": 15,
+                "frameRate": 30
+              }
+            },
+            {
+              "id": "scene_454a2680",
+              "title": "Resolution",
+              "description": "Resolve tension and reinforce benefit",
+              "sequence": 4,
+              "narrativeText": "The tension resolves, reinforcing See the Whole Story.",
+              "objectives": {
+                "purpose": "Resolve tension and reinforce benefit",
+                "narrativeGoal": "Reinforce the benefit and brand promise",
+                "businessGoal": "Drive 5,000 qualified trial signups in the launch quarter",
+                "audienceImpact": "Make data teams feel the pain of fragmented dashboards",
+                "emotion": "overwhelmed"
+              },
+              "shots": [
+                {
+                  "id": "shot_76362dbe",
+                  "sequence": 0,
+                  "description": "Resolution — establishing shot conveying \"overwhelmed\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 7,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "wide",
+                    "camera": {
+                      "movement": "crane",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "24mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.75,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "signal-from-noise",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.7,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_76362dbe-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_76362dbe-fg",
+                        "type": "foreground-motif",
+                        "description": "signal-from-noise",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_76362dbe-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": 0,
+                          "y": -1,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0,
+                          "y": 1,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 24,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_76362dbe-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_7dfe6af0",
+                    "asset_e7504065"
+                  ]
+                },
+                {
+                  "id": "shot_77362f51",
+                  "sequence": 1,
+                  "description": "Resolution — detail shot conveying \"overwhelmed\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 2,
+                    "frames": 8,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "medium",
+                    "camera": {
+                      "movement": "crane",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "50mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "asymmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.75,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "luminous data",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.7,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_77362f51-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_77362f51-fg",
+                        "type": "foreground-motif",
+                        "description": "luminous data",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_77362f51-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": 0,
+                          "y": -1,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0,
+                          "y": 1,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 50,
+                        "focusDistance": 7.3,
+                        "easing": "ease-in-out"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_77362f51-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "ease-in-out"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_ab458862"
+                  ]
+                }
+              ],
+              "transitions": [
+                {
+                  "type": "dissolve",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 0,
+                    "frames": 15,
+                    "frameRate": 30
+                  },
+                  "easing": "ease-in-out",
+                  "description": "dissolve between consecutive shots"
+                }
+              ],
+              "audioSpecs": {
+                "voiceover": {
+                  "script": "The tension resolves, reinforcing See the Whole Story.",
+                  "language": "en",
+                  "style": "natural, brand-aligned",
+                  "pacing": "measured",
+                  "emotionalTone": "overwhelmed",
+                  "deliveryNotes": "Support the \"overwhelmed\" beat without over-acting"
+                },
+                "soundEffects": [],
+                "mixing": {
+                  "masterVolume": 0,
+                  "voiceoverLevel": 0,
+                  "musicLevel": -12,
+                  "effectsLevel": -9,
+                  "ambienceLevel": -18,
+                  "dynamicRangeCompression": true,
+                  "normalization": true
+                }
+              },
+              "duration": {
+                "minutes": 0,
+                "seconds": 4,
+                "frames": 15,
+                "frameRate": 30
+              }
+            },
+            {
+              "id": "scene_19b1eb32",
+              "title": "Call to Action",
+              "description": "Drive the desired audience action",
+              "sequence": 5,
+              "narrativeText": "Start a free Northwind Insight trial.",
+              "objectives": {
+                "purpose": "Drive the desired audience action",
+                "narrativeGoal": "Convert attention into the desired action",
+                "businessGoal": "Establish Northwind as the clarity-first analytics brand",
+                "audienceImpact": "Show how one narrative view changes decisions",
+                "emotion": "curious"
+              },
+              "shots": [
+                {
+                  "id": "shot_68016c27",
+                  "sequence": 0,
+                  "description": "Call to Action — establishing shot conveying \"curious\"",
+                  "duration": {
+                    "minutes": 0,
+                    "seconds": 3,
+                    "frames": 0,
+                    "frameRate": 30
+                  },
+                  "visualSpec": {
+                    "shotType": "close-up",
+                    "camera": {
+                      "movement": "static",
+                      "angle": {
+                        "pitch": 0,
+                        "yaw": 0,
+                        "roll": 0
+                      },
+                      "lens": {
+                        "type": "85mm"
+                      },
+                      "focus": {
+                        "type": "deep"
+                      },
+                      "depth": 0.7
+                    },
+                    "composition": {
+                      "rule": "rule-of-thirds",
+                      "subjectPlacement": "lower-left third",
+                      "balanceType": "symmetrical"
+                    },
+                    "lighting": {
+                      "type": "sidelighting",
+                      "keyLight": {
+                        "intensity": 0.78,
+                        "color": "#0B2E4F",
+                        "direction": "45deg camera-left",
+                        "softness": 0.6
+                      },
+                      "fillLight": {
+                        "intensity": 0.4,
+                        "color": "#F5A623",
+                        "direction": "camera-right",
+                        "softness": 0.7
+                      },
+                      "shadows": "soft, diffuse",
+                      "mood": "cool, calm, luminous"
+                    },
+                    "colorGrading": {
+                      "look": "signal-from-noise",
+                      "colorCast": "cool, calm, luminous",
+                      "saturation": 0.74,
+                      "contrast": 0.55,
+                      "highlights": 0.6,
+                      "shadows": 0.4,
+                      "temperature": 7000
+                    },
+                    "foregroundElements": [
+                      {
+                        "id": "shot_68016c27-subject",
+                        "type": "subject",
+                        "description": "A calm, luminous narrative view emerging from visual noise",
+                        "opacity": 1
+                      },
+                      {
+                        "id": "shot_68016c27-fg",
+                        "type": "foreground-motif",
+                        "description": "signal-from-noise",
+                        "opacity": 1
+                      }
+                    ],
+                    "backgroundElements": [
+                      {
+                        "id": "shot_68016c27-bg",
+                        "type": "environment",
+                        "description": "cool, calm, luminous",
+                        "opacity": 1
+                      }
+                    ],
+                    "specialEffects": [],
+                    "props": [],
+                    "talent": []
+                  },
+                  "motionSpec": {
+                    "cameraMotion": [
+                      {
+                        "time": 0,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 85,
+                        "focusDistance": 7.3,
+                        "easing": "linear"
+                      },
+                      {
+                        "time": 1,
+                        "position": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "rotation": {
+                          "x": 0,
+                          "y": 0,
+                          "z": 0
+                        },
+                        "focalLength": 85,
+                        "focusDistance": 7.3,
+                        "easing": "linear"
+                      }
+                    ],
+                    "objectMotions": [
+                      {
+                        "objectId": "shot_68016c27-fg",
+                        "loop": false,
+                        "keyframes": [
+                          {
+                            "time": 0,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "linear"
+                          },
+                          {
+                            "time": 1,
+                            "position": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "rotation": {
+                              "x": 0,
+                              "y": 0,
+                              "z": 0
+                            },
+                            "scale": {
+                              "x": 1,
+                              "y": 1,
+                              "z": 1
+                            },
+                            "easing": "linear"
+                          }
+                        ]
+                      }
+                    ],
+                    "particleEffects": []
+                  },
+                  "audioElements": [],
+                  "assetRequests": [
+                    "asset_b4174382",
+                    "asset_668f2e83"
+                  ]
+                }
+              ],
+              "transitions": [],
+              "audioSpecs": {
+                "voiceover": {
+                  "script": "Start a free Northwind Insight trial.",
+                  "language": "en",
+                  "style": "natural, brand-aligned",
+                  "pacing": "assertive",
+                  "emotionalTone": "curious",
+                  "deliveryNotes": "Support the \"curious\" beat without over-acting"
+                },
+                "soundEffects": [],
+                "mixing": {
+                  "masterVolume": 0,
+                  "voiceoverLevel": 0,
+                  "musicLevel": -12,
+                  "effectsLevel": -9,
+                  "ambienceLevel": -18,
+                  "dynamicRangeCompression": true,
+                  "normalization": true
+                }
+              },
+              "duration": {
+                "minutes": 0,
+                "seconds": 3,
+                "frames": 0,
+                "frameRate": 30
+              }
+            }
+          ],
+          "duration": {
+            "minutes": 0,
+            "seconds": 30,
+            "frames": 0,
+            "frameRate": 30
+          }
+        }
+      ],
+      "reviewState": "not-started",
+      "approvalState": "pending",
+      "metadata": {
+        "beats": [
+          "setup",
+          "inciting",
+          "rising",
+          "climax",
+          "resolution",
+          "call-to-action"
+        ]
+      }
+    }
+  ],
+  "brandTokens": {
+    "brandId": "brand-northwind",
+    "brandName": "Northwind Analytics",
+    "primaryColors": [
+      {
+        "name": "Northwind Ink",
+        "hex": "#0B2E4F",
+        "rgb": {
+          "r": 11,
+          "g": 46,
+          "b": 79
+        },
+        "hsl": {
+          "h": 208,
+          "s": 76,
+          "l": 18
+        },
+        "usage": "Primary brand color",
+        "context": [
+          "backgrounds",
+          "headlines"
+        ]
+      }
+    ],
+    "secondaryColors": [
+      {
+        "name": "Signal Teal",
+        "hex": "#1FB6A6",
+        "rgb": {
+          "r": 31,
+          "g": 182,
+          "b": 166
+        },
+        "hsl": {
+          "h": 174,
+          "s": 71,
+          "l": 42
+        },
+        "usage": "Secondary accents",
+        "context": [
+          "charts"
+        ]
+      }
+    ],
+    "accentColors": [
+      {
+        "name": "Insight Amber",
+        "hex": "#F5A623",
+        "rgb": {
+          "r": 245,
+          "g": 166,
+          "b": 35
+        },
+        "hsl": {
+          "h": 38,
+          "s": 91,
+          "l": 55
+        },
+        "usage": "Highlight the one insight that matters",
+        "context": [
+          "call-to-action"
+        ]
+      }
+    ],
+    "typography": [
+      {
+        "name": "Display",
+        "fontFamily": "Söhne",
+        "fontWeight": 600,
+        "fontSize": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.5,
+        "usage": "Headlines"
+      },
+      {
+        "name": "Body",
+        "fontFamily": "Inter",
+        "fontWeight": 400,
+        "fontSize": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0,
+        "usage": "Body copy"
+      }
+    ],
+    "logoVariations": [
+      {
+        "type": "primary",
+        "description": "Full wordmark",
+        "minimumSize": 24,
+        "clearanceRules": "Maintain clear space equal to the height of the N",
+        "usageContext": [
+          "end card"
+        ]
+      }
+    ],
+    "imageryGuidelines": [
+      {
+        "category": "data",
+        "description": "Luminous, calm, one hero insight per frame",
+        "visualCharacteristics": [
+          "negative space",
+          "soft depth"
+        ],
+        "prohibited": [
+          "cluttered dashboards"
+        ]
+      }
+    ],
+    "voiceAndTone": {
+      "personality": [
+        "confident",
+        "clear",
+        "human"
+      ],
+      "toneInContext": {
+        "launch": "assured and warm"
+      },
+      "doNotUse": [
+        "jargon",
+        "hype"
+      ]
+    },
+    "prohibitedElements": [
+      {
+        "type": "imagery",
+        "description": "Competitor dashboards",
+        "reason": "Stay positive"
+      }
+    ],
+    "brandPersonality": {
+      "primaryTraits": [
+        "clear",
+        "confident"
+      ],
+      "secondaryTraits": [
+        "human",
+        "precise"
+      ],
+      "communicationStyle": "Lead with the decision",
+      "valuePropositions": [
+        "Clarity over coverage"
+      ]
+    }
+  },
+  "designTokens": {
+    "spacing": [
+      {
+        "name": "sm",
+        "value": 8,
+        "unit": "px"
+      },
+      {
+        "name": "md",
+        "value": 16,
+        "unit": "px"
+      },
+      {
+        "name": "lg",
+        "value": 32,
+        "unit": "px"
+      }
+    ],
+    "sizing": [
+      {
+        "name": "hero",
+        "width": 1920,
+        "height": 1080,
+        "unit": "px"
+      }
+    ],
+    "shadows": [
+      {
+        "name": "soft",
+        "color": "rgba(11,46,79,0.16)",
+        "offsetX": 0,
+        "offsetY": 8,
+        "blur": 24,
+        "spread": 0
+      }
+    ],
+    "borders": [
+      {
+        "name": "hairline",
+        "width": 1,
+        "style": "solid",
+        "color": "#0B2E4F",
+        "radius": 8
+      }
+    ],
+    "animations": [
+      {
+        "name": "reveal",
+        "duration": 600,
+        "easing": "ease-out",
+        "delay": 0
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "desktop",
+        "minWidth": 1024
+      }
+    ]
+  },
+  "assetRequests": [
+    {
+      "id": "asset_090b49d6",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_a74921e2",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Setup — establishing shot conveying \"overwhelmed\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_3cc00dff",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_a74921e2",
+      "assetType": "audio",
+      "specifications": {
+        "description": "Voiceover: \"We open in the audience's world. From noise and fragmentation to a single, confident narrative view\"",
+        "dimensions": {
+          "width": 0,
+          "height": 0
+        },
+        "format": "wav",
+        "colorSpace": "n/a",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "language",
+            "value": "en"
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_8fba5de8",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_a74921e2",
+      "assetType": "audio",
+      "specifications": {
+        "description": "Music bed matching the emotional arc of the story",
+        "dimensions": {
+          "width": 0,
+          "height": 0
+        },
+        "format": "wav",
+        "colorSpace": "n/a",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "licensing",
+            "value": "royalty-free-required"
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "medium",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_784536ba",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_a8492375",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Setup — detail shot conveying \"overwhelmed\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_12b84aca",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3b20863e",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Inciting Moment — establishing shot conveying \"curious\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_b0ecf1bb",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3b20863e",
+      "assetType": "audio",
+      "specifications": {
+        "description": "Voiceover: \"A tension emerges: One narrative view replaces a wall of dashboards\"",
+        "dimensions": {
+          "width": 0,
+          "height": 0
+        },
+        "format": "wav",
+        "colorSpace": "n/a",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "language",
+            "value": "en"
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_b6e39ccd",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3c2087d1",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Inciting Moment — detail shot conveying \"curious\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_35cabb86",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3c03937c",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Rising Action — establishing shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_baa97e4f",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3c03937c",
+      "assetType": "audio",
+      "specifications": {
+        "description": "Voiceover: \"The stakes rise as we prove the point — Decisions land 3x faster with a single source of narrative truth\"",
+        "dimensions": {
+          "width": 0,
+          "height": 0
+        },
+        "format": "wav",
+        "colorSpace": "n/a",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "language",
+            "value": "en"
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_53225061",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3d03950f",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Rising Action — detail shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_0f36965a",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3e0396a2",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Rising Action — reaction shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_5566f0ce",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_ac957848",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Climax — establishing shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_534e28c7",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_ac957848",
+      "assetType": "audio",
+      "specifications": {
+        "description": "Voiceover: \"At peak intensity, the core message lands: See the whole story your data is telling\"",
+        "dimensions": {
+          "width": 0,
+          "height": 0
+        },
+        "format": "wav",
+        "colorSpace": "n/a",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "language",
+            "value": "en"
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_14f65f7e",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_ad9579db",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Climax — detail shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_9475934b",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_ae957b6e",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Climax — reaction shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_7dfe6af0",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_76362dbe",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Resolution — establishing shot conveying \"overwhelmed\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_e7504065",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_76362dbe",
+      "assetType": "audio",
+      "specifications": {
+        "description": "Voiceover: \"The tension resolves, reinforcing See the Whole Story.\"",
+        "dimensions": {
+          "width": 0,
+          "height": 0
+        },
+        "format": "wav",
+        "colorSpace": "n/a",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "language",
+            "value": "en"
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_ab458862",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_77362f51",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Resolution — detail shot conveying \"overwhelmed\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_b4174382",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_68016c27",
+      "assetType": "image",
+      "specifications": {
+        "description": "Key visual for shot: Call to Action — establishing shot conveying \"curious\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "format": "png",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_668f2e83",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_68016c27",
+      "assetType": "audio",
+      "specifications": {
+        "description": "Voiceover: \"Start a free Northwind Insight trial.\"",
+        "dimensions": {
+          "width": 0,
+          "height": 0
+        },
+        "format": "wav",
+        "colorSpace": "n/a",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "language",
+            "value": "en"
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    }
+  ],
+  "reviews": [],
+  "exports": [],
+  "validationStatus": {
+    "isValid": true,
+    "errors": [],
+    "warnings": [],
+    "lastValidatedAt": "2026-07-01T00:00:00.000Z"
+  },
+  "compilerMetadata": {
+    "compileVersion": "1.0.0",
+    "compileTimestamp": "2026-07-01T00:00:00.000Z",
+    "sourceComponents": [
+      {
+        "id": "brief-northwind-001",
+        "type": "creative-brief",
+        "version": "1.0.0",
+        "checksum": "56810fb9"
+      },
+      {
+        "id": "campaign-northwind-q3",
+        "type": "campaign",
+        "version": "1.0.0",
+        "checksum": "6e945ad3"
+      },
+      {
+        "id": "brand-northwind",
+        "type": "brand-tokens",
+        "version": "1.0.0",
+        "checksum": "ca341de8"
+      }
+    ],
+    "compileRules": [
+      "six-beat-narrative-arc",
+      "weight-proportional-timing",
+      "brand-token-driven-composition",
+      "deterministic-ids"
+    ],
+    "adapterMetadata": {},
+    "diagnostics": []
+  }
+}

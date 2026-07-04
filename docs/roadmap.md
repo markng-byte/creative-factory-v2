@@ -13,7 +13,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 2  | Domain Models, Contracts & Workflow Engine + Creative IR Foundation | Complete                                    |
 | Sprint 3  | Brand Intelligence Engine                                           | Complete                                    |
 | Sprint 4  | Campaign & Creative Brief Engine                                    | Complete                                    |
-| Sprint 5  | Creative IR Compiler + Multi-Adapter Output Generation              | Not started                                 |
+| Sprint 5  | Creative IR Compiler + Multi-Adapter Output Generation              | Complete                                    |
 | Sprint 6  | Human Review & Approval Engine                                      | Not started                                 |
 | Sprint 7  | Prompt Translation Engine                                           | Not started                                 |
 | Sprint 8  | Image Generation Engine                                             | Not started                                 |
@@ -140,3 +140,35 @@ Sprint 5 is redefined to build the Creative IR Compiler, which transforms Creati
 - Export Packages
 
 The compiler must support pluggable output adapters. Future adapters must integrate without changing the core compiler architecture.
+
+## Sprint 5 Acceptance Criteria
+
+- [x] Deterministic `CreativeIRCompiler` implementation that builds a fully-populated, schema-valid Creative IR from a Creative Brief, Campaign, and Brand Tokens — with no AI provider calls
+- [x] Nine independently-testable pure planning stages: narrative, story, storyboard, scene, shot, composition, motion, timing, asset
+- [x] Frame-accurate Timing Planner whose per-element frames sum exactly to the campaign duration
+- [x] Marketing constraints normalized onto the canonical `Constraint` model (no new constraint concept)
+- [x] Pluggable output adapters implementing the existing `CreativeIRAdapter` interfaces, managed by a registry, discoverable by capability
+- [x] Seven adapters: storyboard-html, scene-spec, shot-list, motion-spec, asset-plan, timeline, qa-spec
+- [x] Reusable Creative Package bundling all adapter outputs + derived creative metadata as the canonical downstream input
+- [x] Concrete `StandardCreativeIRValidator` (structural, semantic, compiler rule families)
+- [x] Determinism guarantee: identical inputs yield a byte-identical Creative IR and Creative Package (unit-tested)
+- [x] Strong typing, immutable pipeline stages, versioned outputs, full unit + integration tests
+- [x] Worked example (Creative IR + Creative Package + storyboard) committed under `docs/examples/`
+- [x] Documentation in `docs/sprint-5-creative-ir-compiler.md`; build, lint, and test green across the monorepo
+
+## Sprint 5 Completed Work
+
+- Extended `@creative-factory/creative-ir`: added `StandardCreativeIRValidator`, an additive optional `SceneObjectives` field on `Scene`, and fixed the branded-ID helpers (removed `as any`).
+- Added `@creative-factory/creative-ir-compiler`: the `StandardCreativeIRCompiler`, a hexagonal ports layer (brief/campaign/brand sources + `Clock` + `IdGenerator`), nine pure planning stages, a pipeline assembler, in-memory sources, and a worked example fixture (`exampleCreativeBrief` / `exampleCampaign` / `exampleBrandBundle`).
+- Added `@creative-factory/creative-ir-adapters`: seven output adapters, `StandardAdapterRegistry`, and the Creative Package assembler (`renderCreativePackage` / `assembleCreativePackage`).
+- Generated committed examples: `docs/examples/creative-ir-northwind.json`, `docs/examples/creative-package-northwind.json`, `docs/examples/storyboard-northwind.html`.
+- See `docs/sprint-5-creative-ir-compiler.md` for architecture, data flow, and stage-to-IR mapping.
+
+## Sprint 5 Non-Implementation Decisions
+
+Sprint 5 did not implement:
+
+- Prompt-Translation, Image-Generation, Video-Generation, or Export adapters (Sprints 7–12); their interfaces remain stubs.
+- Any AI/LLM-driven generation (deterministic heuristics are used throughout, as in Sprint 4).
+- Database-backed persistence (source ports ship with in-memory implementations only).
+- Human review/approval logic (Sprint 6).

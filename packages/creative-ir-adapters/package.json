@@ -1,0 +1,37 @@
+{
+  "name": "@creative-factory/creative-ir-adapters",
+  "version": "1.0.0",
+  "description": "Output adapters that transform a Creative IR into production artifacts (storyboard, scene specs, shot list, motion spec, asset plan, timeline, QA spec) and bundle them into a Creative Package",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./registry": {
+      "types": "./dist/registry.d.ts",
+      "import": "./dist/registry.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/creative-ir-compiler": "workspace:*",
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}

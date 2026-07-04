@@ -33,6 +33,9 @@ creative-factory/
 ├── packages/
 │   ├── domain/              # Domain layer + brand types (typed IDs, entities, events, brands)
 │   ├── contracts/           # API/event contracts
+│   ├── creative-ir/         # Creative IR canonical model + compiler/adapter/validator interfaces
+│   ├── creative-ir-compiler/# Deterministic Creative IR Compiler (nine planning stages)
+│   ├── creative-ir-adapters/# Output adapters + Creative Package assembler
 │   ├── workflow-engine/     # Campaign lifecycle state machine
 │   ├── brand-engine/        # Brand engine orchestrator (interfaces)
 │   ├── brand-importers/     # Pluggable brand package importers (JSON, YAML, Markdown)
@@ -102,6 +105,8 @@ Creative IR enables:
 - [Creative IR Specification](docs/creative-ir-specification.md) — Full model definition and design principles
 - [Creative IR JSON Schema](docs/creative-ir-schema.json) — Machine-readable validation schema
 - [Sprint 2 Architecture](docs/architecture/sprint-2-domain-contracts-workflow.md) — Technical implementation details
+- [Sprint 5 — Creative IR Compiler](docs/sprint-5-creative-ir-compiler.md) — Compiler stages, adapters, and the Creative Package
+- Worked example: [`docs/examples/creative-ir-northwind.json`](docs/examples/creative-ir-northwind.json) → [`creative-package-northwind.json`](docs/examples/creative-package-northwind.json)
 
 ## Prerequisites
 
