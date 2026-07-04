@@ -475,6 +475,71 @@ importers:
         specifier: ^1.1.0
         version: 1.6.1(@types/node@20.19.43)(jsdom@25.0.1)
 
+  packages/creative-ir-adapters:
+    dependencies:
+      '@creative-factory/creative-ir':
+        specifier: workspace:*
+        version: link:../creative-ir
+      '@creative-factory/shared-kernel':
+        specifier: workspace:*
+        version: link:../shared-kernel
+    devDependencies:
+      '@creative-factory/creative-ir-compiler':
+        specifier: workspace:*
+        version: link:../creative-ir-compiler
+      '@creative-factory/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@creative-factory/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@creative-factory/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/node':
+        specifier: ^20.10.0
+        version: 20.19.43
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.4
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vitest:
+        specifier: ^1.1.0
+        version: 1.6.1(@types/node@20.19.43)(jsdom@25.0.1)
+
+  packages/creative-ir-compiler:
+    dependencies:
+      '@creative-factory/creative-ir':
+        specifier: workspace:*
+        version: link:../creative-ir
+      '@creative-factory/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@creative-factory/shared-kernel':
+        specifier: workspace:*
+        version: link:../shared-kernel
+    devDependencies:
+      '@creative-factory/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@creative-factory/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/node':
+        specifier: ^20.10.0
+        version: 20.19.43
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.4
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vitest:
+        specifier: ^1.1.0
+        version: 1.6.1(@types/node@20.19.43)(jsdom@25.0.1)
+
   packages/domain:
     dependencies:
       '@creative-factory/shared-kernel':

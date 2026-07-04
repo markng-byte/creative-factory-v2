@@ -1,0 +1,40 @@
+{
+  "name": "@creative-factory/creative-ir-compiler",
+  "version": "1.0.0",
+  "description": "Deterministic Creative IR Compiler - builds a fully-populated Creative IR from a Creative Brief, Campaign, and Brand Tokens through a pure multi-stage planning pipeline",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./stages": {
+      "types": "./dist/stages/index.d.ts",
+      "import": "./dist/stages/index.js"
+    },
+    "./ports": {
+      "types": "./dist/ports.d.ts",
+      "import": "./dist/ports.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}

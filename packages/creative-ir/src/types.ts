@@ -219,11 +219,25 @@ export interface Scene {
   readonly description?: string;
   readonly sequence: number;
   readonly narrativeText: string;
+  /**
+   * Strategic objectives for the scene. Optional and additive (schema-compatible with 1.0.0
+   * documents that predate it); populated by the Creative IR Compiler so downstream Scene
+   * Specification outputs are complete.
+   */
+  readonly objectives?: SceneObjectives;
   readonly shots: Shot[];
   readonly transitions: Transition[];
   readonly audioSpecs: AudioSpecification;
   readonly duration: Duration;
   readonly reviewNotes?: string;
+}
+
+export interface SceneObjectives {
+  readonly purpose: string;
+  readonly narrativeGoal: string;
+  readonly businessGoal: string;
+  readonly audienceImpact: string;
+  readonly emotion: string;
 }
 
 export type SceneId = string & { readonly __brand: 'SceneId' };
