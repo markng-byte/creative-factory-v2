@@ -97,7 +97,11 @@ export function* eachScene(creativeIR: CreativeIR): Generator<{
   for (let storyIndex = 0; storyIndex < creativeIR.stories.length; storyIndex += 1) {
     const story = creativeIR.stories[storyIndex];
     if (!story) continue;
-    for (let storyboardIndex = 0; storyboardIndex < story.storyboards.length; storyboardIndex += 1) {
+    for (
+      let storyboardIndex = 0;
+      storyboardIndex < story.storyboards.length;
+      storyboardIndex += 1
+    ) {
       const storyboard = story.storyboards[storyboardIndex];
       if (!storyboard) continue;
       for (let sceneIndex = 0; sceneIndex < storyboard.scenes.length; sceneIndex += 1) {

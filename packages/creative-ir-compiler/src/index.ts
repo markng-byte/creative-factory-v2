@@ -36,11 +36,7 @@ export type {
 
 // Support
 export { SystemClock, FixedClock, type Clock } from './support/clock.js';
-export {
-  DeterministicIdGenerator,
-  RandomIdGenerator,
-  type IdGenerator,
-} from './support/id.js';
+export { DeterministicIdGenerator, RandomIdGenerator, type IdGenerator } from './support/id.js';
 export { fnv1a, checksum } from './support/hash.js';
 
 // In-memory sources (tests, examples, local dev)

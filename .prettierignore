@@ -5,3 +5,8 @@ dist
 coverage
 pnpm-lock.yaml
 .claude
+
+# Generated Creative IR / Creative Package examples (deterministic compiler output; kept byte-for-byte)
+docs/examples/creative-ir-northwind.json
+docs/examples/creative-package-northwind.json
+docs/examples/storyboard-northwind.html

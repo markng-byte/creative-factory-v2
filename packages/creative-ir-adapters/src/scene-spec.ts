@@ -87,7 +87,11 @@ export class StandardSceneSpecAdapter extends BaseAdapter implements SceneSpecif
         : null,
       composition: visual?.composition ?? null,
       lighting: visual
-        ? { type: visual.lighting.type, mood: visual.lighting.mood, keyColor: visual.lighting.keyLight.color }
+        ? {
+            type: visual.lighting.type,
+            mood: visual.lighting.mood,
+            keyColor: visual.lighting.keyLight.color,
+          }
         : null,
       motionDirection: lead?.motionSpec.cameraMotion.map((keyframe) => ({
         time: keyframe.time,

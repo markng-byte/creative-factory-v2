@@ -322,12 +322,7 @@ function* enumerate<T>(items: readonly T[]): Generator<[T, number]> {
   }
 }
 
-function requirePresent(
-  ctx: MutableContext,
-  value: unknown,
-  path: string,
-  message: string,
-): void {
+function requirePresent(ctx: MutableContext, value: unknown, path: string, message: string): void {
   if (value === undefined || value === null || value === '') {
     addError(ctx, { code: 'REQUIRED_FIELD', message, path, severity: 'critical' });
   }

@@ -16,10 +16,7 @@ import type {
 import { BaseAdapter, type BuildResult } from './base.js';
 import { durationToSeconds, escapeHtml } from './support.js';
 
-export class StandardStoryboardHTMLAdapter
-  extends BaseAdapter
-  implements StoryboardHTMLAdapter
-{
+export class StandardStoryboardHTMLAdapter extends BaseAdapter implements StoryboardHTMLAdapter {
   readonly name = 'storyboard-html' as const;
   readonly version = '1.0.0';
   readonly supportedOutputFormats = ['html'];
@@ -31,7 +28,12 @@ export class StandardStoryboardHTMLAdapter
   protected build(creativeIR: CreativeIR, _options: AdapterOptions): BuildResult {
     const title = escapeHtml(creativeIR.creativeContext.briefTitle);
     const sections = creativeIR.stories
-      .map((story) => this.renderStory(story.title, story.storyboards.flatMap((sb) => sb.scenes)))
+      .map((story) =>
+        this.renderStory(
+          story.title,
+          story.storyboards.flatMap((sb) => sb.scenes),
+        ),
+      )
       .join('\n');
 
     const html = `<!doctype html>

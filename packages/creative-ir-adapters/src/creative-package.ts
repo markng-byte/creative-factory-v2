@@ -112,7 +112,8 @@ export function assembleCreativePackage(
       format: artifact.format,
       mimeType: artifact.mimeType,
       size: artifact.size ?? contentLength(artifact.content),
-      content: typeof artifact.content === 'string' ? artifact.content : artifact.content.toString('utf8'),
+      content:
+        typeof artifact.content === 'string' ? artifact.content : artifact.content.toString('utf8'),
     }));
     if (output.warnings.length > 0) {
       adapterWarnings[name] = output.warnings;

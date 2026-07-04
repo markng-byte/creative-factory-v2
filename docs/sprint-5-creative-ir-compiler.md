@@ -39,11 +39,11 @@ The compiler _produces_ the Creative IR; the adapters _consume_ it. No adapter e
 
 ## 2. Packages
 
-| Package | Responsibility |
-| --- | --- |
-| `@creative-factory/creative-ir` (extended) | Canonical model. Adds `StandardCreativeIRValidator` and a `SceneObjectives` field on `Scene`; fixes branded-ID helpers. |
+| Package                                        | Responsibility                                                                                                                   |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `@creative-factory/creative-ir` (extended)     | Canonical model. Adds `StandardCreativeIRValidator` and a `SceneObjectives` field on `Scene`; fixes branded-ID helpers.          |
 | `@creative-factory/creative-ir-compiler` (new) | Phase 1. Implements `CreativeIRCompiler`. Nine pure planning stages + pipeline assembler + ports (sources, clock, id generator). |
-| `@creative-factory/creative-ir-adapters` (new) | Phase 2. Seven `CreativeIRAdapter`s, `StandardAdapterRegistry`, and the Creative Package assembler. |
+| `@creative-factory/creative-ir-adapters` (new) | Phase 2. Seven `CreativeIRAdapter`s, `StandardAdapterRegistry`, and the Creative Package assembler.                              |
 
 Each planning stage lives in its own module under `creative-ir-compiler/src/stages/` and is
 independently unit-testable. Adapters are one module each under `creative-ir-adapters/src/`.
@@ -55,17 +55,17 @@ independently unit-testable. Adapters are one module each under `creative-ir-ada
 Every stage is a **pure function**: no I/O, no randomness, no clock. Identifiers come from an
 injected `IdGenerator`; the only timestamp is read once, up front, from an injected `Clock`.
 
-| # | Stage | Input → Output | Populates in Creative IR |
-| - | --- | --- | --- |
-| 1 | **Narrative Engine** | Brief → `NarrativeBlueprint` | `creativeContext` (theme, key messages, mood); the six-beat arc |
-| 2 | **Story Engine** | Narrative → `StoryDraft[]` | `stories[]` (title, sequence, duration budget) |
-| 3 | **Storyboard Engine** | Story → `StoryboardDraft[]` | `Story.storyboards[]` |
-| 4 | **Scene Planner** | Beats → `SceneDraft[]` | `Storyboard.scenes[]` + `Scene.objectives` |
-| 5 | **Shot Planner** | Scene → `ShotDraft[]` | `Scene.shots[]` |
-| 6 | **Composition Planner** | Shot + Brand → `VisualSpecification` | `Shot.visualSpec` (shot type, camera, composition, lighting, grading) |
-| 7 | **Motion Planner** | Shot + Visual → `MotionSpecification` | `Shot.motionSpec` (camera keyframes, object motion) |
-| 8 | **Timing Planner** | All + Campaign duration → `TimingPlan` | every `Duration`, `Story.durationFrames` |
-| 9 | **Asset Planning Engine** | Shots + Brand → `AssetRequest[]` | `assetRequests[]` + `Shot.assetRequests[]` |
+| #   | Stage                     | Input → Output                         | Populates in Creative IR                                              |
+| --- | ------------------------- | -------------------------------------- | --------------------------------------------------------------------- |
+| 1   | **Narrative Engine**      | Brief → `NarrativeBlueprint`           | `creativeContext` (theme, key messages, mood); the six-beat arc       |
+| 2   | **Story Engine**          | Narrative → `StoryDraft[]`             | `stories[]` (title, sequence, duration budget)                        |
+| 3   | **Storyboard Engine**     | Story → `StoryboardDraft[]`            | `Story.storyboards[]`                                                 |
+| 4   | **Scene Planner**         | Beats → `SceneDraft[]`                 | `Storyboard.scenes[]` + `Scene.objectives`                            |
+| 5   | **Shot Planner**          | Scene → `ShotDraft[]`                  | `Scene.shots[]`                                                       |
+| 6   | **Composition Planner**   | Shot + Brand → `VisualSpecification`   | `Shot.visualSpec` (shot type, camera, composition, lighting, grading) |
+| 7   | **Motion Planner**        | Shot + Visual → `MotionSpecification`  | `Shot.motionSpec` (camera keyframes, object motion)                   |
+| 8   | **Timing Planner**        | All + Campaign duration → `TimingPlan` | every `Duration`, `Story.durationFrames`                              |
+| 9   | **Asset Planning Engine** | Shots + Brand → `AssetRequest[]`       | `assetRequests[]` + `Shot.assetRequests[]`                            |
 
 The **six-beat arc** (`setup → inciting → rising → climax → resolution → call-to-action`) with
 relative weights `[0.15, 0.15, 0.2, 0.25, 0.15, 0.1]` is the dramatic skeleton. The Timing Planner
@@ -84,15 +84,15 @@ Adapters implement the pre-declared `CreativeIRAdapter` interfaces from `@creati
 and are managed by `StandardAdapterRegistry` (register / get / list / `listByCapability`). Adding a new
 output format means registering a new adapter — the compiler core never changes.
 
-| Adapter | Artifact | Format |
-| --- | --- | --- |
-| `storyboard-html` | Human-readable, self-contained storyboard | HTML |
-| `scene-spec` | Complete scene specifications | JSON |
-| `shot-list` | Flat, ordered shot breakdown | JSON |
-| `motion-spec` | Per-shot motion specifications | JSON |
-| `asset-plan` | Asset inventory grouped by type | JSON |
-| `timeline` | Frame-accurate scene/shot tracks | JSON |
-| `qa-spec` | QA checklist (brand / constraint / structural) | JSON |
+| Adapter           | Artifact                                       | Format |
+| ----------------- | ---------------------------------------------- | ------ |
+| `storyboard-html` | Human-readable, self-contained storyboard      | HTML   |
+| `scene-spec`      | Complete scene specifications                  | JSON   |
+| `shot-list`       | Flat, ordered shot breakdown                   | JSON   |
+| `motion-spec`     | Per-shot motion specifications                 | JSON   |
+| `asset-plan`      | Asset inventory grouped by type                | JSON   |
+| `timeline`        | Frame-accurate scene/shot tracks               | JSON   |
+| `qa-spec`         | QA checklist (brand / constraint / structural) | JSON   |
 
 `renderCreativePackage(creativeIR)` runs the standard adapters and assembles a **Creative Package**:
 the adapter artifacts keyed by adapter name, plus derived `CreativeMetadata` (scene/shot/asset totals,
@@ -129,12 +129,12 @@ exported from `@creative-factory/creative-ir-compiler`.
 
 ## 7. Testing
 
-| Suite | Coverage |
-| --- | --- |
-| `creative-ir/validator.test.ts` | Structural / semantic / compiler rule families; permissive downgrade |
-| `creative-ir-compiler/stages/narrative.test.ts` | Six-beat arc, weights, purity |
-| `creative-ir-compiler/stages/timing.test.ts` | Frame conservation across scenes/shots/story |
-| `creative-ir-compiler/compiler.test.ts` | Integration compile, frame accuracy, **determinism**, referential integrity, error paths |
+| Suite                                           | Coverage                                                                                                                          |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `creative-ir/validator.test.ts`                 | Structural / semantic / compiler rule families; permissive downgrade                                                              |
+| `creative-ir-compiler/stages/narrative.test.ts` | Six-beat arc, weights, purity                                                                                                     |
+| `creative-ir-compiler/stages/timing.test.ts`    | Frame conservation across scenes/shots/story                                                                                      |
+| `creative-ir-compiler/compiler.test.ts`         | Integration compile, frame accuracy, **determinism**, referential integrity, error paths                                          |
 | `creative-ir-adapters/creative-package.test.ts` | All adapters, HTML self-containment, scene-spec completeness, timeline totals, QA derivation, **determinism**, registry discovery |
 
 `pnpm build`, `pnpm lint`, and `pnpm test` are green across the whole monorepo.

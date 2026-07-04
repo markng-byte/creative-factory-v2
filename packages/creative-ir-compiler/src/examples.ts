@@ -40,7 +40,8 @@ export function exampleCreativeBrief(): CreativeBrief {
       name: 'Northwind Analytics — See the Whole Story',
       type: CampaignType.PRODUCT_LAUNCH,
       goal: 'Launch the Northwind Insight dashboard to mid-market data teams',
-      background: 'Data teams drown in disconnected dashboards and lose the narrative in the noise.',
+      background:
+        'Data teams drown in disconnected dashboards and lose the narrative in the noise.',
       competitiveContext: 'Incumbents optimize for breadth of charts, not clarity of story.',
       marketOpportunity: 'Mid-market teams want decision-ready insight, not more tooling.',
       timeline: {
@@ -151,7 +152,9 @@ export function exampleCreativeBrief(): CreativeBrief {
       traits: ['precise', 'warm'],
       doExamples: ['Lead with the decision'],
       dontExamples: ['Never bury the point in jargon'],
-      voiceAttributes: [{ spectrum: 'Formal to Casual', position: 3, description: 'Approachable expert' }],
+      voiceAttributes: [
+        { spectrum: 'Formal to Casual', position: 3, description: 'Approachable expert' },
+      ],
     },
     emotionalDirection: {
       primaryEmotion: 'confident',
@@ -159,7 +162,12 @@ export function exampleCreativeBrief(): CreativeBrief {
       emotionalJourney: [
         { phase: 'open', emotion: 'overwhelmed', intensity: 6, trigger: 'dashboard sprawl' },
         { phase: 'turn', emotion: 'curious', intensity: 7, trigger: 'a single narrative view' },
-        { phase: 'peak', emotion: 'confident', intensity: 9, trigger: 'the decision becomes obvious' },
+        {
+          phase: 'peak',
+          emotion: 'confident',
+          intensity: 9,
+          trigger: 'the decision becomes obvious',
+        },
         { phase: 'close', emotion: 'inspired', intensity: 7, trigger: 'call to try Northwind' },
       ],
       avoidEmotions: ['anxious', 'condescending'],

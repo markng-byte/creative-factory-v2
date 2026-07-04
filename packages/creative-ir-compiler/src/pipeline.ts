@@ -76,9 +76,10 @@ export function buildCreativeIR(inputs: CompileInputs, ctx: PlanningContext): Cr
   const { ids, clock } = ctx;
   const createdAt = clock.now();
 
-  const frameRate = campaign.duration.frameRate && campaign.duration.frameRate > 0
-    ? campaign.duration.frameRate
-    : 30;
+  const frameRate =
+    campaign.duration.frameRate && campaign.duration.frameRate > 0
+      ? campaign.duration.frameRate
+      : 30;
   const totalSeconds = campaign.duration.minutes * 60 + campaign.duration.seconds;
   const aspectRatio: AspectRatio = campaign.aspectRatios[0] ?? '16:9';
   const language = campaign.languages[0] ?? 'en';

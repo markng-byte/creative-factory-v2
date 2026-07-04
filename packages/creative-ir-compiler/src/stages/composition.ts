@@ -116,7 +116,11 @@ export function planComposition(
     composition,
     lighting,
     colorGrading: {
-      look: pick(brief.visualDirection.visualThemes, shot.sequence, brief.visualDirection.aestheticStyle),
+      look: pick(
+        brief.visualDirection.visualThemes,
+        shot.sequence,
+        brief.visualDirection.aestheticStyle,
+      ),
       colorCast: brief.visualDirection.colorMood,
       saturation: clamp(0.5 + emotionIntensity * 0.04, 0, 1),
       contrast: shot.beatKind === 'climax' ? 0.75 : 0.55,
@@ -163,10 +167,18 @@ function lensForShotType(type: ShotType): string {
 
 function temperatureFromMood(mood: string): number {
   const normalized = mood.toLowerCase();
-  if (normalized.includes('warm') || normalized.includes('cozy') || normalized.includes('energetic')) {
+  if (
+    normalized.includes('warm') ||
+    normalized.includes('cozy') ||
+    normalized.includes('energetic')
+  ) {
     return 5600;
   }
-  if (normalized.includes('cool') || normalized.includes('calm') || normalized.includes('clinical')) {
+  if (
+    normalized.includes('cool') ||
+    normalized.includes('calm') ||
+    normalized.includes('clinical')
+  ) {
     return 7000;
   }
   return 6500;
