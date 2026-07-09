@@ -149,7 +149,7 @@ export class StandardCreativeIRCompiler implements CreativeIRCompiler {
         'BRAND_NOT_FOUND',
       );
     }
-    return { brief, campaign, brand };
+    return { brief, campaign, brand, reviewFeedback: request.reviewFeedback };
   }
 
   private async runAdapters(

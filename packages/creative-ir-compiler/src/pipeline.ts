@@ -199,20 +199,36 @@ export function buildCreativeIR(inputs: CompileInputs, ctx: PlanningContext): Cr
 
   const irId = createCreativeIRId(ids.generate('cir', brief.id, campaign.id));
 
+  const revisionHistory = [
+    {
+      version: 1,
+      timestamp: createdAt,
+      actor: createUserId('creative-ir-compiler'),
+      changeDescription: 'Initial deterministic compilation from Creative Brief',
+      metadata: {},
+    },
+  ];
+  const feedback = [...(inputs.reviewFeedback ?? [])].sort(
+    (a, b) => a.priority - b.priority || a.reviewId.localeCompare(b.reviewId),
+  );
+  if (feedback.length > 0) {
+    revisionHistory.push({
+      version: 2,
+      timestamp: createdAt,
+      actor: createUserId('creative-ir-compiler'),
+      changeDescription: `Recompiled with ${feedback.length} review feedback item(s): ${feedback
+        .map((item) => item.reviewId)
+        .join(', ')}`,
+      metadata: { reviewFeedback: feedback },
+    });
+  }
+
   return {
     version: EMITTED_SCHEMA_VERSION,
     id: irId,
     createdAt,
     updatedAt: createdAt,
-    revisionHistory: [
-      {
-        version: 1,
-        timestamp: createdAt,
-        actor: createUserId('creative-ir-compiler'),
-        changeDescription: 'Initial deterministic compilation from Creative Brief',
-        metadata: {},
-      },
-    ],
+    revisionHistory,
     campaign,
     creativeContext: buildCreativeContext(brief, brand, narrative),
     stories: assembledStories,

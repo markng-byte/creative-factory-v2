@@ -14,7 +14,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 3  | Brand Intelligence Engine                                           | Complete                                    |
 | Sprint 4  | Campaign & Creative Brief Engine                                    | Complete                                    |
 | Sprint 5  | Creative IR Compiler + Multi-Adapter Output Generation              | Complete                                    |
-| Sprint 6  | Human Review & Approval Engine                                      | Not started                                 |
+| Sprint 6  | Human Review & Approval Engine                                      | Complete                                    |
 | Sprint 7  | Prompt Translation Engine                                           | Not started                                 |
 | Sprint 8  | Image Generation Engine                                             | Not started                                 |
 | Sprint 9  | Video Generation Engine                                             | Not started                                 |
@@ -172,3 +172,34 @@ Sprint 5 did not implement:
 - Any AI/LLM-driven generation (deterministic heuristics are used throughout, as in Sprint 4).
 - Database-backed persistence (source ports ship with in-memory implementations only).
 - Human review/approval logic (Sprint 6).
+
+## Sprint 6 Acceptance Criteria
+
+- [x] Review cycles bound to the workflow engine's four human gates (strategy, storyboard, assets, final), opening only when the campaign sits at the matching lifecycle state
+- [x] Configurable multi-level approval chains (creative → brand → legal → final) with per-step quorum, escalation behavior, and per-level duplicate-reviewer protection
+- [x] Comments anchored to specific Creative IR nodes (document, story, storyboard, scene, shot, asset request), validated structurally against the reviewed document; threads with severity and resolution
+- [x] Cycle outcomes drive the deterministic state machine — transitions are evaluated by `workflow-engine`, never invented, so approvals cannot skip gates
+- [x] Existing contract events emitted on closure: `review.completed` and `campaign.lifecycle.transitioned`
+- [x] Review → feedback → recompile loop closed: changes-requested cycles yield `ReviewFeedback` consumed by `CompilerRequest.reviewFeedback`, and the compiler records the recompilation in the document's revision history
+- [x] Closed cycles projected onto the canonical `Review` type in `@creative-factory/creative-ir`
+- [x] Deterministic under injected clock/id ports (byte-identical outcomes for identical operation sequences, unit-tested)
+- [x] Comprehensive unit + integration tests (19 tests, including a full gate walkthrough against a real compiled Creative IR); build, lint, and test green across the monorepo
+
+## Sprint 6 Completed Work
+
+- Added `@creative-factory/review-engine`: `StandardReviewEngine` (open/comment/resolve/decide/cancel), gate bindings, default approval policies with a pure `evaluateChain` fold, anchor indexing/validation, feedback normalization (`compilerFeedback` + `structuredFeedback`), contract event builders, Creative IR `Review` projection, and an in-memory registry.
+- Extended `@creative-factory/creative-ir-compiler`: `CompileInputs.reviewFeedback` threads review feedback into recompilation as a new revision-history record naming the source review cycles.
+- Added `docs/sprint-6-review-engine.md` with architecture, chain semantics, and the gate asymmetry at final approval.
+
+## Sprint 6 Non-Implementation Decisions
+
+Sprint 6 did not implement:
+
+- A review UI (backend engine only; a dashboard is future work)
+- Notifications, email, or reviewer identity/assignment management (no auth layer exists yet)
+- Database-backed review persistence (in-memory registry, consistent with Sprints 3–5)
+- Compiler interpretation of feedback content (directives like "shorten scene 3" are recorded, not acted on)
+
+## Sprint 7 Entry Criteria
+
+Sprint 7 (Prompt Translation Engine) can start now: an approved Creative Package exists behind the `PROMPT_READY` lifecycle state, approvals are recorded as canonical `Review` data, and rework loops pass structured feedback through recompilation with full revision history. The `PromptTranslationAdapter` interface stub in `@creative-factory/creative-ir` marks where provider coupling is finally allowed to happen.

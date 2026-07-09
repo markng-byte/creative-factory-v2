@@ -8,7 +8,12 @@
  */
 
 import type { CreativeBrief } from '@creative-factory/domain';
-import type { BrandTokens, Campaign, DesignTokens } from '@creative-factory/creative-ir';
+import type {
+  BrandTokens,
+  Campaign,
+  DesignTokens,
+  ReviewFeedback,
+} from '@creative-factory/creative-ir';
 import type { Clock } from './support/clock.js';
 import type { IdGenerator } from './support/id.js';
 
@@ -35,6 +40,12 @@ export interface CompileInputs {
   readonly brief: CreativeBrief;
   readonly campaign: Campaign;
   readonly brand: BrandTokensBundle;
+  /**
+   * Structured feedback from completed review cycles. When present, the recompilation is
+   * recorded as a new revision in the document's revision history (review → feedback →
+   * recompile loop, Sprint 6).
+   */
+  readonly reviewFeedback?: readonly ReviewFeedback[];
 }
 
 /**
