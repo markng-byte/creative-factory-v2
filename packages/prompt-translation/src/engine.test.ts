@@ -59,12 +59,13 @@ describe('StandardPromptTranslationEngine', () => {
     const { promptPackage } = makeEngine().translate(ir);
     const kinds = new Set(promptPackage.requests.map((request) => request.targetKind));
     expect(kinds.has('image')).toBe(true);
+    expect(kinds.has('video')).toBe(true);
     expect(kinds.has('voiceover')).toBe(true);
     expect(promptPackage.counts.image).toBeGreaterThan(0);
-    // 20 assets in the example: 13 image key frames + voiceover per scene + one music bed.
-    expect(promptPackage.counts.image + promptPackage.counts.voiceover).toBe(
-      ir.assetRequests.length,
-    );
+    // Every asset request is one of the three target kinds.
+    expect(
+      promptPackage.counts.image + promptPackage.counts.video + promptPackage.counts.voiceover,
+    ).toBe(ir.assetRequests.length);
   });
 
   it('builds image prompts from the shot visual spec with brand controls and a seed', () => {

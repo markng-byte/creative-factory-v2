@@ -2,9 +2,9 @@
  * Asset Planning Engine (Stage 9).
  *
  * Identifies every asset that downstream generation engines must produce — before any
- * generation happens. Each shot yields a primary key-frame image; scene openers add a
- * voiceover request; the story opener adds a music-bed request. Nothing is generated here;
- * this stage only declares fully-specified `AssetRequest`s.
+ * generation happens. Each shot yields a primary key-frame image and a motion clip; scene
+ * openers add a voiceover request; the story opener adds a music-bed request. Nothing is
+ * generated here; this stage only declares fully-specified `AssetRequest`s.
  */
 
 import {
@@ -68,6 +68,19 @@ export function planAssets(input: AssetPlanInput, ids: IdGenerator): AssetPlanRe
       }),
     );
     forShot.push(imageId);
+
+    const videoId = ids.generate('asset', shot.shotId, 'video');
+    requests.push(
+      makeRequest(videoId, shot.shotId, 'video', input.createdAt, 'high', {
+        description: `Motion clip for shot: ${shot.description}`,
+        dimensions: { width: dims.width, height: dims.height, framerate: 30 },
+        format: 'mp4',
+        colorSpace: 'sRGB',
+        quality: 'high',
+        constraints: [{ type: 'brand-safe', value: true }],
+      }),
+    );
+    forShot.push(videoId);
 
     if (shot.isSceneOpener && shot.narrativeText.trim().length > 0) {
       const voId = ids.generate('asset', shot.shotId, 'voiceover');

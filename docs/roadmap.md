@@ -17,7 +17,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 6  | Human Review & Approval Engine                                      | Complete                                    |
 | Sprint 7  | Prompt Translation Engine                                           | Complete                                    |
 | Sprint 8  | Image Generation Engine                                             | Complete                                    |
-| Sprint 9  | Video Generation Engine                                             | Not started                                 |
+| Sprint 9  | Video Generation Engine                                             | Complete                                    |
 | Sprint 10 | QA & Brand Compliance Engine                                        | Not started                                 |
 | Sprint 11 | Asset Library & Versioning                                          | Not started                                 |
 | Sprint 12 | Export & Publishing Engine                                          | Not started                                 |
@@ -266,3 +266,33 @@ Sprint 8 did not implement:
 ## Sprint 9 Entry Criteria
 
 Sprint 9 (Video Generation Engine) follows the identical pattern for `video` prompts: a `PromptProvider` for the video target behind the dispatch seam, `AssetOutput`s with provenance written back into the Creative IR, reusing the asset store and the `asset.generated` contract.
+
+## Sprint 9 Acceptance Criteria
+
+- [x] Asset Planning Engine extended to plan a per-shot video clip (`video` asset type) alongside the still key-frame; Sprint 7 video target extended to carry clip dimensions
+- [x] A concrete video `PromptProvider` (`SmilVideoProvider`) plugging into the existing Sprint 7 dispatch seam
+- [x] Deterministic, offline animated-SVG renderer whose SMIL motion is driven by the shot's camera movement, easing, and duration; no live AI calls, secrets, or network
+- [x] `StandardVideoGenerationEngine` producing `AssetOutput`s with full provenance and clip metadata (duration, frame rate, frame count), writing them back into the Creative IR (`deliveredAssets`, `qaStatus = in-progress`); image/audio requests untouched
+- [x] Rendered clips stored as viewable animated `data:image/svg+xml` URIs via an `AssetStore`; `asset.generated` event per clip
+- [x] Deterministic under injected clock/id ports (byte-identical IR, outputs, events, stored bytes, unit-tested)
+- [x] Committed viewable animated gallery (`docs/examples/generated-videos-northwind.html`); example fixtures regenerated to include per-shot video assets
+- [x] Comprehensive tests (7) against a real compiled Creative IR; build, lint, and test green across the monorepo
+
+## Sprint 9 Completed Work
+
+- Added `@creative-factory/video-generation`: `renderVideo` (deterministic animated SMIL SVG), `SmilVideoProvider` (the seam's second concrete implementation), `InMemoryAssetStore`, and `StandardVideoGenerationEngine` (generate → `AssetOutput` + provenance → write back).
+- Extended `@creative-factory/creative-ir-compiler`: the asset planner now plans a per-shot video clip; the Sprint 7 video prompt target now carries clip dimensions.
+- Regenerated the committed example fixtures (33 assets: 13 image + 13 video + 7 audio) and added a viewable animated 13-clip gallery, plus `docs/sprint-9-video-generation.md`.
+
+## Sprint 9 Non-Implementation Decisions
+
+Sprint 9 did not implement:
+
+- Live AI video generation (synthetic offline renderer behind the seam; no keys/network)
+- Real encoded video (MP4/WebM) — animated SVG for viewability/determinism; a real provider returns encoded bytes through the same shapes
+- Audio generation and QA execution (Sprint 10)
+- Durable object storage (in-memory asset store)
+
+## Sprint 10 Entry Criteria
+
+Sprint 10 (QA & Brand Compliance Engine) can start now: image and video `AssetOutput`s exist on their requests with `qaStatus = in-progress`, carrying provenance and brand-controlled parameters, and the `qa.completed` contract event already exists to report results back into the workflow.
