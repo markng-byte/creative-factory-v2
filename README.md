@@ -44,6 +44,7 @@ creative-factory/
 │   ├── asset-library/       # Content-addressed asset catalog + versioning
 │   ├── export-engine/       # Production package, finished campaign page, publish seam
 │   ├── analytics-engine/    # Lifecycle analytics, optimization, and dashboard
+│   ├── pipeline/            # Top-level orchestrator (runs all engines end-to-end)
 │   ├── workflow-engine/     # Campaign lifecycle state machine
 │   ├── brand-engine/        # Brand engine orchestrator (interfaces)
 │   ├── brand-importers/     # Pluggable brand package importers (JSON, YAML, Markdown)
@@ -122,6 +123,8 @@ Creative IR enables:
 - [Sprint 11 — Asset Library & Versioning](docs/sprint-11-asset-library.md) — Content-addressed catalog, version lineage, dedup, and IR link-back
 - [Sprint 12 — Export & Publishing](docs/sprint-12-export-engine.md) — Production package, publish seam, and the finished campaign ([final delivery](docs/examples/final-delivery-northwind.html))
 - [Sprint 13 — Analytics & Optimization](docs/sprint-13-analytics-engine.md) — Lifecycle metrics, optimization recommendations, and a ([dashboard](docs/examples/analytics-dashboard-northwind.html))
+- [Sprint 14 — Enterprise Hardening & Documentation](docs/sprint-14-hardening.md) — The `pipeline` orchestrator, fully green CI, and end-to-end docs
+- **[Pipeline Overview](docs/pipeline-overview.md) — the top-level end-to-end map of the whole system**
 - Worked example: [`docs/examples/creative-ir-northwind.json`](docs/examples/creative-ir-northwind.json) → [`creative-package-northwind.json`](docs/examples/creative-package-northwind.json)
 
 ## Prerequisites
