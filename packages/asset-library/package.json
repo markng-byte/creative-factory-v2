@@ -1,0 +1,38 @@
+{
+  "name": "@creative-factory/asset-library",
+  "version": "1.0.0",
+  "description": "Asset Library & Versioning - a content-addressed library of QA-approved assets with version lineage, deduplication, cross-campaign reuse, and Creative IR link-back",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@creative-factory/contracts": "workspace:*",
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/creative-ir-compiler": "workspace:*",
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/image-generation": "workspace:*",
+    "@creative-factory/prompt-translation": "workspace:*",
+    "@creative-factory/qa-engine": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@creative-factory/video-generation": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}
