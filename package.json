@@ -16,11 +16,15 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "typecheck": "turbo run typecheck",
+    "demo": "turbo run build --filter=@creative-factory/pipeline && node scripts/demo.mjs",
     "clean": "turbo run clean && rimraf node_modules",
     "prepare": "husky || true"
   },
   "devDependencies": {
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/creative-ir-compiler": "workspace:*",
     "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/pipeline": "workspace:*",
     "@creative-factory/prettier-config": "workspace:*",
     "@creative-factory/tsconfig": "workspace:*",
     "husky": "^9.1.7",

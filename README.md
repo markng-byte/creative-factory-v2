@@ -1,222 +1,196 @@
-# Creative Factory Monorepo
+# Creative Factory
 
-Enterprise AI Creative Factory — building the canonical model layer and provider-neutral architecture for autonomous creative production.
+**A provider-neutral, deterministic platform for autonomous creative production.** A Business/Creative
+Brief goes in; a finished, published, analyzed campaign comes out — with every review, QA verdict,
+provenance record, asset version, and export written to one canonical model.
 
-## Vision
+> **Status: complete (Sprints 0–14).** The pipeline runs end to end. All CI checks — JavaScript/TypeScript,
+> Prettier, and Python — pass green.
 
-**Creative Factory** is a modular, provider-neutral platform for generating broadcast-quality creative content at scale. Every creative artifact is represented as **Creative Intermediate Representation (Creative IR)** — a machine-readable, versioned contract that all engines consume and produce.
+---
 
-**Key Architecture Principle**: Business Brief → Creative IR → Production Outputs (never Business Brief → Prompts)
+## What it does
+
+Every creative artifact is represented as **Creative Intermediate Representation (Creative IR)** — a
+single, versioned, machine-readable model that every engine consumes and produces. The founding rule:
+
+```
+Business Brief → Creative IR → Production Outputs        (never Business Brief → Prompts)
+```
+
+The full pipeline, composed of thirteen engines around that spine:
+
+```
+Brief + Campaign + Brand
+   │  compile        → Creative IR  ─► Creative Package (storyboard, scene/shot spec, timeline, QA spec…)
+   │  translate      → prompt packages (image / video / voiceover)     ── prompt.generated
+   │  generate       → images + animated clips written back into the IR ── asset.generated
+   │  QA             → brand-compliance verdicts, qaStatus written back  ── qa.completed
+   │  catalog        → content-addressed library versions (dedup/reuse) ── asset.cataloged
+   │  export         → production package + finished campaign page       ── export.published → COMPLETED
+   │  analyze        → analytics report + optimization recommendations + dashboard
+   ▼
+Finished, analyzed campaign
+```
+
+Human **review & approval** gates the lifecycle at four points (strategy / storyboard / assets / final);
+a "request changes" outcome feeds structured feedback back into a recompile.
+
+**No engine couples to an AI provider.** Provider coupling is confined to two explicit dispatch seams
+(prompt translation, publishing), which default to offline, deterministic implementations — so the
+entire system is byte-for-byte reproducible and fully testable. Swap a real diffusion/TTS/publishing
+API in behind a seam and nothing else changes.
+
+📖 **[Pipeline Overview](docs/pipeline-overview.md)** — the full end-to-end map.
+
+---
+
+## Run the whole pipeline in one call
+
+```ts
+import { ValidationMode } from '@creative-factory/creative-ir';
+import { createPipeline } from '@creative-factory/pipeline';
+import {
+  InMemoryCreativeBriefSource,
+  InMemoryCampaignSource,
+  InMemoryBrandTokensSource,
+  exampleCreativeBrief,
+  exampleCampaign,
+  exampleBrandBundle,
+} from '@creative-factory/creative-ir-compiler';
+
+const brand = exampleBrandBundle();
+const pipeline = createPipeline({
+  briefs: new InMemoryCreativeBriefSource([exampleCreativeBrief()]),
+  campaigns: new InMemoryCampaignSource([exampleCampaign()]),
+  brands: new InMemoryBrandTokensSource(new Map([[brand.brandTokens.brandId, brand]])),
+  seed: 'northwind',
+});
+
+const result = await pipeline.run({
+  creativeBriefId: 'brief-northwind-001',
+  brandId: 'brand-northwind',
+  campaignId: 'campaign-northwind-q3',
+  validationMode: ValidationMode.STRICT,
+});
+
+result.summary; // { scenes: 6, shots: 13, assetsGenerated: 26, assetsApproved: 26, completed: true, ... }
+result.finishedCampaignPage; // self-contained HTML of the finished campaign
+result.dashboard; // self-contained analytics dashboard
+result.events; // the full contract event stream
+```
+
+`node scripts/demo.mjs` runs exactly this and writes the finished campaign + dashboard to `.demo-output/`.
+
+---
+
+## See it
+
+Committed, deterministically-regenerated example artifacts (open the HTML in a browser):
+
+| Artifact                       | File                                                                                                                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Finished campaign              | [`docs/examples/final-delivery-northwind.html`](docs/examples/final-delivery-northwind.html)                                                                  |
+| Analytics dashboard            | [`docs/examples/analytics-dashboard-northwind.html`](docs/examples/analytics-dashboard-northwind.html)                                                        |
+| Generated images (13)          | [`docs/examples/generated-images-northwind.html`](docs/examples/generated-images-northwind.html)                                                              |
+| Generated animated clips (13)  | [`docs/examples/generated-videos-northwind.html`](docs/examples/generated-videos-northwind.html)                                                              |
+| Storyboard                     | [`docs/examples/storyboard-northwind.html`](docs/examples/storyboard-northwind.html)                                                                          |
+| Compiled Creative IR / Package | [`creative-ir-northwind.json`](docs/examples/creative-ir-northwind.json) · [`creative-package-northwind.json`](docs/examples/creative-package-northwind.json) |
+
+---
+
+## Engines
+
+| Sprint | Package                                        | Role                                                             |
+| ------ | ---------------------------------------------- | ---------------------------------------------------------------- |
+| 5      | `creative-ir-compiler`, `creative-ir-adapters` | Brief → Creative IR → Creative Package                           |
+| 6      | `review-engine`                                | Human gates, approval chains, feedback → recompile               |
+| 7      | `prompt-translation`                           | Creative IR → provider-neutral prompt packages (+ dispatch seam) |
+| 8      | `image-generation`                             | Deterministic image provider → asset outputs                     |
+| 9      | `video-generation`                             | Deterministic animated-video provider → asset outputs            |
+| 10     | `qa-engine`                                    | Brand-compliance QA over real asset content                      |
+| 11     | `asset-library`                                | Content-addressed catalog, versioning, dedup, reuse              |
+| 12     | `export-engine`                                | Production package, finished campaign, publish seam → COMPLETED  |
+| 13     | `analytics-engine`                             | Lifecycle analytics, optimization, dashboard                     |
+| 14     | `pipeline`                                     | Top-level orchestrator composing all of the above                |
+
+Foundations (Sprints 2–4): `domain`, `contracts`, `workflow-engine`, `creative-ir`, the `brand-*`
+packages (brand intelligence), and `campaign-engine` + friends (Business Brief → Creative Brief).
+Per-sprint design docs live in [`docs/`](docs/) (e.g. `docs/sprint-5-creative-ir-compiler.md`).
+
+---
 
 ## Stack
 
-| Layer           | Technology              |
-| --------------- | ----------------------- |
-| Package manager | pnpm workspaces         |
-| Task runner     | Turborepo               |
-| Web app         | Next.js 15 (App Router) |
-| API             | FastAPI (Python 3.12)   |
-| Linting         | ESLint 9 (flat config)  |
-| Formatting      | Prettier                |
-| JS testing      | Vitest                  |
-| Python testing  | pytest                  |
-| Containers      | Docker + Compose        |
-| CI              | GitHub Actions          |
+| Layer           | Technology                    |
+| --------------- | ----------------------------- |
+| Package manager | pnpm workspaces               |
+| Task runner     | Turborepo                     |
+| Web app         | Next.js 15 (App Router)       |
+| API             | FastAPI (Python 3.12)         |
+| Linting         | ESLint 9 (flat config) · ruff |
+| Formatting      | Prettier                      |
+| Testing         | Vitest (JS) · pytest (Python) |
+| Containers      | Docker + Compose              |
+| CI              | GitHub Actions                |
 
-## Repository layout
+Workspace imports use the `@creative-factory/*` scope.
 
-```
-creative-factory/
-├── apps/
-│   ├── web/                 # Next.js frontend
-│   └── api/                 # FastAPI backend
-├── packages/
-│   ├── domain/              # Domain layer + brand types (typed IDs, entities, events, brands)
-│   ├── contracts/           # API/event contracts
-│   ├── creative-ir/         # Creative IR canonical model + compiler/adapter/validator interfaces
-│   ├── creative-ir-compiler/# Deterministic Creative IR Compiler (nine planning stages)
-│   ├── creative-ir-adapters/# Output adapters + Creative Package assembler
-│   ├── review-engine/       # Human review cycles, approval chains, feedback loop
-│   ├── prompt-translation/  # Creative IR → image/video/voiceover prompt packages
-│   ├── image-generation/    # Synthetic image provider + generation write-back
-│   ├── video-generation/    # Synthetic animated-video provider + generation write-back
-│   ├── qa-engine/           # Brand-compliance QA over generated assets
-│   ├── asset-library/       # Content-addressed asset catalog + versioning
-│   ├── export-engine/       # Production package, finished campaign page, publish seam
-│   ├── analytics-engine/    # Lifecycle analytics, optimization, and dashboard
-│   ├── pipeline/            # Top-level orchestrator (runs all engines end-to-end)
-│   ├── workflow-engine/     # Campaign lifecycle state machine
-│   ├── brand-engine/        # Brand engine orchestrator (interfaces)
-│   ├── brand-importers/     # Pluggable brand package importers (JSON, YAML, Markdown)
-│   ├── brand-validator/     # Brand package validation
-│   ├── brand-tokenizer/     # Brand profile → design tokens
-│   ├── brand-registry/      # Brand profile storage & retrieval
-│   ├── shared-kernel/       # Shared utilities
-│   ├── env-config/          # Zod env validation (web)
-│   ├── eslint-config/       # Shared ESLint config
-│   ├── prettier-config/     # Shared Prettier config
-│   └── tsconfig/            # Shared TypeScript configs
-├── infra/                  # Infrastructure as Code
-├── docs/
-│   ├── creative-ir-specification.md   # Complete Creative IR specification
-│   ├── creative-ir-schema.json        # JSON Schema for validation
-│   ├── sprint-3-brand-engine.md       # Brand Engine architecture
-│   ├── roadmap.md                     # Product roadmap
-│   ├── examples/
-│   │   └── brand-package-acme.yaml    # Example brand package
-│   └── architecture/                  # Architecture decision records
-├── .github/workflows/       # CI pipelines
-├── docker-compose.yml
-└── turbo.json
-```
-
-## Creative Intermediate Representation (Creative IR)
-
-**Creative IR** is the canonical, machine-readable representation of every creative artifact. It is:
-
-- **Single Source of Truth** between all engines
-- **Automatically Generated** from Business Brief, Brand Package, Campaign Package, and Review Feedback
-- **Never User-Edited** directly (marketing users work through UIs)
-- **Provider-Neutral** (no AI provider coupling in the specification)
-- **Versioned and Stable** for cross-engine integration
-
-### Why Creative IR?
-
-Without a canonical model, services either:
-
-- ❌ Couple directly to provider APIs (GitHub Copilot, Claude, Midjourney, etc.)
-- ❌ Develop proprietary internal models (incompatible, inefficient)
-- ❌ Pass unstructured prompts between systems (lossy, non-deterministic)
-
-Creative IR enables:
-
-- ✅ Provider-neutral service architecture
-- ✅ Deterministic, auditable creative production
-- ✅ Easy addition of new adapters and output formats
-- ✅ Consistent quality across all engines
-
-### Phases
-
-1. **Business Brief** → [Brand Engine] → Brand Config
-2. **Campaign Context** → [Campaign Engine] → Creative Brief
-3. **Creative Brief + Brand + Campaign** → **[Creative IR Compiler]** → **Creative IR** (canonical model)
-4. **Creative IR** → [Output Adapters] → Production Artifacts:
-   - Storyboard HTML
-   - Scene Specifications
-   - Prompt Packages (for Prompt Translation Engine)
-   - Image Generation Requests
-   - Video Generation Requests
-   - QA Specifications
-   - Export Packages
-
-### Documentation
-
-- [Creative IR Specification](docs/creative-ir-specification.md) — Full model definition and design principles
-- [Creative IR JSON Schema](docs/creative-ir-schema.json) — Machine-readable validation schema
-- [Sprint 2 Architecture](docs/architecture/sprint-2-domain-contracts-workflow.md) — Technical implementation details
-- [Sprint 5 — Creative IR Compiler](docs/sprint-5-creative-ir-compiler.md) — Compiler stages, adapters, and the Creative Package
-- [Sprint 6 — Review Engine](docs/sprint-6-review-engine.md) — Human gates, approval chains, and the feedback loop
-- [Sprint 7 — Prompt Translation](docs/sprint-7-prompt-translation.md) — Prompt packages for image/video/voiceover and the provider seam
-- [Sprint 8 — Image Generation](docs/sprint-8-image-generation.md) — Concrete provider, deterministic renderer, and asset write-back ([gallery](docs/examples/generated-images-northwind.html))
-- [Sprint 9 — Video Generation](docs/sprint-9-video-generation.md) — Animated-SVG clips per shot, write-back and provenance ([gallery](docs/examples/generated-videos-northwind.html))
-- [Sprint 10 — QA & Brand Compliance](docs/sprint-10-qa-engine.md) — Pluggable rules over real asset content, verdicts, and the review-gate recommendation
-- [Sprint 11 — Asset Library & Versioning](docs/sprint-11-asset-library.md) — Content-addressed catalog, version lineage, dedup, and IR link-back
-- [Sprint 12 — Export & Publishing](docs/sprint-12-export-engine.md) — Production package, publish seam, and the finished campaign ([final delivery](docs/examples/final-delivery-northwind.html))
-- [Sprint 13 — Analytics & Optimization](docs/sprint-13-analytics-engine.md) — Lifecycle metrics, optimization recommendations, and a ([dashboard](docs/examples/analytics-dashboard-northwind.html))
-- [Sprint 14 — Enterprise Hardening & Documentation](docs/sprint-14-hardening.md) — The `pipeline` orchestrator, fully green CI, and end-to-end docs
-- **[Pipeline Overview](docs/pipeline-overview.md) — the top-level end-to-end map of the whole system**
-- Worked example: [`docs/examples/creative-ir-northwind.json`](docs/examples/creative-ir-northwind.json) → [`creative-package-northwind.json`](docs/examples/creative-package-northwind.json)
-
-## Prerequisites
-
-- Node.js 20+
-- pnpm 9+
-- Python 3.12+
-- Docker (optional)
+---
 
 ## Getting started
 
-### 1. Install JavaScript dependencies
-
 ```bash
+# 1. Install
 pnpm install
+
+# 2. Verify everything (build, lint, test, format across the monorepo)
+pnpm build && pnpm lint && pnpm test && pnpm format:check
+
+# 3. Run the end-to-end demo
+node scripts/demo.mjs        # writes .demo-output/final-delivery.html + analytics-dashboard.html
+
+# 4. Run one engine's tests
+pnpm --filter @creative-factory/pipeline test
 ```
 
-### 2. Configure environment
+Dev servers (optional):
 
 ```bash
-cp .env.example .env
-cp apps/web/.env.example apps/web/.env
-cp apps/api/.env.example apps/api/.env
-```
-
-### 3. Run development servers
-
-```bash
-# All apps via Turborepo
-pnpm dev
-
-# Or individually
-pnpm --filter @creative-factory/web dev
+pnpm dev                                    # all apps via Turborepo
+# Web → http://localhost:3000 · API → http://localhost:8000/docs
 cd apps/api && pip install -e ".[dev]" && uvicorn creative_factory_api.main:app --reload
 ```
 
-- Web: http://localhost:3000
-- API: http://localhost:8000
-- API docs: http://localhost:8000/docs
+Prerequisites: Node.js 20+, pnpm 9+, Python 3.12+ (for the API), Docker (optional).
 
-### 4. Run tests
+---
 
-```bash
-pnpm test
-cd apps/api && pytest
-```
+## Design principles
 
-### 5. Lint and format
+- **Provider-neutral** — no engine embeds provider logic; coupling lives only in swappable dispatch seams.
+- **Deterministic** — time and identity are injected everywhere; ids and seeds are content-derived. Identical inputs produce byte-identical outputs, asserted per engine and end to end.
+- **Immutable & auditable** — engines return new Creative IR snapshots; provenance, reviews, QA verdicts, library versions, and exports are all recorded on the canonical document.
+- **Pluggable** — adapters, prompt targets, QA rules, providers, and publish targets register behind stable interfaces; new capability is added without changing the core.
 
-```bash
-pnpm lint
-pnpm format
-```
+---
 
 ## Docker
 
 ```bash
-# App services only
-docker compose up --build
-
-# With postgres + redis (dev profile)
-docker compose -f docker-compose.dev.yml up --build
+docker compose up --build                              # app services
+docker compose -f docker-compose.dev.yml up --build    # + postgres + redis
 ```
-
-## Environment management
-
-| File                    | Purpose                          |
-| ----------------------- | -------------------------------- |
-| `.env.example`          | Root reference for all variables |
-| `apps/web/.env.example` | Next.js public/server env        |
-| `apps/api/.env.example` | FastAPI pydantic-settings        |
-
-Client-safe variables use the `NEXT_PUBLIC_` prefix. Secrets must never be committed.
-
-## Shared packages
-
-Build packages before consuming in apps (Turbo handles this in `pnpm build`):
-
-```bash
-pnpm --filter @creative-factory/shared-kernel build
-```
-
-Workspace imports use the `@creative-factory/*` scope.
 
 ## CI
 
-GitHub Actions runs on push/PR to `main` and `develop`:
+GitHub Actions on push/PR to `main` and `develop` — **all green**:
 
-- **js**: install, lint, typecheck, test, build
-- **python**: ruff, mypy, pytest
-- **docker**: build API and web images (push only)
+- **JavaScript / TypeScript** — install, lint, typecheck, test, build
+- **Python / FastAPI** — ruff, mypy, pytest (80% coverage gate)
+- **Prettier** — format check
+- **Docker** — build API and web images (push only)
 
 ## License
 
-UNLICENSED — private project scaffold.
+UNLICENSED — private project.
