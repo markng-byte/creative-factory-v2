@@ -434,3 +434,16 @@ Sprint 14 (Enterprise Hardening & Documentation) is the finish line: all 13 engi
 ## Project Status: Complete
 
 Sprints 0–14 are complete. The Creative Factory runs end to end — from a Business/Creative Brief to a finished, published, analyzed campaign — provider-neutrally and deterministically, with every stage recorded on the canonical Creative IR. See `docs/pipeline-overview.md` for the full system map.
+
+## Next Phase (design-first)
+
+The engine spine is done; the remaining work is horizontal — a web console, an API gateway,
+persistence/event-store, and reference ingestion. These are mutually dependent, so they are designed up
+front in `docs/design/target-architecture.md` before implementation. Proposed sequence:
+
+| Sprint | Scope                                                                                                             | Depends on |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | ---------- |
+| S15    | Persistence & Event Store (Postgres adapters behind existing ports, event store, IR snapshots, Redis, blob store) | engines    |
+| S16    | API Gateway & Wiring (orchestrator over HTTP, SSE event stream; resolves the TS/Python runtime decision)          | S15        |
+| S17    | Ingestion & Analysis Seam (upload → asset-library → deterministic analysis → IR)                                  | S15, S16   |
+| S18    | Web Console (brief submit, material upload, live run view, human gates, deliverable viewer)                       | S16, S17   |

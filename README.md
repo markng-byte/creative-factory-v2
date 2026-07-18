@@ -42,6 +42,7 @@ entire system is byte-for-byte reproducible and fully testable. Swap a real diff
 API in behind a seam and nothing else changes.
 
 📖 **[Pipeline Overview](docs/pipeline-overview.md)** — the full end-to-end map.
+🏗️ **[Target Architecture](docs/design/target-architecture.md)** — the design for what comes next (console, API, persistence, ingestion).
 
 ---
 
