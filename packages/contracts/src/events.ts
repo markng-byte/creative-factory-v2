@@ -50,17 +50,30 @@ export type QACompletedContract = EventEnvelope<
   }
 >;
 
+export type AssetGeneratedContract = EventEnvelope<
+  'asset.generated',
+  {
+    campaignId: string;
+    assetRequestId: string;
+    assetOutputId: string;
+    sourceEngine: string;
+    format: string;
+  }
+>;
+
 export type CreativeFactoryEventContract =
   | CampaignLifecycleTransitionedContract
   | ReviewCompletedContract
   | PromptGeneratedContract
-  | QACompletedContract;
+  | QACompletedContract
+  | AssetGeneratedContract;
 
 export const EVENT_CONTRACT_NAMES = [
   'campaign.lifecycle.transitioned',
   'review.completed',
   'prompt.generated',
   'qa.completed',
+  'asset.generated',
 ] as const;
 
 export type EventContractName = (typeof EVENT_CONTRACT_NAMES)[number];
