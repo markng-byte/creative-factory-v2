@@ -8,9 +8,18 @@ importers:
 
   .:
     devDependencies:
+      '@creative-factory/creative-ir':
+        specifier: workspace:*
+        version: link:packages/creative-ir
+      '@creative-factory/creative-ir-compiler':
+        specifier: workspace:*
+        version: link:packages/creative-ir-compiler
       '@creative-factory/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
+      '@creative-factory/pipeline':
+        specifier: workspace:*
+        version: link:packages/pipeline
       '@creative-factory/prettier-config':
         specifier: workspace:*
         version: link:packages/prettier-config
