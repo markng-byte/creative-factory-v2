@@ -19,7 +19,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 8  | Image Generation Engine                                             | Complete                                    |
 | Sprint 9  | Video Generation Engine                                             | Complete                                    |
 | Sprint 10 | QA & Brand Compliance Engine                                        | Complete                                    |
-| Sprint 11 | Asset Library & Versioning                                          | Not started                                 |
+| Sprint 11 | Asset Library & Versioning                                          | Complete                                    |
 | Sprint 12 | Export & Publishing Engine                                          | Not started                                 |
 | Sprint 13 | Analytics & Optimization                                            | Not started                                 |
 | Sprint 14 | Enterprise Hardening & Documentation                                | Not started                                 |
@@ -325,3 +325,34 @@ Sprint 10 did not implement:
 ## Sprint 11 Entry Criteria
 
 Sprint 11 (Asset Library & Versioning) can start now: each generated asset carries provenance, a QA verdict (`qaStatus`), and content, and the Creative IR records the full generate → QA history — the basis for versioning, deduplication, and reuse across campaigns.
+
+## Sprint 11 Acceptance Criteria
+
+- [x] Content-addressed asset library: each QA-approved asset output ingested as an immutable, content-hashed version
+- [x] Logical assets (one per Creative IR asset request) group regenerations into an ordered version chain with lineage
+- [x] Deduplication: re-ingesting identical content creates no new version; content already present (incl. cross-campaign) recorded as reuse (`reusedFrom`)
+- [x] Only approved assets catalogued; pending/ungenerated skipped, rejected never catalogued
+- [x] Library references written back onto the Creative IR (`AssetRequest.metadata.library`) in a returned updated IR — no schema change (uses the existing untyped metadata field)
+- [x] Additive `asset.cataloged` contract event per ingested output
+- [x] `InMemoryAssetLibrary` with logical-key and content-hash indexes
+- [x] Deterministic under injected clock/id ports (byte-identical library, IR, and events, unit-tested)
+- [x] Comprehensive tests (7) against a real compiled → generated → approved Creative IR, including dedup and versioning paths; build, lint, and test green across the monorepo
+
+## Sprint 11 Completed Work
+
+- Added `@creative-factory/asset-library`: `StandardAssetLibrarian.ingest`, content-addressed versioning with dedup and cross-campaign reuse, `InMemoryAssetLibrary`, Creative IR link-back, and `asset.cataloged` event emission.
+- Extended `@creative-factory/contracts` with an additive `asset.cataloged` event.
+- Added `docs/sprint-11-asset-library.md`.
+
+## Sprint 11 Non-Implementation Decisions
+
+Sprint 11 did not implement:
+
+- Durable storage (in-memory library/content index; a real object store + database implements the same interface)
+- Physical byte deduplication / blob storage (dedup is by content hash at the catalog level)
+- Tag search/query API beyond logical-key and content-hash lookup
+- Audio assets (ungenerated) and retention/garbage-collection policies
+
+## Sprint 12 Entry Criteria
+
+Sprint 12 (Export & Publishing Engine) can start now: each Creative IR request points at a `LibraryAsset` version with a stable content hash and provenance — the immutable basis for export manifests and publishing.
