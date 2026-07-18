@@ -21,7 +21,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 10 | QA & Brand Compliance Engine                                        | Complete                                    |
 | Sprint 11 | Asset Library & Versioning                                          | Complete                                    |
 | Sprint 12 | Export & Publishing Engine                                          | Complete                                    |
-| Sprint 13 | Analytics & Optimization                                            | Not started                                 |
+| Sprint 13 | Analytics & Optimization                                            | Complete                                    |
 | Sprint 14 | Enterprise Hardening & Documentation                                | Not started                                 |
 
 ## Sprint 2 Acceptance Criteria
@@ -387,3 +387,31 @@ Sprint 12 did not implement:
 ## Sprint 13 Entry Criteria
 
 Sprint 13 (Analytics & Optimization) can start now: a completed lifecycle is observable end-to-end via the event stream (`prompt.generated`, `asset.generated`, `qa.completed`, `asset.cataloged`, `export.published`, `campaign.lifecycle.transitioned`) plus the Creative IR's full revision/review/QA/export history.
+
+## Sprint 13 Acceptance Criteria
+
+- [x] Compute an `AnalyticsReport` from the Creative IR + event stream: structure, asset/QA metrics, reuse/dedup, activity by event type, and the lifecycle funnel to COMPLETED
+- [x] Deterministic, threshold-based optimization recommendations with severities (QA rejection, incomplete generation, high dedup, missing reviews, completion)
+- [x] Self-contained, theme-aware HTML dashboard (KPI tiles, funnel, assets-by-type, recommendations)
+- [x] Read-only — analytics never mutates the Creative IR
+- [x] Deterministic under injected clock/id ports (byte-identical report and dashboard, unit-tested)
+- [x] Committed viewable dashboard example (`docs/examples/analytics-dashboard-northwind.html`)
+- [x] Comprehensive tests (7) driven by running the entire pipeline and collecting its event stream; build, lint, and test green across the monorepo
+
+## Sprint 13 Completed Work
+
+- Added `@creative-factory/analytics-engine`: `StandardAnalyticsEngine.analyze`, `computeReport` (structure/assets/quality/reuse/activity/lifecycle), `deriveRecommendations` (heuristic optimization), and `assembleDashboard` (viewable HTML).
+- Committed the analytics dashboard example and `docs/sprint-13-analytics-engine.md`.
+
+## Sprint 13 Non-Implementation Decisions
+
+Sprint 13 did not implement:
+
+- Cross-campaign / time-series analytics or report persistence (single-campaign, in-memory)
+- Real charting libraries (dependency-free deterministic markup)
+- ML-driven optimization (transparent threshold heuristics; a model-backed recommender fits the same shape)
+- Writing analytics back into the Creative IR (intentionally read-only)
+
+## Sprint 14 Entry Criteria
+
+Sprint 14 (Enterprise Hardening & Documentation) is the finish line: all 13 engines are complete and green. It consolidates cross-cutting concerns — a top-level pipeline overview / end-to-end documentation and any remaining hardening — rather than adding new pipeline capability.

@@ -43,6 +43,7 @@ creative-factory/
 │   ├── qa-engine/           # Brand-compliance QA over generated assets
 │   ├── asset-library/       # Content-addressed asset catalog + versioning
 │   ├── export-engine/       # Production package, finished campaign page, publish seam
+│   ├── analytics-engine/    # Lifecycle analytics, optimization, and dashboard
 │   ├── workflow-engine/     # Campaign lifecycle state machine
 │   ├── brand-engine/        # Brand engine orchestrator (interfaces)
 │   ├── brand-importers/     # Pluggable brand package importers (JSON, YAML, Markdown)
@@ -120,6 +121,7 @@ Creative IR enables:
 - [Sprint 10 — QA & Brand Compliance](docs/sprint-10-qa-engine.md) — Pluggable rules over real asset content, verdicts, and the review-gate recommendation
 - [Sprint 11 — Asset Library & Versioning](docs/sprint-11-asset-library.md) — Content-addressed catalog, version lineage, dedup, and IR link-back
 - [Sprint 12 — Export & Publishing](docs/sprint-12-export-engine.md) — Production package, publish seam, and the finished campaign ([final delivery](docs/examples/final-delivery-northwind.html))
+- [Sprint 13 — Analytics & Optimization](docs/sprint-13-analytics-engine.md) — Lifecycle metrics, optimization recommendations, and a ([dashboard](docs/examples/analytics-dashboard-northwind.html))
 - Worked example: [`docs/examples/creative-ir-northwind.json`](docs/examples/creative-ir-northwind.json) → [`creative-package-northwind.json`](docs/examples/creative-package-northwind.json)
 
 ## Prerequisites
