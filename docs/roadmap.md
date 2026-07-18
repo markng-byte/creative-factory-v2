@@ -15,7 +15,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 4  | Campaign & Creative Brief Engine                                    | Complete                                    |
 | Sprint 5  | Creative IR Compiler + Multi-Adapter Output Generation              | Complete                                    |
 | Sprint 6  | Human Review & Approval Engine                                      | Complete                                    |
-| Sprint 7  | Prompt Translation Engine                                           | Not started                                 |
+| Sprint 7  | Prompt Translation Engine                                           | Complete                                    |
 | Sprint 8  | Image Generation Engine                                             | Not started                                 |
 | Sprint 9  | Video Generation Engine                                             | Not started                                 |
 | Sprint 10 | QA & Brand Compliance Engine                                        | Not started                                 |
@@ -203,3 +203,34 @@ Sprint 6 did not implement:
 ## Sprint 7 Entry Criteria
 
 Sprint 7 (Prompt Translation Engine) can start now: an approved Creative Package exists behind the `PROMPT_READY` lifecycle state, approvals are recorded as canonical `Review` data, and rework loops pass structured feedback through recompilation with full revision history. The `PromptTranslationAdapter` interface stub in `@creative-factory/creative-ir` marks where provider coupling is finally allowed to happen.
+
+## Sprint 7 Acceptance Criteria
+
+- [x] Translate an approved Creative IR into provider-neutral prompt packages: one `PromptRequest` per asset request, assembled into a deterministic `PromptPackage`
+- [x] Pluggable prompt targets for image, video, and voiceover/audio; new targets register without changing the engine
+- [x] Image prompts derived from shot visual specs (composition, lighting, color grade, subject) with brand controls, negative prompts, and content-derived seeds; video prompts add camera motion, easing, duration, and frame rate; audio target splits voiceover (TTS) from music brief so no asset is dropped
+- [x] Provider dispatch seam (`PromptProvider`) with an offline `DryRunProvider` default — no live AI calls, no secrets, no network in the core or CI
+- [x] `prompt.generated` contract event emitted per request
+- [x] `StandardPromptTranslationAdapter` implements the existing `prompt-translation` `CreativeIRAdapter` stub, plugging into the Sprint 5 registry / Creative Package flow
+- [x] Unsupported asset types reported as `unhandled` rather than silently dropped
+- [x] Deterministic under injected clock/id ports (byte-identical package + events, unit-tested)
+- [x] Comprehensive tests (10) driven against a real compiled Creative IR; build, lint, and test green across the monorepo
+
+## Sprint 7 Completed Work
+
+- Added `@creative-factory/prompt-translation`: `StandardPromptTranslationEngine`, three pluggable prompt targets (image / video / voiceover-audio), the `PromptProvider` dispatch seam with an offline `DryRunProvider`, `prompt.generated` event emission, and `StandardPromptTranslationAdapter` implementing the canonical `prompt-translation` adapter interface.
+- Deterministic support (FNV-1a hashing + injected clock/id ports) keeps prompt packages byte-reproducible.
+- Added `docs/sprint-7-prompt-translation.md` covering the target framework and the provider seam.
+
+## Sprint 7 Non-Implementation Decisions
+
+Sprint 7 did not implement:
+
+- Live AI provider calls (the seam is dry-run only; no API keys, network, or secrets introduced)
+- Actual asset generation (Sprints 8–9) — this sprint produces prompts, not media
+- A vendor-specific prompt dialect beyond the neutral target formats
+- Persistence of prompt packages (returned in-memory / emitted as an adapter artifact)
+
+## Sprint 8 Entry Criteria
+
+Sprint 8 (Image Generation Engine) can start now: `PromptRequest`s of kind `image` are self-contained, brand-controlled, seeded, and tied to a shot and asset request. Sprint 8 implements a concrete `PromptProvider` behind the existing dispatch seam to generate assets and record their provenance back into the Creative IR's `AssetOutput` model.

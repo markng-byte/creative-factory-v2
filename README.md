@@ -37,6 +37,7 @@ creative-factory/
 │   ├── creative-ir-compiler/# Deterministic Creative IR Compiler (nine planning stages)
 │   ├── creative-ir-adapters/# Output adapters + Creative Package assembler
 │   ├── review-engine/       # Human review cycles, approval chains, feedback loop
+│   ├── prompt-translation/  # Creative IR → image/video/voiceover prompt packages
 │   ├── workflow-engine/     # Campaign lifecycle state machine
 │   ├── brand-engine/        # Brand engine orchestrator (interfaces)
 │   ├── brand-importers/     # Pluggable brand package importers (JSON, YAML, Markdown)
@@ -108,6 +109,7 @@ Creative IR enables:
 - [Sprint 2 Architecture](docs/architecture/sprint-2-domain-contracts-workflow.md) — Technical implementation details
 - [Sprint 5 — Creative IR Compiler](docs/sprint-5-creative-ir-compiler.md) — Compiler stages, adapters, and the Creative Package
 - [Sprint 6 — Review Engine](docs/sprint-6-review-engine.md) — Human gates, approval chains, and the feedback loop
+- [Sprint 7 — Prompt Translation](docs/sprint-7-prompt-translation.md) — Prompt packages for image/video/voiceover and the provider seam
 - Worked example: [`docs/examples/creative-ir-northwind.json`](docs/examples/creative-ir-northwind.json) → [`creative-package-northwind.json`](docs/examples/creative-package-northwind.json)
 
 ## Prerequisites
