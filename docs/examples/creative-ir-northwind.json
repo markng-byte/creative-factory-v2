@@ -358,6 +358,7 @@
                   "audioElements": [],
                   "assetRequests": [
                     "asset_090b49d6",
+                    "asset_5064c260",
                     "asset_3cc00dff",
                     "asset_8fba5de8"
                   ]
@@ -531,7 +532,8 @@
                   },
                   "audioElements": [],
                   "assetRequests": [
-                    "asset_784536ba"
+                    "asset_784536ba",
+                    "asset_7aa0572c"
                   ]
                 }
               ],
@@ -759,6 +761,7 @@
                   "audioElements": [],
                   "assetRequests": [
                     "asset_12b84aca",
+                    "asset_fb6d125c",
                     "asset_b0ecf1bb"
                   ]
                 },
@@ -931,7 +934,8 @@
                   },
                   "audioElements": [],
                   "assetRequests": [
-                    "asset_b6e39ccd"
+                    "asset_b6e39ccd",
+                    "asset_bdd1f7f3"
                   ]
                 }
               ],
@@ -1159,6 +1163,7 @@
                   "audioElements": [],
                   "assetRequests": [
                     "asset_35cabb86",
+                    "asset_3a49c4f0",
                     "asset_baa97e4f"
                   ]
                 },
@@ -1331,7 +1336,8 @@
                   },
                   "audioElements": [],
                   "assetRequests": [
-                    "asset_53225061"
+                    "asset_53225061",
+                    "asset_dfe5fccf"
                   ]
                 },
                 {
@@ -1503,7 +1509,8 @@
                   },
                   "audioElements": [],
                   "assetRequests": [
-                    "asset_0f36965a"
+                    "asset_0f36965a",
+                    "asset_119023cc"
                   ]
                 }
               ],
@@ -1742,6 +1749,7 @@
                   "audioElements": [],
                   "assetRequests": [
                     "asset_5566f0ce",
+                    "asset_056023d8",
                     "asset_534e28c7"
                   ]
                 },
@@ -1914,7 +1922,8 @@
                   },
                   "audioElements": [],
                   "assetRequests": [
-                    "asset_14f65f7e"
+                    "asset_14f65f7e",
+                    "asset_1135e6e8"
                   ]
                 },
                 {
@@ -2086,7 +2095,8 @@
                   },
                   "audioElements": [],
                   "assetRequests": [
-                    "asset_9475934b"
+                    "asset_9475934b",
+                    "asset_009c31d5"
                   ]
                 }
               ],
@@ -2325,6 +2335,7 @@
                   "audioElements": [],
                   "assetRequests": [
                     "asset_7dfe6af0",
+                    "asset_88fa2616",
                     "asset_e7504065"
                   ]
                 },
@@ -2497,7 +2508,8 @@
                   },
                   "audioElements": [],
                   "assetRequests": [
-                    "asset_ab458862"
+                    "asset_ab458862",
+                    "asset_63248874"
                   ]
                 }
               ],
@@ -2725,6 +2737,7 @@
                   "audioElements": [],
                   "assetRequests": [
                     "asset_b4174382",
+                    "asset_3fb73294",
                     "asset_668f2e83"
                   ]
                 }
@@ -3013,6 +3026,34 @@
       "metadata": {}
     },
     {
+      "id": "asset_5064c260",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_a74921e2",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Setup — establishing shot conveying \"overwhelmed\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
       "id": "asset_3cc00dff",
       "createdAt": "2026-07-01T00:00:00.000Z",
       "shotId": "shot_a74921e2",
@@ -3094,6 +3135,34 @@
       "metadata": {}
     },
     {
+      "id": "asset_7aa0572c",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_a8492375",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Setup — detail shot conveying \"overwhelmed\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
       "id": "asset_12b84aca",
       "createdAt": "2026-07-01T00:00:00.000Z",
       "shotId": "shot_3b20863e",
@@ -3116,6 +3185,34 @@
       },
       "quantity": 1,
       "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_fb6d125c",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3b20863e",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Inciting Moment — establishing shot conveying \"curious\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
       "deliveredAssets": [],
       "qaStatus": "pending",
       "metadata": {}
@@ -3175,6 +3272,34 @@
       "metadata": {}
     },
     {
+      "id": "asset_bdd1f7f3",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3c2087d1",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Inciting Moment — detail shot conveying \"curious\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
       "id": "asset_35cabb86",
       "createdAt": "2026-07-01T00:00:00.000Z",
       "shotId": "shot_3c03937c",
@@ -3197,6 +3322,34 @@
       },
       "quantity": 1,
       "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_3a49c4f0",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3c03937c",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Rising Action — establishing shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
       "deliveredAssets": [],
       "qaStatus": "pending",
       "metadata": {}
@@ -3256,6 +3409,34 @@
       "metadata": {}
     },
     {
+      "id": "asset_dfe5fccf",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3d03950f",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Rising Action — detail shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
       "id": "asset_0f36965a",
       "createdAt": "2026-07-01T00:00:00.000Z",
       "shotId": "shot_3e0396a2",
@@ -3283,6 +3464,34 @@
       "metadata": {}
     },
     {
+      "id": "asset_119023cc",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_3e0396a2",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Rising Action — reaction shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
       "id": "asset_5566f0ce",
       "createdAt": "2026-07-01T00:00:00.000Z",
       "shotId": "shot_ac957848",
@@ -3305,6 +3514,34 @@
       },
       "quantity": 1,
       "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_056023d8",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_ac957848",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Climax — establishing shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
       "deliveredAssets": [],
       "qaStatus": "pending",
       "metadata": {}
@@ -3364,6 +3601,34 @@
       "metadata": {}
     },
     {
+      "id": "asset_1135e6e8",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_ad9579db",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Climax — detail shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
       "id": "asset_9475934b",
       "createdAt": "2026-07-01T00:00:00.000Z",
       "shotId": "shot_ae957b6e",
@@ -3391,6 +3656,34 @@
       "metadata": {}
     },
     {
+      "id": "asset_009c31d5",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_ae957b6e",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Climax — reaction shot conveying \"confident\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
       "id": "asset_7dfe6af0",
       "createdAt": "2026-07-01T00:00:00.000Z",
       "shotId": "shot_76362dbe",
@@ -3413,6 +3706,34 @@
       },
       "quantity": 1,
       "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_88fa2616",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_76362dbe",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Resolution — establishing shot conveying \"overwhelmed\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
       "deliveredAssets": [],
       "qaStatus": "pending",
       "metadata": {}
@@ -3472,6 +3793,34 @@
       "metadata": {}
     },
     {
+      "id": "asset_63248874",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_77362f51",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Resolution — detail shot conveying \"overwhelmed\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
       "id": "asset_b4174382",
       "createdAt": "2026-07-01T00:00:00.000Z",
       "shotId": "shot_68016c27",
@@ -3494,6 +3843,34 @@
       },
       "quantity": 1,
       "priority": "critical",
+      "deliveredAssets": [],
+      "qaStatus": "pending",
+      "metadata": {}
+    },
+    {
+      "id": "asset_3fb73294",
+      "createdAt": "2026-07-01T00:00:00.000Z",
+      "shotId": "shot_68016c27",
+      "assetType": "video",
+      "specifications": {
+        "description": "Motion clip for shot: Call to Action — establishing shot conveying \"curious\"",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080,
+          "framerate": 30
+        },
+        "format": "mp4",
+        "colorSpace": "sRGB",
+        "quality": "high",
+        "constraints": [
+          {
+            "type": "brand-safe",
+            "value": true
+          }
+        ]
+      },
+      "quantity": 1,
+      "priority": "high",
       "deliveredAssets": [],
       "qaStatus": "pending",
       "metadata": {}

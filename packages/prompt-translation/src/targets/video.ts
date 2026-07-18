@@ -72,6 +72,8 @@ export class VideoPromptTarget implements PromptTarget {
       prompt,
       negativePrompt,
       parameters: {
+        width: context.assetRequest.specifications.dimensions.width,
+        height: context.assetRequest.specifications.dimensions.height,
         durationFrames,
         frameRate,
         cameraMovement: visual.camera.movement,
