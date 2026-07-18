@@ -20,7 +20,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 9  | Video Generation Engine                                             | Complete                                    |
 | Sprint 10 | QA & Brand Compliance Engine                                        | Complete                                    |
 | Sprint 11 | Asset Library & Versioning                                          | Complete                                    |
-| Sprint 12 | Export & Publishing Engine                                          | Not started                                 |
+| Sprint 12 | Export & Publishing Engine                                          | Complete                                    |
 | Sprint 13 | Analytics & Optimization                                            | Not started                                 |
 | Sprint 14 | Enterprise Hardening & Documentation                                | Not started                                 |
 
@@ -356,3 +356,34 @@ Sprint 11 did not implement:
 ## Sprint 12 Entry Criteria
 
 Sprint 12 (Export & Publishing Engine) can start now: each Creative IR request points at a `LibraryAsset` version with a stable content hash and provenance — the immutable basis for export manifests and publishing.
+
+## Sprint 12 Acceptance Criteria
+
+- [x] Assemble a production `ExportPackage`: a manifest of every approved, catalogued asset (content hash + provenance + library reference) and per-aspect-ratio channel bundles
+- [x] A viewable finished campaign page (`campaign.html`) that lays the actual generated frames and animated clips out scene-by-scene, embedded as data URIs
+- [x] Publish dispatch seam (`PublishTarget`) with an offline `DryRunPublishTarget` default — no network, credentials, or live publishing
+- [x] Record `ExportMetadata` (`production-package`, `completed`) back into `creativeIR.exports`
+- [x] Drive the export workflow transitions (`start_export` → `complete_export` → `COMPLETED`), validated by the deterministic state machine
+- [x] Additive `export.published` contract event per published bundle, plus lifecycle-transition events
+- [x] Deterministic under injected clock/id ports (byte-identical package, IR, events, and finished page, unit-tested)
+- [x] Committed viewable finished-delivery example (`docs/examples/final-delivery-northwind.html`)
+- [x] Comprehensive tests (7) against a real compiled → generated → approved → catalogued Creative IR; build, lint, and test green across the monorepo
+
+## Sprint 12 Completed Work
+
+- Added `@creative-factory/export-engine`: `StandardExportEngine.export`, manifest + per-aspect-ratio bundle assembly, the viewable `assembleCampaignPage` deliverable, a `PublishTarget` dispatch seam with an offline `DryRunPublishTarget`, `ExportMetadata` write-back, export-transition driving to `COMPLETED`, and `export.published` event emission.
+- Extended `@creative-factory/contracts` with an additive `export.published` event.
+- Committed the finished-delivery example page and `docs/sprint-12-export-engine.md`.
+
+## Sprint 12 Non-Implementation Decisions
+
+Sprint 12 did not implement:
+
+- Live publishing to real channels (dry-run seam only; no network/credentials)
+- Real packaging formats (ZIP/tar, signed manifests) — deliverables are HTML/JSON through the same shapes
+- Scheduling / staged rollout / rollback of a publish
+- Audio in the finished piece (audio assets remain ungenerated)
+
+## Sprint 13 Entry Criteria
+
+Sprint 13 (Analytics & Optimization) can start now: a completed lifecycle is observable end-to-end via the event stream (`prompt.generated`, `asset.generated`, `qa.completed`, `asset.cataloged`, `export.published`, `campaign.lifecycle.transitioned`) plus the Creative IR's full revision/review/QA/export history.

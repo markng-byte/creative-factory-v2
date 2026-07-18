@@ -73,13 +73,26 @@ export type AssetCatalogedContract = EventEnvelope<
   }
 >;
 
+export type ExportPublishedContract = EventEnvelope<
+  'export.published',
+  {
+    campaignId: string;
+    exportId: string;
+    bundleId: string;
+    channel: string;
+    target: string;
+    artifactCount: number;
+  }
+>;
+
 export type CreativeFactoryEventContract =
   | CampaignLifecycleTransitionedContract
   | ReviewCompletedContract
   | PromptGeneratedContract
   | QACompletedContract
   | AssetGeneratedContract
-  | AssetCatalogedContract;
+  | AssetCatalogedContract
+  | ExportPublishedContract;
 
 export const EVENT_CONTRACT_NAMES = [
   'campaign.lifecycle.transitioned',
@@ -88,6 +101,7 @@ export const EVENT_CONTRACT_NAMES = [
   'qa.completed',
   'asset.generated',
   'asset.cataloged',
+  'export.published',
 ] as const;
 
 export type EventContractName = (typeof EVENT_CONTRACT_NAMES)[number];
