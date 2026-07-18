@@ -18,7 +18,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 7  | Prompt Translation Engine                                           | Complete                                    |
 | Sprint 8  | Image Generation Engine                                             | Complete                                    |
 | Sprint 9  | Video Generation Engine                                             | Complete                                    |
-| Sprint 10 | QA & Brand Compliance Engine                                        | Not started                                 |
+| Sprint 10 | QA & Brand Compliance Engine                                        | Complete                                    |
 | Sprint 11 | Asset Library & Versioning                                          | Not started                                 |
 | Sprint 12 | Export & Publishing Engine                                          | Not started                                 |
 | Sprint 13 | Analytics & Optimization                                            | Not started                                 |
@@ -296,3 +296,32 @@ Sprint 9 did not implement:
 ## Sprint 10 Entry Criteria
 
 Sprint 10 (QA & Brand Compliance Engine) can start now: image and video `AssetOutput`s exist on their requests with `qaStatus = in-progress`, carrying provenance and brand-controlled parameters, and the `qa.completed` contract event already exists to report results back into the workflow.
+
+## Sprint 10 Acceptance Criteria
+
+- [x] Pluggable QA-rule engine (rules register without touching the engine): content-integrity, dimension-match, brand-palette, prohibited-absent
+- [x] Rules inspect the actual generated content (decoded data-URI bytes), verifying brand palette presence and prohibited-element absence — real compliance, not metadata rubber-stamping; opaque remote assets degrade to not-applicable
+- [x] Per-asset verdicts (approved/rejected) folded into an overall `QaReport` (PASS/FAIL/NEEDS_REVIEW) with assessed/passed/failed/skipped counts
+- [x] `qaStatus` written back into the Creative IR for judged assets; ungenerated requests skipped, not failed
+- [x] `qa.completed` contract event emitted with the overall verdict
+- [x] On non-FAIL, recommends the `complete_generation` transition (→ `ASSET_REVIEW`), validated by the deterministic state machine; withheld on FAIL — returned as a recommendation, never forced
+- [x] Deterministic under injected clock/id ports (byte-identical report, IR, and event, unit-tested)
+- [x] Comprehensive tests (7) driven against a real compiled-and-generated Creative IR, including a FAIL path; build, lint, and test green across the monorepo
+
+## Sprint 10 Completed Work
+
+- Added `@creative-factory/qa-engine`: `StandardQaEngine`, a default pluggable rule set inspecting real asset content, `QaReport` production, Creative IR `qaStatus` write-back, `qa.completed` event emission, and a state-machine-validated `complete_generation` transition recommendation.
+- Added `docs/sprint-10-qa-engine.md`.
+
+## Sprint 10 Non-Implementation Decisions
+
+Sprint 10 did not implement:
+
+- AI/perceptual QA (aesthetic/semantic scoring); rules are deterministic and content/spec-based — a model-backed rule could register behind the same interface
+- Accessibility/WCAG contrast analysis (future rule)
+- Automatically applying the recommended transition, or opening the human review cycle (Sprint 6's job)
+- Audio QA (ungenerated) and persistence of QA reports
+
+## Sprint 11 Entry Criteria
+
+Sprint 11 (Asset Library & Versioning) can start now: each generated asset carries provenance, a QA verdict (`qaStatus`), and content, and the Creative IR records the full generate → QA history — the basis for versioning, deduplication, and reuse across campaigns.

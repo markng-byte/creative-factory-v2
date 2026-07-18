@@ -1,0 +1,38 @@
+{
+  "name": "@creative-factory/qa-engine",
+  "version": "1.0.0",
+  "description": "QA & Brand Compliance Engine - inspects generated assets against a pluggable rule set, writes qaStatus back into the Creative IR, emits qa.completed events, and recommends the asset-review workflow transition",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@creative-factory/contracts": "workspace:*",
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*",
+    "@creative-factory/workflow-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/creative-ir-compiler": "workspace:*",
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/image-generation": "workspace:*",
+    "@creative-factory/prompt-translation": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@creative-factory/video-generation": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}

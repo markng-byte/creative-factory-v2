@@ -40,6 +40,7 @@ creative-factory/
 │   ├── prompt-translation/  # Creative IR → image/video/voiceover prompt packages
 │   ├── image-generation/    # Synthetic image provider + generation write-back
 │   ├── video-generation/    # Synthetic animated-video provider + generation write-back
+│   ├── qa-engine/           # Brand-compliance QA over generated assets
 │   ├── workflow-engine/     # Campaign lifecycle state machine
 │   ├── brand-engine/        # Brand engine orchestrator (interfaces)
 │   ├── brand-importers/     # Pluggable brand package importers (JSON, YAML, Markdown)
@@ -114,6 +115,7 @@ Creative IR enables:
 - [Sprint 7 — Prompt Translation](docs/sprint-7-prompt-translation.md) — Prompt packages for image/video/voiceover and the provider seam
 - [Sprint 8 — Image Generation](docs/sprint-8-image-generation.md) — Concrete provider, deterministic renderer, and asset write-back ([gallery](docs/examples/generated-images-northwind.html))
 - [Sprint 9 — Video Generation](docs/sprint-9-video-generation.md) — Animated-SVG clips per shot, write-back and provenance ([gallery](docs/examples/generated-videos-northwind.html))
+- [Sprint 10 — QA & Brand Compliance](docs/sprint-10-qa-engine.md) — Pluggable rules over real asset content, verdicts, and the review-gate recommendation
 - Worked example: [`docs/examples/creative-ir-northwind.json`](docs/examples/creative-ir-northwind.json) → [`creative-package-northwind.json`](docs/examples/creative-package-northwind.json)
 
 ## Prerequisites
