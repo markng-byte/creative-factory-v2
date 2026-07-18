@@ -22,7 +22,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 11 | Asset Library & Versioning                                          | Complete                                    |
 | Sprint 12 | Export & Publishing Engine                                          | Complete                                    |
 | Sprint 13 | Analytics & Optimization                                            | Complete                                    |
-| Sprint 14 | Enterprise Hardening & Documentation                                | Not started                                 |
+| Sprint 14 | Enterprise Hardening & Documentation                                | Complete                                    |
 
 ## Sprint 2 Acceptance Criteria
 
@@ -415,3 +415,22 @@ Sprint 13 did not implement:
 ## Sprint 14 Entry Criteria
 
 Sprint 14 (Enterprise Hardening & Documentation) is the finish line: all 13 engines are complete and green. It consolidates cross-cutting concerns — a top-level pipeline overview / end-to-end documentation and any remaining hardening — rather than adding new pipeline capability.
+
+## Sprint 14 Acceptance Criteria
+
+- [x] Top-level `@creative-factory/pipeline` orchestrator composing all engines into one deterministic end-to-end run (compile → translate → generate → QA → catalog → export → analyze)
+- [x] `createPipeline` factory wiring every engine from the compiler's source ports with a shared clock and per-stage seeded ids
+- [x] End-to-end integration test: Brief → finished, analyzed campaign in one call, with the full event stream and end-to-end determinism
+- [x] Fully green CI: cleared the pre-existing FastAPI 80% coverage gate (added config + entrypoint tests, ~66% → ~95%) so JS/TS, Prettier, AND Python all pass
+- [x] End-to-end documentation: `docs/pipeline-overview.md` (the Creative IR spine, pipeline diagram, engine table, one-call entry point, principles, worked example)
+- [x] Build, lint, and test green across the monorepo
+
+## Sprint 14 Completed Work
+
+- Added `@creative-factory/pipeline`: `StandardPipeline` + `createPipeline`, composing all engines end-to-end and collecting the full contract event stream; end-to-end determinism test.
+- Cleared the pre-existing Python coverage gate with focused FastAPI config/entrypoint tests — CI is now fully green across all jobs.
+- Added `docs/pipeline-overview.md` and `docs/sprint-14-hardening.md`; README architecture section links the overview.
+
+## Project Status: Complete
+
+Sprints 0–14 are complete. The Creative Factory runs end to end — from a Business/Creative Brief to a finished, published, analyzed campaign — provider-neutrally and deterministically, with every stage recorded on the canonical Creative IR. See `docs/pipeline-overview.md` for the full system map.

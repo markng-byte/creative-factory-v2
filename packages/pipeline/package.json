@@ -1,0 +1,41 @@
+{
+  "name": "@creative-factory/pipeline",
+  "version": "1.0.0",
+  "description": "Top-level pipeline orchestrator - composes all engines into one deterministic end-to-end run from Creative Brief to a finished, analyzed campaign",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@creative-factory/analytics-engine": "workspace:*",
+    "@creative-factory/asset-library": "workspace:*",
+    "@creative-factory/contracts": "workspace:*",
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/creative-ir-compiler": "workspace:*",
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/export-engine": "workspace:*",
+    "@creative-factory/image-generation": "workspace:*",
+    "@creative-factory/prompt-translation": "workspace:*",
+    "@creative-factory/qa-engine": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*",
+    "@creative-factory/video-generation": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}
