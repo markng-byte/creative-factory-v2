@@ -42,6 +42,7 @@ creative-factory/
 │   ├── video-generation/    # Synthetic animated-video provider + generation write-back
 │   ├── qa-engine/           # Brand-compliance QA over generated assets
 │   ├── asset-library/       # Content-addressed asset catalog + versioning
+│   ├── export-engine/       # Production package, finished campaign page, publish seam
 │   ├── workflow-engine/     # Campaign lifecycle state machine
 │   ├── brand-engine/        # Brand engine orchestrator (interfaces)
 │   ├── brand-importers/     # Pluggable brand package importers (JSON, YAML, Markdown)
@@ -118,6 +119,7 @@ Creative IR enables:
 - [Sprint 9 — Video Generation](docs/sprint-9-video-generation.md) — Animated-SVG clips per shot, write-back and provenance ([gallery](docs/examples/generated-videos-northwind.html))
 - [Sprint 10 — QA & Brand Compliance](docs/sprint-10-qa-engine.md) — Pluggable rules over real asset content, verdicts, and the review-gate recommendation
 - [Sprint 11 — Asset Library & Versioning](docs/sprint-11-asset-library.md) — Content-addressed catalog, version lineage, dedup, and IR link-back
+- [Sprint 12 — Export & Publishing](docs/sprint-12-export-engine.md) — Production package, publish seam, and the finished campaign ([final delivery](docs/examples/final-delivery-northwind.html))
 - Worked example: [`docs/examples/creative-ir-northwind.json`](docs/examples/creative-ir-northwind.json) → [`creative-package-northwind.json`](docs/examples/creative-package-northwind.json)
 
 ## Prerequisites
