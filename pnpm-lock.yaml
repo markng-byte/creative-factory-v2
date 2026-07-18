@@ -88,6 +88,61 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.0)(jsdom@25.0.1)
 
+  packages/analytics-engine:
+    dependencies:
+      '@creative-factory/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@creative-factory/creative-ir':
+        specifier: workspace:*
+        version: link:../creative-ir
+      '@creative-factory/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@creative-factory/shared-kernel':
+        specifier: workspace:*
+        version: link:../shared-kernel
+    devDependencies:
+      '@creative-factory/asset-library':
+        specifier: workspace:*
+        version: link:../asset-library
+      '@creative-factory/creative-ir-compiler':
+        specifier: workspace:*
+        version: link:../creative-ir-compiler
+      '@creative-factory/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@creative-factory/export-engine':
+        specifier: workspace:*
+        version: link:../export-engine
+      '@creative-factory/image-generation':
+        specifier: workspace:*
+        version: link:../image-generation
+      '@creative-factory/prompt-translation':
+        specifier: workspace:*
+        version: link:../prompt-translation
+      '@creative-factory/qa-engine':
+        specifier: workspace:*
+        version: link:../qa-engine
+      '@creative-factory/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@creative-factory/video-generation':
+        specifier: workspace:*
+        version: link:../video-generation
+      '@types/node':
+        specifier: ^20.10.0
+        version: 20.19.43
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.4
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vitest:
+        specifier: ^1.1.0
+        version: 1.6.1(@types/node@20.19.43)(jsdom@25.0.1)
+
   packages/asset-library:
     dependencies:
       '@creative-factory/contracts':

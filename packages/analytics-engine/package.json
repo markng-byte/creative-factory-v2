@@ -1,0 +1,40 @@
+{
+  "name": "@creative-factory/analytics-engine",
+  "version": "1.0.0",
+  "description": "Analytics & Optimization Engine - computes a campaign analytics report from the Creative IR and event stream, derives deterministic optimization recommendations, and renders a viewable dashboard",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@creative-factory/contracts": "workspace:*",
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/asset-library": "workspace:*",
+    "@creative-factory/creative-ir-compiler": "workspace:*",
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/export-engine": "workspace:*",
+    "@creative-factory/image-generation": "workspace:*",
+    "@creative-factory/prompt-translation": "workspace:*",
+    "@creative-factory/qa-engine": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@creative-factory/video-generation": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}
