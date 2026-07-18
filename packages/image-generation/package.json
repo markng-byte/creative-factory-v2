@@ -1,0 +1,35 @@
+{
+  "name": "@creative-factory/image-generation",
+  "version": "1.0.0",
+  "description": "Image Generation Engine - a concrete provider behind the prompt-translation dispatch seam that renders deterministic branded images, records provenance, and writes AssetOutputs back into the Creative IR",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@creative-factory/contracts": "workspace:*",
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/domain": "workspace:*",
+    "@creative-factory/prompt-translation": "workspace:*",
+    "@creative-factory/shared-kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "@creative-factory/creative-ir-compiler": "workspace:*",
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}

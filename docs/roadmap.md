@@ -16,7 +16,7 @@ This roadmap is updated at the end of each sprint. The project follows an increm
 | Sprint 5  | Creative IR Compiler + Multi-Adapter Output Generation              | Complete                                    |
 | Sprint 6  | Human Review & Approval Engine                                      | Complete                                    |
 | Sprint 7  | Prompt Translation Engine                                           | Complete                                    |
-| Sprint 8  | Image Generation Engine                                             | Not started                                 |
+| Sprint 8  | Image Generation Engine                                             | Complete                                    |
 | Sprint 9  | Video Generation Engine                                             | Not started                                 |
 | Sprint 10 | QA & Brand Compliance Engine                                        | Not started                                 |
 | Sprint 11 | Asset Library & Versioning                                          | Not started                                 |
@@ -234,3 +234,35 @@ Sprint 7 did not implement:
 ## Sprint 8 Entry Criteria
 
 Sprint 8 (Image Generation Engine) can start now: `PromptRequest`s of kind `image` are self-contained, brand-controlled, seeded, and tied to a shot and asset request. Sprint 8 implements a concrete `PromptProvider` behind the existing dispatch seam to generate assets and record their provenance back into the Creative IR's `AssetOutput` model.
+
+## Sprint 8 Acceptance Criteria
+
+- [x] A concrete image `PromptProvider` (`SvgImageProvider`) plugging into the existing Sprint 7 dispatch seam
+- [x] Deterministic, offline synthetic renderer producing viewable branded SVG images from image prompts (palette + content-derived seed); no live AI calls, no secrets, no network
+- [x] `StandardImageGenerationEngine` consuming image prompts, producing `AssetOutput`s with full provenance (engine, model, version, parameters, seed) and metadata
+- [x] Generated assets written back into the Creative IR: attached to `AssetRequest.deliveredAssets`, `qaStatus` advanced to `in-progress`; non-image requests untouched; returns an updated Creative IR
+- [x] Rendered bytes stored (viewable `data:image/svg+xml` URIs) and retrievable via an `AssetStore`
+- [x] Additive `asset.generated` contract event emitted per output
+- [x] Deterministic under injected clock/id ports (byte-identical IR, outputs, events, and stored bytes, unit-tested)
+- [x] Committed viewable example gallery (`docs/examples/generated-images-northwind.html`) regenerating byte-for-byte
+- [x] Comprehensive tests (8) against a real compiled Creative IR; build, lint, and test green across the monorepo
+
+## Sprint 8 Completed Work
+
+- Added `@creative-factory/image-generation`: `renderImage` (deterministic branded SVG), `SvgImageProvider` (the seam's first concrete implementation), `InMemoryAssetStore`, and `StandardImageGenerationEngine` (generate → `AssetOutput` + provenance → write back into the Creative IR).
+- Extended `@creative-factory/contracts` with an additive `asset.generated` event.
+- Committed a viewable 13-frame gallery example and `docs/sprint-8-image-generation.md`.
+
+## Sprint 8 Non-Implementation Decisions
+
+Sprint 8 did not implement:
+
+- Live AI image generation (synthetic offline renderer behind the seam; no API keys/network)
+- Raster (PNG/JPEG) output — SVG for viewability/determinism; a real provider returns raster through the same shapes
+- Video or voiceover generation (Sprint 9+)
+- QA execution (Sprint 10) — generated assets are marked `in-progress`, not passed
+- Durable object storage (in-memory asset store)
+
+## Sprint 9 Entry Criteria
+
+Sprint 9 (Video Generation Engine) follows the identical pattern for `video` prompts: a `PromptProvider` for the video target behind the dispatch seam, `AssetOutput`s with provenance written back into the Creative IR, reusing the asset store and the `asset.generated` contract.

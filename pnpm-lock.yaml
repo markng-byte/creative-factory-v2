@@ -626,6 +626,46 @@ importers:
         specifier: ^8.19.0
         version: 8.62.0(eslint@9.39.4)(typescript@5.9.3)
 
+  packages/image-generation:
+    dependencies:
+      '@creative-factory/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@creative-factory/creative-ir':
+        specifier: workspace:*
+        version: link:../creative-ir
+      '@creative-factory/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@creative-factory/prompt-translation':
+        specifier: workspace:*
+        version: link:../prompt-translation
+      '@creative-factory/shared-kernel':
+        specifier: workspace:*
+        version: link:../shared-kernel
+    devDependencies:
+      '@creative-factory/creative-ir-compiler':
+        specifier: workspace:*
+        version: link:../creative-ir-compiler
+      '@creative-factory/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@creative-factory/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/node':
+        specifier: ^20.10.0
+        version: 20.19.43
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.4
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vitest:
+        specifier: ^1.1.0
+        version: 1.6.1(@types/node@20.19.43)(jsdom@25.0.1)
+
   packages/messaging-engine:
     dependencies:
       '@creative-factory/audience-model':
