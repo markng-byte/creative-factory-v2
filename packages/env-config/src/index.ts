@@ -1,5 +1,15 @@
 import { z } from 'zod';
 
+/**
+ * Treat an empty or blank variable as unset so the default applies. Hosting dashboards (Vercel)
+ * often hold variables created with an empty value; without this, `NEXT_PUBLIC_API_URL=""` fails
+ * the URL check and breaks the build ("Failed to collect page data").
+ */
+function unsetIfBlank(env: NodeJS.ProcessEnv, key: string): string | undefined {
+  const value = env[key];
+  return value === undefined || value.trim() === '' ? undefined : value;
+}
+
 /** Shared web environment schema (client-safe vars only). */
 export const webEnvSchema = z.object({
   NEXT_PUBLIC_APP_NAME: z.string().default('Creative Factory'),
@@ -11,9 +21,9 @@ export type WebEnv = z.infer<typeof webEnvSchema>;
 
 export function parseWebEnv(env: NodeJS.ProcessEnv = process.env): WebEnv {
   return webEnvSchema.parse({
-    NEXT_PUBLIC_APP_NAME: env.NEXT_PUBLIC_APP_NAME,
-    NEXT_PUBLIC_API_URL: env.NEXT_PUBLIC_API_URL,
-    NODE_ENV: env.NODE_ENV,
+    NEXT_PUBLIC_APP_NAME: unsetIfBlank(env, 'NEXT_PUBLIC_APP_NAME'),
+    NEXT_PUBLIC_API_URL: unsetIfBlank(env, 'NEXT_PUBLIC_API_URL'),
+    NODE_ENV: unsetIfBlank(env, 'NODE_ENV'),
   });
 }
 
@@ -26,9 +36,9 @@ export type WebServerEnv = z.infer<typeof webServerEnvSchema>;
 
 export function parseWebServerEnv(env: NodeJS.ProcessEnv = process.env): WebServerEnv {
   return webServerEnvSchema.parse({
-    NEXT_PUBLIC_APP_NAME: env.NEXT_PUBLIC_APP_NAME,
-    NEXT_PUBLIC_API_URL: env.NEXT_PUBLIC_API_URL,
-    NODE_ENV: env.NODE_ENV,
-    PORT: env.PORT,
+    NEXT_PUBLIC_APP_NAME: unsetIfBlank(env, 'NEXT_PUBLIC_APP_NAME'),
+    NEXT_PUBLIC_API_URL: unsetIfBlank(env, 'NEXT_PUBLIC_API_URL'),
+    NODE_ENV: unsetIfBlank(env, 'NODE_ENV'),
+    PORT: unsetIfBlank(env, 'PORT'),
   });
 }
