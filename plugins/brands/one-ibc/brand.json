@@ -1,0 +1,201 @@
+{
+  "brandTokens": {
+    "brandId": "brand-one-ibc",
+    "brandName": "Offshore Company Corp (One IBC)",
+    "primaryColors": [
+      {
+        "name": "OCC Mist",
+        "hex": "#F0F0F2",
+        "rgb": {
+          "r": 240,
+          "g": 240,
+          "b": 242
+        },
+        "hsl": {
+          "h": 240,
+          "s": 7,
+          "l": 95
+        },
+        "usage": "Background of every frame (Growth Workspace spec, section 7)",
+        "context": ["backgrounds"]
+      }
+    ],
+    "secondaryColors": [
+      {
+        "name": "OCC Ink",
+        "hex": "#1B1B1B",
+        "rgb": {
+          "r": 27,
+          "g": 27,
+          "b": 27
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 11
+        },
+        "usage": "Body text and headlines. PROVISIONAL: not in the spec, confirm with Team Content",
+        "context": ["headlines", "body"]
+      }
+    ],
+    "accentColors": [
+      {
+        "name": "OCC Red",
+        "hex": "#8B0000",
+        "rgb": {
+          "r": 139,
+          "g": 0,
+          "b": 0
+        },
+        "hsl": {
+          "h": 0,
+          "s": 100,
+          "l": 27
+        },
+        "usage": "Accent, about 10% of the frame area (spec, section 7)",
+        "context": ["call-to-action", "highlights"]
+      }
+    ],
+    "typography": [
+      {
+        "name": "Body",
+        "fontFamily": "Inter",
+        "fontWeight": 400,
+        "fontSize": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0,
+        "usage": "Body copy. PROVISIONAL: confirm brand typeface with Team Content"
+      }
+    ],
+    "logoVariations": [],
+    "imageryGuidelines": [
+      {
+        "category": "service",
+        "description": "Real people at work, documents and approvals; one clear message per frame",
+        "visualCharacteristics": ["light background", "red used sparingly"],
+        "prohibited": ["cash piles", "luxury or secrecy imagery"]
+      }
+    ],
+    "voiceAndTone": {
+      "personality": ["clear", "trustworthy", "practical"],
+      "toneInContext": {
+        "ad": "plain and specific about time and price"
+      },
+      "doNotUse": [
+        "offshore",
+        "no tax",
+        "zero tax",
+        "tax free",
+        "tax evasion",
+        "incognito",
+        "money laundering",
+        "hide assets",
+        "break the law",
+        "cheat",
+        "tax heaven",
+        "tax haven"
+      ]
+    },
+    "prohibitedElements": [
+      {
+        "type": "copy",
+        "description": "offshore",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "no tax",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "zero tax",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "tax free",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "tax evasion",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "incognito",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "money laundering",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "hide assets",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "break the law",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "cheat",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "tax heaven",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      },
+      {
+        "type": "copy",
+        "description": "tax haven",
+        "reason": "Banned word list, Growth Workspace spec section 7 (provisional until Mark confirms)"
+      }
+    ],
+    "brandPersonality": {
+      "primaryTraits": ["clear", "trustworthy"],
+      "secondaryTraits": ["practical", "fast"],
+      "communicationStyle": "State the jurisdiction, the time and the price",
+      "valuePropositions": ["Company formation with ongoing support from one team"]
+    }
+  },
+  "designTokens": {
+    "spacing": [
+      {
+        "name": "md",
+        "value": 16,
+        "unit": "px"
+      }
+    ],
+    "sizing": [
+      {
+        "name": "feed-square",
+        "width": 1080,
+        "height": 1080,
+        "unit": "px"
+      },
+      {
+        "name": "story",
+        "width": 1080,
+        "height": 1920,
+        "unit": "px"
+      },
+      {
+        "name": "landscape",
+        "width": 1920,
+        "height": 1080,
+        "unit": "px"
+      }
+    ],
+    "shadows": [],
+    "borders": [],
+    "animations": [],
+    "breakpoints": []
+  }
+}

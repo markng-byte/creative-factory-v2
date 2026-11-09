@@ -1,0 +1,11 @@
+{
+  "brandId": "brand-one-ibc",
+  "copyLimits": {
+    "hookFirstSentenceMaxChars": 124,
+    "headlineMaxChars": 40,
+    "descriptionMaxChars": 30
+  },
+  "colorShare": {
+    "#8B0000": 0.1
+  }
+}

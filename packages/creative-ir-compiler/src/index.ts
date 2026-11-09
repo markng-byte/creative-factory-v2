@@ -46,6 +46,9 @@ export {
   InMemoryBrandTokensSource,
 } from './sources/in-memory.js';
 
+// File-system brand plugins (plugins/brands/<slug>/brand.json)
+export { FileSystemBrandTokensSource, BrandPluginError } from './sources/filesystem.js';
+
 // Worked example inputs
 export { exampleCreativeBrief, exampleCampaign, exampleBrandBundle } from './examples.js';
 

@@ -1,0 +1,32 @@
+{
+  "brandTokens": {
+    "brandId": "brand-your-slug",
+    "brandName": "Your Brand",
+    "primaryColors": [],
+    "secondaryColors": [],
+    "accentColors": [],
+    "typography": [],
+    "logoVariations": [],
+    "imageryGuidelines": [],
+    "voiceAndTone": {
+      "personality": [],
+      "toneInContext": {},
+      "doNotUse": []
+    },
+    "prohibitedElements": [],
+    "brandPersonality": {
+      "primaryTraits": [],
+      "secondaryTraits": [],
+      "communicationStyle": "",
+      "valuePropositions": []
+    }
+  },
+  "designTokens": {
+    "spacing": [],
+    "sizing": [],
+    "shadows": [],
+    "borders": [],
+    "animations": [],
+    "breakpoints": []
+  }
+}
