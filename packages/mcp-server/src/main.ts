@@ -2,35 +2,17 @@
  * HTTP entry point (MCP Streamable HTTP, stateless). Compiled IRs are kept in one in-process store
  * shared across requests. Environment:
  *   PORT (default 8787), CF_MCP_TOKEN (optional Bearer token; set it whenever the port is reachable),
- *   CF_DEFAULT_BRIEF_ID, CF_DEFAULT_CAMPAIGN_ID, CF_DEFAULT_BRAND_ID.
- * Sources default to the worked example; production wiring swaps in plugin / Google Sheets sources.
+ *   sources: see sources.ts (CF_BRANDS_DIR, CF_SHEET_ID + tab gids, CF_DEFAULT_*_ID); unset means the
+ *   worked example.
  */
 
 import { createServer } from 'node:http';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import {
-  InMemoryBrandTokensSource,
-  InMemoryCampaignSource,
-  InMemoryCreativeBriefSource,
-  exampleBrandBundle,
-  exampleCampaign,
-  exampleCreativeBrief,
-} from '@creative-factory/creative-ir-compiler';
+import { buildSources } from './sources.js';
 import { createCreativeFactoryMcpServer, type StoredRun } from './server.js';
 
-const brand = exampleBrandBundle();
 const store = new Map<string, StoredRun>();
-const deps = {
-  briefs: new InMemoryCreativeBriefSource([exampleCreativeBrief()]),
-  campaigns: new InMemoryCampaignSource([exampleCampaign()]),
-  brands: new InMemoryBrandTokensSource(new Map([[brand.brandTokens.brandId, brand]])),
-  defaults: {
-    briefId: process.env['CF_DEFAULT_BRIEF_ID'] ?? exampleCreativeBrief().id,
-    campaignId: process.env['CF_DEFAULT_CAMPAIGN_ID'] ?? exampleCampaign().id,
-    brandId: process.env['CF_DEFAULT_BRAND_ID'] ?? brand.brandTokens.brandId,
-  },
-  store,
-};
+const deps = { ...buildSources(process.env), store };
 const token = process.env['CF_MCP_TOKEN'];
 
 createServer(async (req, res) => {
