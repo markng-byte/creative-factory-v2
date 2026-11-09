@@ -46,6 +46,9 @@ export {
   InMemoryBrandTokensSource,
 } from './sources/in-memory.js';
 
+// File-system brand plugins (plugins/brands/<slug>/brand.json)
+export { FileSystemBrandTokensSource, BrandPluginError } from './sources/filesystem.js';
+
 // Google Sheets sources (read-only; one entity per row in columns id + json)
 export {
   GoogleSheetsCreativeBriefSource,

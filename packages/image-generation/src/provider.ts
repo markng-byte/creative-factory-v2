@@ -23,6 +23,7 @@ export interface RenderedImagePayload extends RenderedImage {
 }
 
 export class SvgImageProvider implements PromptProvider {
+  readonly offline = true;
   readonly name = IMAGE_PROVIDER_NAME;
 
   supports(targetKind: PromptTargetKind): boolean {

@@ -21,6 +21,7 @@ import type {
   Duration,
   Provenance,
 } from '@creative-factory/creative-ir';
+import { assertGenerationAllowed, type StoryboardGateMode } from '@creative-factory/creative-ir';
 import type { AssetGeneratedContract } from '@creative-factory/contracts';
 import {
   DeterministicIdGenerator,
@@ -41,6 +42,8 @@ export interface VideoGenerationDependencies {
   readonly clock?: Clock;
   readonly ids?: IdGenerator;
   readonly store?: AssetStore;
+  /** Storyboard gate mode; defaults to 'external-only' (see creative-ir storyboard-gate). */
+  readonly storyboardGate?: StoryboardGateMode;
 }
 
 export interface GenerationResult {
@@ -56,12 +59,14 @@ export class StandardVideoGenerationEngine {
   private readonly clock: Clock;
   private readonly ids: IdGenerator;
   private readonly store: AssetStore;
+  private readonly storyboardGate: StoryboardGateMode;
 
   constructor(deps: VideoGenerationDependencies = {}) {
     this.provider = deps.provider ?? new SmilVideoProvider();
     this.clock = deps.clock ?? new SystemClock();
     this.ids = deps.ids ?? new DeterministicIdGenerator('vidgen');
     this.store = deps.store ?? new InMemoryAssetStore();
+    this.storyboardGate = deps.storyboardGate ?? 'external-only';
   }
 
   /** Full loop: translate the IR to video prompts, generate them, and write back. */
@@ -84,6 +89,9 @@ export class StandardVideoGenerationEngine {
     const outputs: AssetOutput[] = [];
     const events: AssetGeneratedContract[] = [];
     const skipped: string[] = [];
+
+    // Refuse before any provider call when the storyboard is not approved (paid providers only by default).
+    assertGenerationAllowed(creativeIR, this.provider, this.storyboardGate);
 
     for (const request of videoRequests) {
       if (!this.provider.supports('video') || request.assetRequestId === undefined) {

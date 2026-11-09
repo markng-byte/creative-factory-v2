@@ -21,6 +21,12 @@ export interface DispatchResult {
 
 export interface PromptProvider {
   readonly name: string;
+  /**
+   * True when the provider sends nothing outside the process and costs nothing (deterministic
+   * renderers, dry runs). Providers that call a paid external API must leave this unset; they are
+   * then held behind the storyboard gate (`assertGenerationAllowed` in creative-ir).
+   */
+  readonly offline?: boolean;
   supports(targetKind: PromptTargetKind): boolean;
   dispatch(request: PromptRequest): Promise<DispatchResult>;
 }
@@ -31,6 +37,7 @@ export interface PromptProvider {
  */
 export class DryRunProvider implements PromptProvider {
   readonly name = 'dry-run';
+  readonly offline = true;
 
   supports(): boolean {
     return true;
