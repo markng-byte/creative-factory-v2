@@ -16,6 +16,7 @@
  */
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { rejectionConstraints } from './rejection-filters.js';
 import { z } from 'zod';
 import {
   ValidationMode,
@@ -94,6 +95,10 @@ export function createCreativeFactoryMcpServer(deps: CreativeFactoryMcpDeps): Mc
         brief_id: z.string().max(128).optional(),
         campaign_id: z.string().max(128).optional(),
         brand_id: z.string().max(128).optional(),
+        rejection_reasons: z
+          .array(z.string().regex(/^[A-Z_]{2,40}$/))
+          .max(15)
+          .optional(),
       },
     },
     async (a) => {
@@ -109,7 +114,19 @@ export function createCreativeFactoryMcpServer(deps: CreativeFactoryMcpDeps): Mc
           brandId: a.brand_id ?? deps.defaults.brandId,
           validationMode: mode(a.validation_mode),
         });
-        const ir = withState(creativeIR, 'STORYBOARD_REVIEW');
+        const filters = rejectionConstraints(a.rejection_reasons ?? []);
+        const ir = withState(
+          filters.length
+            ? {
+                ...creativeIR,
+                creativeContext: {
+                  ...creativeIR.creativeContext,
+                  constraints: [...creativeIR.creativeContext.constraints, ...filters],
+                },
+              }
+            : creativeIR,
+          'STORYBOARD_REVIEW',
+        );
         store.set(ir.id, {
           hookId: a.hook_id,
           hookText: a.hook_text,
@@ -119,6 +136,7 @@ export function createCreativeFactoryMcpServer(deps: CreativeFactoryMcpDeps): Mc
         const board = ir.stories[0]?.storyboards[0];
         return ok({
           creative_ir_id: ir.id,
+          filters: filters.map((f) => f.description),
           storyboard: {
             title: board?.title ?? a.hook_text,
             scenes: (board?.scenes ?? []).map((s) =>
