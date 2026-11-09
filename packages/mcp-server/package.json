@@ -1,0 +1,40 @@
+{
+  "name": "@creative-factory/mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server exposing the pipeline as four tools (compile_creative_ir, run_creative_pipeline, validate_brand_qa, export_channel_bundle) for the One IBC Growth Workspace, with the storyboard gate",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/main.js",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@creative-factory/asset-library": "workspace:*",
+    "@creative-factory/creative-ir": "workspace:*",
+    "@creative-factory/creative-ir-compiler": "workspace:*",
+    "@creative-factory/export-engine": "workspace:*",
+    "@creative-factory/image-generation": "workspace:*",
+    "@creative-factory/prompt-translation": "workspace:*",
+    "@creative-factory/qa-engine": "workspace:*",
+    "@creative-factory/video-generation": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@creative-factory/eslint-config": "workspace:*",
+    "@creative-factory/tsconfig": "workspace:*",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}
