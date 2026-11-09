@@ -22,6 +22,7 @@ export interface RenderedVideoPayload extends RenderedVideo {
 }
 
 export class SmilVideoProvider implements PromptProvider {
+  readonly offline = true;
   readonly name = VIDEO_PROVIDER_NAME;
 
   supports(targetKind: PromptTargetKind): boolean {
