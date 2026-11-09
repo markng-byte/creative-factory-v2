@@ -37,6 +37,9 @@ export * from './validation.js';
 // Validator Implementation
 export * from './validator.js';
 
+// Storyboard gate: no paid image/video generation before the storyboard is approved.
+export * from './storyboard-gate.js';
+
 // ============================================================================
 // Marker Functions for Type Branding
 // ============================================================================

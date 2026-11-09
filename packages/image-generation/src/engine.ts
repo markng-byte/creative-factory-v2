@@ -19,6 +19,7 @@ import type {
   CreativeIR,
   Provenance,
 } from '@creative-factory/creative-ir';
+import { assertGenerationAllowed, type StoryboardGateMode } from '@creative-factory/creative-ir';
 import type { AssetGeneratedContract } from '@creative-factory/contracts';
 import {
   DeterministicIdGenerator,
@@ -39,6 +40,8 @@ export interface ImageGenerationDependencies {
   readonly clock?: Clock;
   readonly ids?: IdGenerator;
   readonly store?: AssetStore;
+  /** Storyboard gate mode; defaults to 'external-only' (see creative-ir storyboard-gate). */
+  readonly storyboardGate?: StoryboardGateMode;
 }
 
 export interface GenerationResult {
@@ -56,12 +59,14 @@ export class StandardImageGenerationEngine {
   private readonly clock: Clock;
   private readonly ids: IdGenerator;
   private readonly store: AssetStore;
+  private readonly storyboardGate: StoryboardGateMode;
 
   constructor(deps: ImageGenerationDependencies = {}) {
     this.provider = deps.provider ?? new SvgImageProvider();
     this.clock = deps.clock ?? new SystemClock();
     this.ids = deps.ids ?? new DeterministicIdGenerator('imggen');
     this.store = deps.store ?? new InMemoryAssetStore();
+    this.storyboardGate = deps.storyboardGate ?? 'external-only';
   }
 
   /** Full loop: translate the IR to image prompts, generate them, and write back. */
@@ -85,6 +90,9 @@ export class StandardImageGenerationEngine {
     const outputs: AssetOutput[] = [];
     const events: AssetGeneratedContract[] = [];
     const skipped: string[] = [];
+
+    // Refuse before any provider call when the storyboard is not approved (paid providers only by default).
+    assertGenerationAllowed(creativeIR, this.provider, this.storyboardGate);
 
     for (const request of imageRequests) {
       if (!this.provider.supports('image') || request.assetRequestId === undefined) {
