@@ -49,6 +49,17 @@ export {
 // File-system brand plugins (plugins/brands/<slug>/brand.json)
 export { FileSystemBrandTokensSource, BrandPluginError } from './sources/filesystem.js';
 
+// Google Sheets sources (read-only; one entity per row in columns id + json)
+export {
+  GoogleSheetsCreativeBriefSource,
+  GoogleSheetsCampaignSource,
+  GoogleSheetsBrandTokensSource,
+  SheetSourceError,
+  sheetCsvUrl,
+  type FetchLike,
+  type SheetTab,
+} from './sources/google-sheets.js';
+
 // Worked example inputs
 export { exampleCreativeBrief, exampleCampaign, exampleBrandBundle } from './examples.js';
 
