@@ -836,6 +836,9 @@ importers:
 
   packages/mcp-server:
     dependencies:
+      '@creative-factory/analytics-engine':
+        specifier: workspace:*
+        version: link:../analytics-engine
       '@creative-factory/asset-library':
         specifier: workspace:*
         version: link:../asset-library

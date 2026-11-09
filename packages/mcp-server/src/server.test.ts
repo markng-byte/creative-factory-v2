@@ -74,6 +74,22 @@ describe('creative-factory MCP server', () => {
     expect(store.get(r.body.creative_ir_id)?.ir.campaign.lifecycleState).toBe('STORYBOARD_REVIEW');
   });
 
+  it('analyzes a stored IR read-only (step 7) and refuses an unknown id', async () => {
+    const { call } = await connect();
+    const { body } = await call('compile_creative_ir', { hook_id: 'H1', hook_text: 'x' });
+    await call('run_creative_pipeline', {
+      creative_ir_id: body.creative_ir_id,
+      steps: ['translate', 'generate', 'qa'],
+      approved_by: 'mark',
+    });
+    const r = await call('analyze_campaign', { creative_ir_id: body.creative_ir_id });
+    expect(r.isError).toBe(false);
+    expect(r.body.assets.generated).toBe(26);
+    expect(r.body.quality).toMatchObject({ assessed: 26, passed: 26, failed: 0, pass_rate: 1 });
+    expect(Array.isArray(r.body.recommendations)).toBe(true);
+    expect((await call('analyze_campaign', { creative_ir_id: 'nope' })).isError).toBe(true);
+  });
+
   it('runs translate, generate, qa only with approved_by; returns qa_status and assets (Growth contract)', async () => {
     const { call, store } = await connect();
     const { body } = await call('compile_creative_ir', { hook_id: 'H1', hook_text: 'x' });

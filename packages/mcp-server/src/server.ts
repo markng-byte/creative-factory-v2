@@ -11,6 +11,7 @@
  *   validate_brand_qa      Brand-compliance QA on the stored IR.
  *   export_channel_bundle  Catalogue, then channel bundles via the dry-run publish target only: preparing a bundle
  *                          never publishes anything (publishing always needs a human).
+ *   analyze_campaign       Step 7: read-only analytics report and heuristic recommendations for a stored IR.
  *
  * Compiled IRs live in an injected store (in memory by default) between calls.
  */
@@ -37,6 +38,7 @@ import { StandardVideoGenerationEngine } from '@creative-factory/video-generatio
 import { StandardQaEngine, type QaReport } from '@creative-factory/qa-engine';
 import { DryRunPublishTarget, StandardExportEngine } from '@creative-factory/export-engine';
 import { InMemoryAssetLibrary, StandardAssetLibrarian } from '@creative-factory/asset-library';
+import { StandardAnalyticsEngine } from '@creative-factory/analytics-engine';
 
 export interface StoredRun {
   readonly hookId: string;
@@ -236,6 +238,41 @@ export function createCreativeFactoryMcpServer(deps: CreativeFactoryMcpDeps): Mc
           channel: b.channel,
           aspect_ratio: b.aspectRatio,
           entries: b.entries.length,
+        })),
+      });
+    },
+  );
+
+  server.registerTool(
+    'analyze_campaign',
+    {
+      description:
+        'Step 7: analytics report and deterministic recommendations for a stored Creative IR. Read only.',
+      inputSchema: { creative_ir_id: z.string().min(1) },
+    },
+    async (a) => {
+      const run = store.get(a.creative_ir_id);
+      if (!run) return fail('IR_NOT_FOUND');
+      const { report, recommendations } = new StandardAnalyticsEngine().analyze(run.ir);
+      return ok({
+        report_id: report.reportId,
+        assets: {
+          total: report.assets.total,
+          generated: report.assets.generated,
+          approved: report.assets.approved,
+          rejected: report.assets.rejected,
+          pending: report.assets.pending,
+        },
+        quality: {
+          assessed: report.quality.assessed,
+          passed: report.quality.passed,
+          failed: report.quality.failed,
+          pass_rate: report.quality.passRate,
+        },
+        recommendations: recommendations.map((r) => ({
+          severity: r.severity,
+          category: r.category,
+          message: r.message,
         })),
       });
     },
