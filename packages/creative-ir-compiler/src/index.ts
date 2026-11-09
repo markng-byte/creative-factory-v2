@@ -46,6 +46,17 @@ export {
   InMemoryBrandTokensSource,
 } from './sources/in-memory.js';
 
+// Google Sheets sources (read-only; one entity per row in columns id + json)
+export {
+  GoogleSheetsCreativeBriefSource,
+  GoogleSheetsCampaignSource,
+  GoogleSheetsBrandTokensSource,
+  SheetSourceError,
+  sheetCsvUrl,
+  type FetchLike,
+  type SheetTab,
+} from './sources/google-sheets.js';
+
 // Worked example inputs
 export { exampleCreativeBrief, exampleCampaign, exampleBrandBundle } from './examples.js';
 
