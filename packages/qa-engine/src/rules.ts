@@ -64,7 +64,11 @@ export const brandPaletteRule: QaRule = {
   },
 };
 
-/** The rendered content must not include any prohibited element. */
+/**
+ * The rendered content must not include any prohibited element. The brand's own name is exempt: a
+ * brand may ban a word that its legal name contains (One IBC bans "offshore" but trades as
+ * "Offshore Company Corp"), and every asset renders the brand name.
+ */
 export const prohibitedAbsentRule: QaRule = {
   id: 'prohibited-absent',
   severity: 'major',
@@ -72,7 +76,9 @@ export const prohibitedAbsentRule: QaRule = {
     if (!VISUAL_TYPES.has(context.request.assetType) || context.content === undefined) {
       return undefined;
     }
-    const haystack = context.content.toLowerCase();
+    const brandName = context.creativeIR.brandTokens.brandName.trim().toLowerCase();
+    const lowered = context.content.toLowerCase();
+    const haystack = brandName ? lowered.split(brandName).join(' ') : lowered;
     const violations = context.prohibitedTerms.filter(
       (term) => term.trim().length > 0 && haystack.includes(term.toLowerCase()),
     );

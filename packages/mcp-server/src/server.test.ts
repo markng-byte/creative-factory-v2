@@ -90,6 +90,30 @@ describe('creative-factory MCP server', () => {
     expect((await call('analyze_campaign', { creative_ir_id: 'nope' })).isError).toBe(true);
   });
 
+  it('turns repeated rejection reasons into advisory constraints on the IR (tier 4)', async () => {
+    const { call, store } = await connect();
+    const r = await call('compile_creative_ir', {
+      hook_id: 'H1',
+      hook_text: 'x',
+      rejection_reasons: ['EXPECTATION_MISMATCH', 'UNKNOWN_CODE', 'EXPECTATION_MISMATCH'],
+    });
+    expect(r.body.filters).toEqual([
+      'Lines 2 to 3: set expectations; bank or EMI approval is neither guaranteed nor instant.',
+    ]);
+    const constraints = store.get(r.body.creative_ir_id)!.ir.creativeContext.constraints;
+    expect(constraints.at(-1)).toEqual({
+      type: 'creative',
+      description: r.body.filters[0],
+      impact: 'advisory',
+    });
+    const bad = await call('compile_creative_ir', {
+      hook_id: 'H1',
+      hook_text: 'x',
+      rejection_reasons: ['drop table'],
+    });
+    expect(bad.isError).toBe(true);
+  });
+
   it('runs translate, generate, qa only with approved_by; returns qa_status and assets (Growth contract)', async () => {
     const { call, store } = await connect();
     const { body } = await call('compile_creative_ir', { hook_id: 'H1', hook_text: 'x' });
