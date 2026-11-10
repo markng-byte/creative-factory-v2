@@ -7,17 +7,19 @@
 
 import type { SceneDraft, StoryboardDraft, StoryDraft } from '../model.js';
 import type { IdGenerator } from '../support/id.js';
+import { compilerCopy } from './copy.js';
 
 export function planStoryboards(
   story: StoryDraft,
   scenes: readonly SceneDraft[],
   ids: IdGenerator,
+  language = 'en',
 ): StoryboardDraft[] {
   const id = ids.generate('storyboard', story.id, 0);
   return [
     {
       id,
-      title: `${story.title} — Storyboard`,
+      title: `${story.title} — ${compilerCopy(language).storyboardSuffix}`,
       sequence: 0,
       scenes,
     },

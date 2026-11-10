@@ -9,6 +9,7 @@
 import type { CreativeBrief, Message } from '@creative-factory/domain';
 import type { NarrativeBlueprint, StoryBeat, StoryBeatKind } from '../model.js';
 import { nonBlankOr, pick, round } from '../support/util.js';
+import { compilerCopy } from './copy.js';
 
 /** Canonical six-beat arc with relative timeline weights (sum to 1.0). */
 const BEAT_TEMPLATE: ReadonlyArray<{ kind: StoryBeatKind; weight: number; goal: string }> = [
@@ -20,16 +21,8 @@ const BEAT_TEMPLATE: ReadonlyArray<{ kind: StoryBeatKind; weight: number; goal: 
   { kind: 'call-to-action', weight: 0.1, goal: 'Drive the desired audience action' },
 ];
 
-const BEAT_TITLES: Record<StoryBeatKind, string> = {
-  setup: 'Setup',
-  inciting: 'Inciting Moment',
-  rising: 'Rising Action',
-  climax: 'Climax',
-  resolution: 'Resolution',
-  'call-to-action': 'Call to Action',
-};
-
-export function planNarrative(brief: CreativeBrief): NarrativeBlueprint {
+export function planNarrative(brief: CreativeBrief, language = 'en'): NarrativeBlueprint {
+  const copy = compilerCopy(language);
   const messages = sortByPriority(brief.keyMessages);
   const messageContents = messages.map((message) => message.content);
   const framework = brief.messagingFramework;
@@ -44,7 +37,7 @@ export function planNarrative(brief: CreativeBrief): NarrativeBlueprint {
 
   const beats: StoryBeat[] = BEAT_TEMPLATE.map((template, index) => ({
     kind: template.kind,
-    title: BEAT_TITLES[template.kind],
+    title: copy.beatTitles[template.kind],
     intent: template.goal,
     emotion: resolveBeatEmotion(template.kind, emotionalJourney, emotion.primaryEmotion, index),
     weight: round(template.weight),

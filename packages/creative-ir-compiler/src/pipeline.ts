@@ -85,11 +85,11 @@ export function buildCreativeIR(inputs: CompileInputs, ctx: PlanningContext): Cr
   const language = campaign.languages[0] ?? 'en';
 
   // --- Phase 1: planning ---------------------------------------------------
-  const narrative = planNarrative(brief);
+  const narrative = planNarrative(brief, language);
   const stories = planStories(brief, narrative, ids);
 
   const storyBlueprints: StoryBlueprint[] = stories.map((story) => {
-    const scenes = planScenes(story, brief, narrative, ids);
+    const scenes = planScenes(story, brief, narrative, ids, language);
     const sceneBlueprints: SceneBlueprint[] = scenes.map((scene) => {
       const shotDrafts = planShots(scene, brief, ids);
       const plannedShots: PlannedShotBlueprint[] = shotDrafts.map((draft) => {
@@ -99,7 +99,7 @@ export function buildCreativeIR(inputs: CompileInputs, ctx: PlanningContext): Cr
       });
       return { scene, plannedShots };
     });
-    const storyboards = planStoryboards(story, scenes, ids);
+    const storyboards = planStoryboards(story, scenes, ids, language);
     const storyboard = storyboards[0];
     return {
       story,
