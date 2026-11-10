@@ -44,7 +44,7 @@ const VI: CompilerCopy = {
   },
   storyboardSuffix: 'Storyboard',
   setup: (t) => `Bối cảnh của khách. ${t}`,
-  inciting: (m) => `Điều khách đang vướng: ${m}`,
+  inciting: (m) => `Điều khách cần: ${m}`,
   rising: (m) => `Bằng chứng cụ thể: ${m}`,
   climax: (m) => `Điều quan trọng nhất: ${m}`,
   resolution: (t) => `Nhắc lại: ${t}.`,
