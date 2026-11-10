@@ -72,6 +72,30 @@ describe('creative-factory MCP server', () => {
     expect(typeof r.body.creative_ir_id).toBe('string');
     expect(r.body.storyboard.scenes.length).toBeGreaterThan(0);
     expect(store.get(r.body.creative_ir_id)?.ir.campaign.lifecycleState).toBe('STORYBOARD_REVIEW');
+    // The storyboard tells the hook's story, not the example brief's core message.
+    const scenes = r.body.storyboard.scenes.join(' ');
+    expect(scenes).toContain('Hong Kong company in 2 days.');
+    expect(scenes).not.toContain('See the whole story your data is telling');
+  });
+
+  it('gives each hook its own IR id; the same hook compiles to the same id', async () => {
+    const { call, store } = await connect();
+    const hk = await call('compile_creative_ir', {
+      hook_id: 'HK-01',
+      hook_text: 'Hong Kong in 7 days',
+    });
+    const sg = await call('compile_creative_ir', {
+      hook_id: 'SG-01',
+      hook_text: 'Singapore with EMI',
+    });
+    const again = await call('compile_creative_ir', {
+      hook_id: 'HK-01',
+      hook_text: 'Hong Kong in 7 days',
+    });
+    expect(hk.body.creative_ir_id).not.toBe(sg.body.creative_ir_id);
+    expect(again.body.creative_ir_id).toBe(hk.body.creative_ir_id);
+    expect(store.get(hk.body.creative_ir_id)?.hookId).toBe('HK-01');
+    expect(store.get(sg.body.creative_ir_id)?.hookId).toBe('SG-01');
   });
 
   it('analyzes a stored IR read-only (step 7) and refuses an unknown id', async () => {
