@@ -18,4 +18,4 @@ Start the MCP server with `CF_PROFILE=one-ibc` to use this plugin plus a provisi
 
 Replace the provisional brief and campaign by entering the real ones in the Google Sheet (`CF_SHEET_ID`, `CF_BRIEFS_GID`, `CF_CAMPAIGNS_GID`) and pointing `CF_DEFAULT_BRIEF_ID`, `CF_DEFAULT_CAMPAIGN_ID` at them. No code change needed.
 
-Known gap: the narrative stage's connective phrases ("Setup: We open in the audience's world") are English templates in code; the brief content inside them is Vietnamese.
+The compiler's own words (beat titles, connective phrases) follow the campaign language; the provisional campaign is `vi`, so storyboards read in Vietnamese end to end.

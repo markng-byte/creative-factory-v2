@@ -65,6 +65,8 @@ describe('buildSources (environment wiring)', () => {
     const text = JSON.stringify(r.content);
     expect(text).toContain('Nhắn One IBC qua WhatsApp');
     expect(text).not.toContain('Northwind');
+    expect(text).toContain('Kêu gọi: Nhắn One IBC qua WhatsApp');
+    expect(text).not.toContain('We open');
     const ir = [...store.values()][0]!.ir;
     expect(JSON.stringify(ir)).toContain('#8B0000');
   });

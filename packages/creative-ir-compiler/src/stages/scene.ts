@@ -10,6 +10,7 @@ import type { CreativeBrief } from '@creative-factory/domain';
 import type { NarrativeBlueprint, SceneDraft, StoryBeatKind, StoryDraft } from '../model.js';
 import type { IdGenerator } from '../support/id.js';
 import { nonBlankOr, pick } from '../support/util.js';
+import { compilerCopy, type CompilerCopy } from './copy.js';
 
 const NARRATIVE_GOAL: Record<StoryBeatKind, string> = {
   setup: 'Orient the viewer and establish relevance',
@@ -25,7 +26,9 @@ export function planScenes(
   brief: CreativeBrief,
   narrative: NarrativeBlueprint,
   ids: IdGenerator,
+  language = 'en',
 ): SceneDraft[] {
+  const copy = compilerCopy(language);
   const businessObjectives = brief.businessObjectives.map((objective) => objective.description);
   const communicationObjectives = brief.communicationObjectives.map(
     (objective) => objective.description,
@@ -48,7 +51,7 @@ export function planScenes(
         `Move the audience toward ${narrative.callToAction}`,
       ),
       emotion: beat.emotion,
-      narrativeText: composeNarrativeText(beat.kind, keyMessage, narrative),
+      narrativeText: composeNarrativeText(beat.kind, keyMessage, narrative, copy),
       beat,
     };
   });
@@ -58,18 +61,19 @@ function composeNarrativeText(
   kind: StoryBeatKind,
   keyMessage: string,
   narrative: NarrativeBlueprint,
+  copy: CompilerCopy,
 ): string {
   switch (kind) {
     case 'setup':
-      return `We open in the audience's world. ${narrative.throughline}`;
+      return copy.setup(narrative.throughline);
     case 'inciting':
-      return `A tension emerges: ${keyMessage}`;
+      return copy.inciting(keyMessage);
     case 'rising':
-      return `The stakes rise as we prove the point — ${keyMessage}`;
+      return copy.rising(keyMessage);
     case 'climax':
-      return `At peak intensity, the core message lands: ${keyMessage}`;
+      return copy.climax(keyMessage);
     case 'resolution':
-      return `The tension resolves, reinforcing ${narrative.theme}.`;
+      return copy.resolution(narrative.theme);
     case 'call-to-action':
       return `${narrative.callToAction}.`;
     default:
