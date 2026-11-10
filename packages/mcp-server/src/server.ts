@@ -18,6 +18,7 @@
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { rejectionConstraints } from './rejection-filters.js';
+import { hookBriefSource } from './hook-brief.js';
 import { z } from 'zod';
 import {
   ValidationMode,
@@ -106,9 +107,11 @@ export function createCreativeFactoryMcpServer(deps: CreativeFactoryMcpDeps): Mc
     async (a) => {
       try {
         const compiler = new StandardCreativeIRCompiler({
-          briefs: deps.briefs,
+          briefs: hookBriefSource(deps.briefs, a.hook_text),
           campaigns: deps.campaigns,
           brands: deps.brands,
+          // One IR per hook: the id is derived from the hook, so two hooks never overwrite each other's IR.
+          seed: `creative-factory:${a.hook_id}:${a.hook_text}`,
         });
         const { creativeIR } = await compiler.compile({
           creativeBriefId: a.brief_id ?? deps.defaults.briefId,
