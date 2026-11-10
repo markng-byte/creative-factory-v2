@@ -18,6 +18,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@creative-factory/analytics-engine": "workspace:*",
     "@creative-factory/asset-library": "workspace:*",
     "@creative-factory/creative-ir": "workspace:*",
     "@creative-factory/creative-ir-compiler": "workspace:*",
